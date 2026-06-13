@@ -101,6 +101,58 @@ export function productSchema(input: {
   };
 }
 
+/**
+ * Product schema for live Shopify SKUs (plant pages). Unlike productSchema,
+ * emits no aggregateRating — we have no review data for these products.
+ */
+export function plantProductSchema(input: {
+  name: string;
+  description: string;
+  url: string;
+  image: string | null;
+  price: number;
+  inStock: boolean;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: input.name,
+    description: input.description,
+    url: input.url,
+    ...(input.image ? { image: input.image } : {}),
+    brand: { "@type": "Brand", name: "AquaticMotiv" },
+    offers: {
+      "@type": "Offer",
+      price: input.price,
+      priceCurrency: "USD",
+      url: input.url,
+      availability: input.inStock
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
+    },
+  };
+}
+
+/** schema.org Taxon for a plant species page (see PLANT_FINDER_SPEC.md §5). */
+export function speciesSchema(input: {
+  commonName: string;
+  scientificName: string;
+  synonyms: string[];
+  description: string;
+  url: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Taxon",
+    name: input.commonName,
+    taxonRank: "species",
+    scientificName: input.scientificName,
+    ...(input.synonyms.length > 0 ? { alternateName: input.synonyms } : {}),
+    description: input.description,
+    url: input.url,
+  };
+}
+
 export function itemListSchema(
   name: string,
   items: { name: string; url: string; position: number }[]

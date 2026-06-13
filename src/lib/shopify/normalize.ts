@@ -174,6 +174,46 @@ function resolveCategory(
   return null;
 }
 
+function buildPlantAttributes(
+  metafields: StorefrontProductEdge["node"]["metafields"],
+): ShopifyProduct["plantAttributes"] {
+  const get = (key: string) =>
+    metafields?.find((m) => m?.key === key)?.value ?? null;
+  const num = (key: string) => {
+    const v = get(key);
+    return v === null ? null : Number(v);
+  };
+  const bool = (key: string) => {
+    const v = get(key);
+    return v === null ? null : v === "true";
+  };
+
+  // Only build the object when plant-specific fields are actually present
+  if (get("light_requirement") === null && get("plant_slug") === null) {
+    return null;
+  }
+
+  return {
+    scientificName: get("scientific_name"),
+    light: get("light_requirement"),
+    co2Required: bool("co2_required"),
+    placement: get("placement")?.split(",").map((p) => p.trim()) ?? [],
+    growthRate: get("growth_rate"),
+    maxHeightIn: num("max_height_in"),
+    spreadIn: num("spread_in"),
+    attachesToHardscape: bool("attaches_to_hardscape"),
+    snailSafe: bool("snail_safe"),
+    parMin: num("par_min"),
+    parMax: num("par_max"),
+    fertDemand: get("fert_demand"),
+    tempMinF: num("temp_min"),
+    tempMaxF: num("temp_max"),
+    phMin: num("ph_min"),
+    phMax: num("ph_max"),
+    plantSlug: get("plant_slug"),
+  };
+}
+
 export function normalizeProduct(edge: StorefrontProductEdge): ShopifyProduct {
   const node = edge.node;
 
@@ -207,5 +247,6 @@ export function normalizeProduct(edge: StorefrontProductEdge): ShopifyProduct {
     availableForSale: node.availableForSale,
     tags: node.tags,
     careLevel: careLevelMetafield?.value ?? null,
+    plantAttributes: buildPlantAttributes(node.metafields),
   };
 }

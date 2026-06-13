@@ -41,6 +41,7 @@ export function loadTemplate(
             ? sampleProduct.careLevel.charAt(0).toUpperCase() +
               sampleProduct.careLevel.slice(1)
             : null,
+          plantAttributes: null,
         };
         return { product, quantity: 1 };
       }

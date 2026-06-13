@@ -1,3 +1,26 @@
+// Structured plant attributes sourced from `aquascaping` metafields
+// (populated by scripts/sync-plant-metafields.mjs from the knowledge graph)
+export interface PlantAttributes {
+  scientificName: string | null;
+  light: string | null;
+  co2Required: boolean | null;
+  placement: string[];
+  growthRate: string | null;
+  maxHeightIn: number | null;
+  spreadIn: number | null;
+  attachesToHardscape: boolean | null;
+  snailSafe: boolean | null;
+  parMin: number | null;
+  parMax: number | null;
+  fertDemand: string | null;
+  tempMinF: number | null;
+  tempMaxF: number | null;
+  phMin: number | null;
+  phMax: number | null;
+  /** Slug of the matching knowledge-graph entry (src/data/plants/species.json) */
+  plantSlug: string | null;
+}
+
 // Normalized product shape used throughout the app
 export interface ShopifyProduct {
   id: string;
@@ -15,6 +38,8 @@ export interface ShopifyProduct {
   availableForSale: boolean;
   tags: string[];
   careLevel: string | null;
+  /** Present when the product carries aquascaping plant metafields */
+  plantAttributes: PlantAttributes | null;
 }
 
 // Cart types
