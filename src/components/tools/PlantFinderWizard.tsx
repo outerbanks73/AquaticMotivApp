@@ -28,14 +28,14 @@ interface Props {
 }
 
 const GOALS: { id: RecommenderGoal; label: string; hint: string }[] = [
-  { id: "carpet", label: "A carpet", hint: "low lawn across the foreground" },
-  { id: "attach_to_hardscape", label: "Attach to stone & wood", hint: "no substrate needed" },
-  { id: "background_wall", label: "Background wall", hint: "fill the back glass" },
-  { id: "red_accents", label: "Red accents", hint: "color beyond green" },
-  { id: "snail_safe", label: "Snail & shrimp safe", hint: "survives grazing crews" },
-  { id: "low_maintenance", label: "Low maintenance", hint: "minimal trimming" },
-  { id: "floating_cover", label: "Floating cover", hint: "shade and security" },
-  { id: "betta_tank", label: "Betta tank", hint: "resting spots, gentle flow" },
+  { id: "carpet", label: "Grow a Lush Carpet", hint: "a living green lawn across the foreground" },
+  { id: "attach_to_hardscape", label: "Secure Plants to Stone & Wood", hint: "epiphytes that need no substrate" },
+  { id: "background_wall", label: "Build a Sturdy Background Wall", hint: "fill the back glass with green" },
+  { id: "red_accents", label: "Add Bold Red Color", hint: "showpiece reds and pinks" },
+  { id: "snail_safe", label: "Keep It Snail & Shrimp Safe", hint: "stands up to a cleanup crew" },
+  { id: "low_maintenance", label: "Keep Maintenance Low", hint: "minimal trimming, fuss-free" },
+  { id: "floating_cover", label: "Add Floating Cover", hint: "shade and security up top" },
+  { id: "betta_tank", label: "Make a Betta Feel at Home", hint: "resting spots and gentle cover" },
 ];
 
 const LIGHT_OPTIONS = [
@@ -57,13 +57,15 @@ const FERT_OPTIONS: { id: FertRoutine; label: string }[] = [
   { id: "comprehensive", label: "Full routine (liquid + tabs)" },
 ];
 
-const EXPERIENCE_OPTIONS: { id: Experience; label: string }[] = [
-  { id: "beginner", label: "First planted tank" },
-  { id: "intermediate", label: "A few tanks in" },
-  { id: "advanced", label: "I trim with intent" },
+const EXPERIENCE_OPTIONS: { id: Experience; label: string; hint: string }[] = [
+  { id: "beginner", label: "I'm just getting started", hint: "My first planted tank" },
+  { id: "intermediate", label: "I've kept a few tanks", hint: "Comfortable with the basics" },
+  { id: "advanced", label: "I trim with intent", hint: "I know my way around a scape" },
 ];
 
-const STEPS = ["Tank", "Light", "CO2 & ferts", "Goals"] as const;
+// Numbered quiz steps (1-4). Experience is the opener (step 0); Results is step 5.
+const STEPS = ["Goals", "Tank", "Light", "CO2 & ferts"] as const;
+const RESULTS_STEP = STEPS.length + 1;
 
 function tankHeight(dimensions: string): number | null {
   const nums = dimensions.match(/\d+/g);
@@ -81,7 +83,7 @@ export function PlantFinderWizard({ plants, productInfo }: Props) {
 
   const [step, setStep] = useState(() => {
     const s = Number(params.get("step") ?? 0);
-    return Number.isFinite(s) ? Math.min(Math.max(s, 0), STEPS.length) : 0;
+    return Number.isFinite(s) ? Math.min(Math.max(s, 0), RESULTS_STEP) : 0;
   });
   const [tankId, setTankId] = useState(params.get("tank") ?? "");
   const [light, setLight] = useState<RecommenderInput["light"]>(
@@ -143,7 +145,7 @@ export function PlantFinderWizard({ plants, productInfo }: Props) {
     [plants, input, stockByHandle],
   );
 
-  const atResults = step >= STEPS.length;
+  const atResults = step >= RESULTS_STEP;
   const visible = showAll ? result.recommendations : result.recommendations.slice(0, 10);
 
   const onAquaticMotiv =
@@ -170,176 +172,90 @@ export function PlantFinderWizard({ plants, productInfo }: Props) {
 
   return (
     <main className="mx-auto max-w-3xl px-4 pb-24">
-        {/* Depth stepper */}
-        <nav aria-label="Progress" className="relative z-10 mt-8 mb-10">
-          <ol className="flex overflow-hidden rounded-full border border-aqua-200 bg-white shadow-lg shadow-ocean-950/5">
-            {STEPS.map((label, i) => (
-              <li key={label} className="flex-1">
-                <button
-                  type="button"
-                  onClick={() => setStep(i)}
-                  aria-current={step === i ? "step" : undefined}
-                  className={`w-full px-2 py-3 text-xs font-semibold transition-colors sm:text-sm ${
-                    step === i
-                      ? "bg-aqua-600 text-white"
-                      : i < step || atResults
-                        ? "text-aqua-700 hover:bg-aqua-50"
-                        : "text-ocean-900/40"
+        {/* Depth stepper — hidden on the experience opener (step 0) */}
+        {step >= 1 && (
+          <nav aria-label="Progress" className="relative z-10 mt-8 mb-10">
+            <ol className="flex overflow-hidden rounded-full border border-aqua-200 bg-white shadow-lg shadow-ocean-950/5">
+              {STEPS.map((label, i) => {
+                const stepIndex = i + 1;
+                return (
+                  <li key={label} className="flex-1">
+                    <button
+                      type="button"
+                      onClick={() => setStep(stepIndex)}
+                      aria-current={step === stepIndex ? "step" : undefined}
+                      className={`w-full px-2 py-3 text-xs font-semibold transition-colors sm:text-sm ${
+                        step === stepIndex
+                          ? "bg-aqua-600 text-white"
+                          : stepIndex < step || atResults
+                            ? "text-aqua-700 hover:bg-aqua-50"
+                            : "text-ocean-900/40"
+                      }`}
+                    >
+                      <span className="hidden sm:inline">{stepIndex}. </span>
+                      {label}
+                    </button>
+                  </li>
+                );
+              })}
+              <li className="flex-1">
+                <span
+                  className={`block px-2 py-3 text-center text-xs font-semibold sm:text-sm ${
+                    atResults ? "bg-ocean-900 text-aqua-300" : "text-ocean-900/40"
                   }`}
                 >
-                  <span className="hidden sm:inline">{i + 1}. </span>
-                  {label}
-                </button>
+                  Results
+                </span>
               </li>
-            ))}
-            <li className="flex-1">
-              <span
-                className={`block px-2 py-3 text-center text-xs font-semibold sm:text-sm ${
-                  atResults ? "bg-ocean-900 text-aqua-300" : "text-ocean-900/40"
-                }`}
-              >
-                Results
-              </span>
-            </li>
-          </ol>
-        </nav>
+            </ol>
+          </nav>
+        )}
 
-        {/* Step 1 — Tank */}
+        {/* Step 0 — Experience (personal opener) */}
         {step === 0 && (
-          <section aria-labelledby="step-tank">
-            <h2 id="step-tank" className="text-xl font-bold text-ocean-950">
-              What are you working with?
+          <section aria-labelledby="step-exp" className="pt-2">
+            <p className="text-sm font-semibold uppercase tracking-wide text-aqua-700">
+              Let&apos;s start with you
+            </p>
+            <h2 id="step-exp" className="mt-1 text-2xl font-bold text-ocean-950">
+              How would you describe yourself?
             </h2>
-            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {TANK_SIZES.filter((t) => t.gallons > 0).map((t) => (
+            <p className="mt-2 text-ocean-900/60">
+              Every thriving tank starts with its keeper. We&apos;ll tune our picks to
+              your comfort level — no judgment, just plants that work for you.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              {EXPERIENCE_OPTIONS.map((o) => (
                 <button
-                  key={t.id}
+                  key={o.id}
                   type="button"
                   onClick={() => {
-                    setTankId(t.id);
+                    setExperience(o.id);
                     setStep(1);
                   }}
-                  className={`rounded-xl border-2 p-4 text-left transition-all hover:-translate-y-0.5 hover:shadow-md ${
-                    tankId === t.id
-                      ? "border-aqua-600 bg-aqua-50"
-                      : "border-ocean-100 bg-white hover:border-aqua-300"
-                  }`}
-                >
-                  <span className="block text-lg font-bold text-ocean-950">{t.gallons}g</span>
-                  <span className="block text-xs text-ocean-900/60">{t.dimensions}</span>
-                </button>
-              ))}
-            </div>
-            <label className="mt-6 flex items-center gap-3 text-sm text-ocean-900">
-              <input
-                type="checkbox"
-                checked={unheated}
-                onChange={(e) => setUnheated(e.target.checked)}
-                className="h-4 w-4 accent-aqua-600"
-              />
-              This tank is unheated (room temperature)
-            </label>
-            <button
-              type="button"
-              onClick={() => {
-                setTankId("");
-                setStep(1);
-              }}
-              className="mt-4 text-sm font-medium text-aqua-700 underline-offset-2 hover:underline"
-            >
-              Skip — recommend for any tank size
-            </button>
-          </section>
-        )}
-
-        {/* Step 2 — Light */}
-        {step === 1 && (
-          <section aria-labelledby="step-light">
-            <h2 id="step-light" className="text-xl font-bold text-ocean-950">
-              How much light is over it?
-            </h2>
-            <div className="mt-5 grid gap-3">
-              {LIGHT_OPTIONS.map((o) => (
-                <button
-                  key={o.id}
-                  type="button"
-                  onClick={() => {
-                    setLight(o.id);
-                    setStep(2);
-                  }}
-                  className={`rounded-xl border-2 p-4 text-left transition-all hover:-translate-y-0.5 hover:shadow-md ${
-                    light === o.id
-                      ? "border-aqua-600 bg-aqua-50"
-                      : "border-ocean-100 bg-white hover:border-aqua-300"
-                  }`}
-                >
-                  <span className="block font-bold text-ocean-950">{o.label} light</span>
-                  <span className="block text-sm text-ocean-900/60">{o.hint}</span>
-                </button>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Step 3 — CO2 & ferts */}
-        {step === 2 && (
-          <section aria-labelledby="step-co2">
-            <h2 id="step-co2" className="text-xl font-bold text-ocean-950">
-              CO2 and fertilizer?
-            </h2>
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              {CO2_OPTIONS.map((o) => (
-                <button
-                  key={o.id}
-                  type="button"
-                  onClick={() => setCo2(o.id)}
-                  className={`rounded-xl border-2 p-4 text-left transition-all ${
-                    co2 === o.id
+                  className={`rounded-xl border-2 p-5 text-left transition-all hover:-translate-y-0.5 hover:shadow-md ${
+                    experience === o.id
                       ? "border-aqua-600 bg-aqua-50"
                       : "border-ocean-100 bg-white hover:border-aqua-300"
                   }`}
                 >
                   <span className="block font-bold text-ocean-950">{o.label}</span>
-                  <span className="block text-xs text-ocean-900/60">{o.hint}</span>
+                  <span className="mt-1 block text-sm text-ocean-900/60">{o.hint}</span>
                 </button>
               ))}
             </div>
-            <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-ocean-900/60">
-              Fertilization
-            </h3>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {FERT_OPTIONS.map((o) => (
-                <button
-                  key={o.id}
-                  type="button"
-                  onClick={() => setFert(o.id)}
-                  className={`rounded-full border-2 px-4 py-2 text-sm font-medium transition-colors ${
-                    fert === o.id
-                      ? "border-aqua-600 bg-aqua-600 text-white"
-                      : "border-ocean-100 bg-white text-ocean-900 hover:border-aqua-300"
-                  }`}
-                >
-                  {o.label}
-                </button>
-              ))}
-            </div>
-            <button
-              type="button"
-              onClick={() => setStep(3)}
-              className="mt-8 rounded-full bg-ocean-950 px-6 py-3 font-semibold text-white transition-transform hover:scale-[1.02]"
-            >
-              Continue
-            </button>
           </section>
         )}
 
-        {/* Step 4 — Goals */}
-        {step === 3 && (
+        {/* Step 1 — Goals */}
+        {step === 1 && (
           <section aria-labelledby="step-goals">
             <h2 id="step-goals" className="text-xl font-bold text-ocean-950">
-              What do you want from this scape?
+              What do you want to create?
             </h2>
-            <p className="mt-1 text-sm text-ocean-900/60">Pick as many as you like.</p>
+            <p className="mt-1 text-sm text-ocean-900/60">
+              Pick everything you&apos;re dreaming of — we&apos;ll find plants that deliver.
+            </p>
             <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
               {GOALS.map((g) => {
                 const active = goals.includes(g.id);
@@ -365,17 +281,139 @@ export function PlantFinderWizard({ plants, productInfo }: Props) {
                 );
               })}
             </div>
-            <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-ocean-900/60">
-              Your experience
-            </h3>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {EXPERIENCE_OPTIONS.map((o) => (
+            <button
+              type="button"
+              onClick={() => setStep(2)}
+              className="mt-8 rounded-full bg-aqua-600 px-8 py-3 font-semibold text-white shadow-lg shadow-aqua-600/25 transition-transform hover:scale-[1.02]"
+            >
+              Continue
+            </button>
+            <p className="mt-3 text-sm text-ocean-900/50">
+              Not sure yet? Continue and we&apos;ll recommend across the board.
+            </p>
+          </section>
+        )}
+
+        {/* Step 2 — Tank */}
+        {step === 2 && (
+          <section aria-labelledby="step-tank">
+            <h2 id="step-tank" className="text-xl font-bold text-ocean-950">
+              Now, what are you working with?
+            </h2>
+            <p className="mt-1 text-sm text-ocean-900/60">
+              Pick the size closest to your tank — it shapes what fits.
+            </p>
+            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {TANK_SIZES.filter((t) => t.gallons > 0).map((t) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => {
+                    setTankId(t.id);
+                    setStep(3);
+                  }}
+                  className={`rounded-xl border-2 p-4 text-left transition-all hover:-translate-y-0.5 hover:shadow-md ${
+                    tankId === t.id
+                      ? "border-aqua-600 bg-aqua-50"
+                      : "border-ocean-100 bg-white hover:border-aqua-300"
+                  }`}
+                >
+                  <span className="block text-lg font-bold text-ocean-950">{t.gallons}g</span>
+                  <span className="block text-xs text-ocean-900/60">{t.dimensions}</span>
+                </button>
+              ))}
+            </div>
+            <label className="mt-6 flex items-center gap-3 text-sm text-ocean-900">
+              <input
+                type="checkbox"
+                checked={unheated}
+                onChange={(e) => setUnheated(e.target.checked)}
+                className="h-4 w-4 accent-aqua-600"
+              />
+              This tank is unheated (room temperature)
+            </label>
+            <button
+              type="button"
+              onClick={() => {
+                setTankId("");
+                setStep(3);
+              }}
+              className="mt-4 block text-sm font-medium text-aqua-700 underline-offset-2 hover:underline"
+            >
+              Skip — recommend for any tank size
+            </button>
+          </section>
+        )}
+
+        {/* Step 3 — Light */}
+        {step === 3 && (
+          <section aria-labelledby="step-light">
+            <h2 id="step-light" className="text-xl font-bold text-ocean-950">
+              How much light does it get?
+            </h2>
+            <p className="mt-1 text-sm text-ocean-900/60">
+              Light is the single biggest factor in what will thrive.
+            </p>
+            <div className="mt-5 grid gap-3">
+              {LIGHT_OPTIONS.map((o) => (
                 <button
                   key={o.id}
                   type="button"
-                  onClick={() => setExperience(o.id)}
+                  onClick={() => {
+                    setLight(o.id);
+                    setStep(4);
+                  }}
+                  className={`rounded-xl border-2 p-4 text-left transition-all hover:-translate-y-0.5 hover:shadow-md ${
+                    light === o.id
+                      ? "border-aqua-600 bg-aqua-50"
+                      : "border-ocean-100 bg-white hover:border-aqua-300"
+                  }`}
+                >
+                  <span className="block font-bold text-ocean-950">{o.label} light</span>
+                  <span className="block text-sm text-ocean-900/60">{o.hint}</span>
+                </button>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Step 4 — CO2 & ferts */}
+        {step === 4 && (
+          <section aria-labelledby="step-co2">
+            <h2 id="step-co2" className="text-xl font-bold text-ocean-950">
+              Last one — how high-tech is your setup?
+            </h2>
+            <p className="mt-1 text-sm text-ocean-900/60">
+              CO2 and fertilizer widen what&apos;s possible. No CO2 is completely fine.
+            </p>
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              {CO2_OPTIONS.map((o) => (
+                <button
+                  key={o.id}
+                  type="button"
+                  onClick={() => setCo2(o.id)}
+                  className={`rounded-xl border-2 p-4 text-left transition-all ${
+                    co2 === o.id
+                      ? "border-aqua-600 bg-aqua-50"
+                      : "border-ocean-100 bg-white hover:border-aqua-300"
+                  }`}
+                >
+                  <span className="block font-bold text-ocean-950">{o.label}</span>
+                  <span className="block text-xs text-ocean-900/60">{o.hint}</span>
+                </button>
+              ))}
+            </div>
+            <h3 className="mt-8 text-sm font-semibold uppercase tracking-wide text-ocean-900/60">
+              Fertilizing routine
+            </h3>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {FERT_OPTIONS.map((o) => (
+                <button
+                  key={o.id}
+                  type="button"
+                  onClick={() => setFert(o.id)}
                   className={`rounded-full border-2 px-4 py-2 text-sm font-medium transition-colors ${
-                    experience === o.id
+                    fert === o.id
                       ? "border-aqua-600 bg-aqua-600 text-white"
                       : "border-ocean-100 bg-white text-ocean-900 hover:border-aqua-300"
                   }`}
@@ -386,7 +424,7 @@ export function PlantFinderWizard({ plants, productInfo }: Props) {
             </div>
             <button
               type="button"
-              onClick={() => setStep(4)}
+              onClick={() => setStep(RESULTS_STEP)}
               className="mt-8 rounded-full bg-aqua-600 px-8 py-3 font-semibold text-white shadow-lg shadow-aqua-600/25 transition-transform hover:scale-[1.02]"
             >
               Show my plants
