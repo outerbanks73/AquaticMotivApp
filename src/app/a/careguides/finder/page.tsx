@@ -53,11 +53,12 @@ export default async function PlantFinderPage() {
             AquaticMotiv plant finder
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-5xl">
-            The right plants for <em className="font-serif text-aqua-200">your</em> tank.
+            Stop watching your plants <em className="font-serif text-aqua-200">melt</em>.
           </h1>
           <p className="mt-4 max-w-xl text-ocean-100">
-            Four questions — size, light, CO2, goals. Ranked recommendations from{" "}
-            {plants.length}+ species, with honest care expectations. No CO2? No problem.
+            Answer four quick questions and get plants matched to your exact setup —
+            the ones that thrive, not just survive. Grown across our 190+ tanks and
+            shipped with a 100% live-arrival guarantee.
           </p>
         </div>
       </header>

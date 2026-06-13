@@ -12,9 +12,10 @@ Online Store → Navigation → Main menu:
 
 ## 2. Homepage section (10 min)
 Online Store → Themes → Customize → Homepage → Add section (banner / image-with-text):
-- Heading: `Not sure what survives in your tank?`
-- Body: `Answer 4 questions — get plants ranked for your exact light, CO2, and goals. 100+ species, honest care data.`
-- Button: `Try the Plant Finder` → `/a/careguides/finder`
+- Heading: `Stop watching your plants melt.`
+- Body: `Answer four quick questions and get plants matched to your exact tank — the ones that thrive, not just survive. Backed by our 100% live-arrival guarantee.`
+- Button: `Find my plants` → `/a/careguides/finder`
+  (Emotional hook is intentionally consistent with the finder hero: pain → promise → proof. Keep them in sync if you tweak one.)
 - Optional row of 3 links: Plant database (`/a/careguides/plants`) · Snail & invert
   guides (`/a/careguides/inverts`) · Care guides (`/pages/care-guides`, unchanged)
 
