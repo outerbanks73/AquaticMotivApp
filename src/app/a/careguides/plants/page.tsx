@@ -10,6 +10,7 @@ import {
 } from "@/lib/data/plant-pages";
 import { breadcrumbSchema, itemListSchema } from "@/lib/seo/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SpeciesSearchList } from "@/components/tools/SpeciesSearchList";
 
 export const metadata: Metadata = {
   title: "Aquarium Plant Database — Care Data for Every Species | AquaticMotiv",
@@ -134,40 +135,24 @@ export default function PlantsHubPage() {
           </div>
         </section>
 
-        {/* A–Z species list */}
+        {/* All species — searchable */}
         <section aria-labelledby="all-species" className="mt-12">
           <h2 id="all-species" className="text-xl font-bold text-ocean-950">
-            All species, A–Z
+            Find a plant
           </h2>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-            {plants.map((plant) => (
-              <li key={plant.slug}>
-                <Link
-                  href={`/a/careguides/plants/${plant.slug}`}
-                  className="block h-full rounded-xl border border-ocean-100 bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-aqua-300 hover:shadow-md"
-                >
-                  <span className="block font-bold text-ocean-950">
-                    {plant.commonName}
-                  </span>
-                  <span className="block text-sm italic text-ocean-900/50">
-                    {plant.scientificName}
-                  </span>
-                  <span className="mt-2 flex flex-wrap gap-1.5">
-                    {speciesBadges(plant.light, plant.co2, plant.difficulty).map(
-                      (badge) => (
-                        <span
-                          key={badge}
-                          className="rounded-full bg-aqua-100 px-2.5 py-0.5 text-xs font-medium text-aqua-800"
-                        >
-                          {badge}
-                        </span>
-                      )
-                    )}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <p className="mt-1 mb-4 text-sm text-ocean-900/60">
+            Search {plants.length} species by common or scientific name.
+          </p>
+          <SpeciesSearchList
+            placeholder="Search plants — e.g. anubias, Microsorum, monte carlo…"
+            items={plants.map((plant) => ({
+              href: `/a/careguides/plants/${plant.slug}`,
+              name: plant.commonName,
+              sub: plant.scientificName,
+              synonyms: plant.synonyms,
+              badges: speciesBadges(plant.light, plant.co2, plant.difficulty),
+            }))}
+          />
         </section>
       </main>
     </div>
