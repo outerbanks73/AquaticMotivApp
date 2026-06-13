@@ -171,7 +171,7 @@ export function PlantFinderWizard({ plants, productInfo }: Props) {
   return (
     <main className="mx-auto max-w-3xl px-4 pb-24">
         {/* Depth stepper */}
-        <nav aria-label="Progress" className="-mt-5 mb-10">
+        <nav aria-label="Progress" className="relative z-10 mt-8 mb-10">
           <ol className="flex overflow-hidden rounded-full border border-aqua-200 bg-white shadow-lg shadow-ocean-950/5">
             {STEPS.map((label, i) => (
               <li key={label} className="flex-1">

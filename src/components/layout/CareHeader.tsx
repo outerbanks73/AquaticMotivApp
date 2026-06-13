@@ -14,8 +14,13 @@ export function CareHeader() {
   return (
     <header className="border-b border-ocean-100 bg-white">
       <div className="mx-auto flex max-w-5xl items-center gap-6 px-4 py-3">
-        <Link href="/a/careguides" className="text-lg font-bold text-aqua-800">
-          AquaticMotiv
+        <Link
+          href="/a/careguides"
+          className="text-lg font-bold tracking-wide"
+          aria-label="AquaticMotiv care guides"
+        >
+          <span className="text-ocean-900">AQUATIC</span>
+          <span className="text-aqua-600">MOTIV</span>
         </Link>
         <nav className="hidden items-center gap-5 text-sm sm:flex">
           {NAV.map((n) => (
