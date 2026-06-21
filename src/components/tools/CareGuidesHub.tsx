@@ -5,54 +5,44 @@ import { useMemo, useState } from "react";
 export interface HubGuide {
   title: string;
   href: string;
-  blurb?: string;
-  image?: string;
+  image: string;
+  alt: string;
+  shopHref: string;
 }
 export interface HubCategory {
   id: string;
   title: string;
-  blurb?: string;
+  blurb: string;
   guides: HubGuide[];
 }
 
-// The full guide index is rendered server-side (every card is in the initial
-// HTML for SEO); this client layer adds a live filter by title. Cards link OUT
-// to the existing Shopify guides — those convert and are never redirected.
-export function CareGuidesHub({
-  categories,
-  plantReference,
-}: {
-  categories: HubCategory[];
-  plantReference: HubCategory;
-}) {
+// Every guide is rendered server-side (full grid is in the initial HTML for SEO
+// and internal linking); this client layer only adds a live title filter.
+export function CareGuidesHub({ categories }: { categories: HubCategory[] }) {
   const [q, setQ] = useState("");
   const query = q.trim().toLowerCase();
 
-  const match = (g: HubGuide) =>
-    !query ||
-    g.title.toLowerCase().includes(query) ||
-    (g.blurb?.toLowerCase().includes(query) ?? false);
+  const total = categories.reduce((n, c) => n + c.guides.length, 0);
 
-  const total =
-    categories.reduce((n, c) => n + c.guides.length, 0) +
-    plantReference.guides.length;
-
-  const shownCats = useMemo(
+  const shown = useMemo(
     () =>
       categories
-        .map((c) => ({ ...c, guides: c.guides.filter(match) }))
+        .map((c) => ({
+          ...c,
+          guides: query
+            ? c.guides.filter((g) => g.title.toLowerCase().includes(query))
+            : c.guides,
+        }))
         .filter((c) => c.guides.length > 0),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [query],
   );
-  const shownPlants = plantReference.guides.filter(match);
-  const shownCount =
-    shownCats.reduce((n, c) => n + c.guides.length, 0) + shownPlants.length;
+  const shownCount = shown.reduce((n, c) => n + c.guides.length, 0);
 
   return (
     <div>
       {/* Search */}
-      <div className="sticky top-0 z-10 -mx-4 mb-10 border-b border-leaf-100 bg-leaf-50/80 px-4 py-4 backdrop-blur">
+      <div className="sticky top-0 z-10 -mx-4 mb-10 border-b border-leaf-100 bg-white/90 px-4 py-4 backdrop-blur">
         <div className="relative">
           <svg
             aria-hidden
@@ -70,9 +60,9 @@ export function CareGuidesHub({
             type="search"
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Search care guides — snail, betta, java fern, algae…"
+            placeholder="Search care guides — nerite, betta, CO2, algae, monte carlo…"
             aria-label="Search care guides"
-            className="w-full rounded-full border-2 border-leaf-200 bg-white py-3 pl-12 pr-4 text-leaf-950 shadow-sm placeholder:text-leaf-400 focus:border-leaf-500 focus:outline-none"
+            className="w-full rounded-full border-2 border-leaf-200 bg-white py-3 pl-12 pr-4 text-base text-leaf-950 shadow-sm placeholder:text-leaf-400 focus:border-leaf-500 focus:outline-none"
           />
         </div>
         <p className="mt-2 px-1 text-sm text-leaf-700" aria-live="polite">
@@ -80,120 +70,77 @@ export function CareGuidesHub({
         </p>
       </div>
 
-      {shownCount === 0 && (
+      {shownCount === 0 ? (
         <p className="rounded-2xl border border-dashed border-leaf-200 bg-white p-10 text-center text-leaf-700">
           No guides match “{q.trim()}”. Try a species or topic — e.g.{" "}
           <em>nerite</em>, <em>betta</em>, <em>CO2</em>.
         </p>
-      )}
-
-      {/* Featured / editorial guide categories */}
-      {shownCats.map((cat) => (
-        <section key={cat.id} aria-labelledby={cat.id} className="mb-14">
-          <h2
-            id={cat.id}
-            className="text-2xl font-bold tracking-tight text-leaf-900"
-          >
-            {cat.title}
-          </h2>
-          {cat.blurb && (
-            <p className="mt-1 max-w-3xl text-leaf-700/80">{cat.blurb}</p>
-          )}
-          <ul className="mt-6 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
-            {cat.guides.map((g) => (
-              <li key={g.href}>
-                <GuideCard guide={g} />
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
-
-      {/* Plant care reference — compact directory */}
-      {shownPlants.length > 0 && (
-        <section
-          aria-labelledby="plant-reference"
-          className="mb-6 rounded-3xl bg-leaf-50 p-6 sm:p-8"
-        >
-          <h2
-            id="plant-reference"
-            className="text-2xl font-bold tracking-tight text-leaf-900"
-          >
-            {plantReference.title}
-          </h2>
-          {plantReference.blurb && (
-            <p className="mt-1 max-w-3xl text-leaf-700/80">
-              {plantReference.blurb}
-            </p>
-          )}
-          <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            {shownPlants.map((g) => (
-              <li key={g.href}>
-                <a
-                  href={g.href}
-                  className="group flex items-center gap-2 rounded-xl border-l-4 border-gold-400 bg-white px-3 py-2.5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
-                >
-                  <span className="flex-1 text-sm font-semibold text-leaf-900">
-                    {g.title}
-                  </span>
-                  <span
-                    aria-hidden
-                    className="text-leaf-300 transition-colors group-hover:text-leaf-600"
-                  >
-                    →
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
+      ) : (
+        <div className="space-y-14">
+          {shown.map((cat) => (
+            <section key={cat.id} aria-labelledby={cat.id}>
+              <h2
+                id={cat.id}
+                className="text-2xl font-bold tracking-tight text-leaf-900"
+              >
+                {cat.title}
+              </h2>
+              <p className="mt-1 max-w-3xl text-leaf-700/80">{cat.blurb}</p>
+              <ul className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
+                {cat.guides.map((g) => (
+                  <li key={g.href}>
+                    <GuideCard guide={g} />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
       )}
     </div>
   );
 }
 
+// The single card used for EVERY guide — identical structure and sizing so the
+// grid stays uniform. Image links to the care guide; a separate Shop link goes
+// to the matching collection (commercial vs. informational intent split).
 function GuideCard({ guide }: { guide: HubGuide }) {
   return (
-    <a
-      href={guide.href}
-      className="group flex h-full flex-col overflow-hidden rounded-xl border border-[#e0e0e0] bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-leaf-400 hover:shadow-lg"
-    >
-      <div className="relative aspect-square w-full overflow-hidden bg-leaf-50">
-        {guide.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={guide.image}
-            alt={guide.title}
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-leaf-600 via-leaf-500 to-leaf-700 p-4">
-            <span className="text-center text-sm font-bold leading-snug text-white/95">
-              {guide.title}
-            </span>
-          </div>
-        )}
+    <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-leaf-100 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-leaf-400 hover:shadow-lg">
+      <a href={guide.href} className="relative block aspect-square overflow-hidden bg-leaf-50">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={guide.image}
+          alt={guide.alt}
+          loading="lazy"
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
         <span className="absolute left-2 top-2 rounded-full bg-gold-400 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-leaf-950 shadow">
           Guide
         </span>
-      </div>
+      </a>
       <div className="flex flex-1 flex-col p-3">
         <h3 className="text-sm font-bold leading-snug text-leaf-900">
-          {guide.title}
+          <a href={guide.href} className="hover:text-leaf-600">
+            {guide.title}
+          </a>
         </h3>
-        {guide.blurb && (
-          <p className="mt-1 line-clamp-2 text-xs text-leaf-700/75">
-            {guide.blurb}
-          </p>
-        )}
-        <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-leaf-600 transition-colors group-hover:text-leaf-800">
-          Read guide
-          <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
-            →
-          </span>
-        </span>
+        <div className="mt-auto flex items-center justify-between pt-3">
+          <a
+            href={guide.href}
+            className="inline-flex items-center gap-1 text-xs font-semibold text-leaf-600 hover:text-leaf-800"
+          >
+            Read guide
+            <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
+          </a>
+          <a
+            href={guide.shopHref}
+            className="rounded-full bg-leaf-50 px-3 py-1 text-xs font-bold text-leaf-800 ring-1 ring-inset ring-leaf-200 transition-colors hover:bg-gold-400 hover:text-leaf-950 hover:ring-gold-400"
+          >
+            Shop
+          </a>
+        </div>
       </div>
-    </a>
+    </article>
   );
 }

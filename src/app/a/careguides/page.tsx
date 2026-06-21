@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CARE_BASE, STORE_BASE } from "@/lib/data/plant-pages";
-import { breadcrumbSchema, itemListSchema } from "@/lib/seo/schema";
+import { breadcrumbSchema, collectionPageSchema } from "@/lib/seo/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   CareGuidesHub,
@@ -10,57 +10,39 @@ import {
 import hub from "@/data/guides/hub.json";
 
 const categories = hub.categories as HubCategory[];
-const plantReference = hub.plantReference as HubCategory;
+
+const INTRO =
+  "Browse the Aquatic Motiv freshwater aquarium care guide library — photo-illustrated guides covering aquarium plants, snails, shrimp, bettas, lighting, CO2, and algae control. Every guide is written by the growers who keep these species, so you can set up and maintain a thriving planted tank with confidence.";
 
 export const metadata: Metadata = {
-  title:
-    "Aquarium Care Guides — Snails, Shrimp, Bettas & Plants | AquaticMotiv",
+  title: "Freshwater Aquarium Plant Care Guides | Aquatic Motiv",
   description:
-    "Expert freshwater aquarium care guides from the growers at AquaticMotiv: snails, shrimp, bettas, and live plants — plus interactive plant and invertebrate databases and a plant finder. Grown and shipped from New Jersey.",
+    "The Aquatic Motiv care guide library — photo-illustrated freshwater aquarium guides for plants, snails, shrimp, bettas, lighting, CO2, and algae control, written by the growers who keep these species.",
   alternates: { canonical: CARE_BASE },
 };
 
-const TOOLS = [
-  {
-    href: "/a/careguides/plants",
-    title: "Plant database",
-    description: "Verified care data for every plant species — A–Z or by tank need.",
-  },
-  {
-    href: "/a/careguides/inverts",
-    title: "Invertebrate database",
-    description: "Snails, shrimp, crabs, clams, and crayfish with full care data.",
-  },
-  {
-    href: "/a/careguides/finder",
-    title: "Plant finder",
-    description: "Four questions, and every species ranked against your exact tank.",
-  },
-];
-
 export default function CareGuidesHubPage() {
-  const allGuideItems = [
-    ...categories.flatMap((c) => c.guides),
-    ...plantReference.guides,
-  ];
+  const allGuides = categories.flatMap((c) => c.guides);
 
   return (
     <div className="min-h-screen bg-white">
       <JsonLd
         data={breadcrumbSchema([
-          { name: "AquaticMotiv", url: `${STORE_BASE}/` },
-          { name: "Care Guides", url: CARE_BASE },
+          { name: "Aquatic Motiv", url: `${STORE_BASE}/` },
+          { name: "Freshwater Aquarium Plant Care Guides", url: CARE_BASE },
         ])}
       />
       <JsonLd
-        data={itemListSchema(
-          "AquaticMotiv aquarium care guides",
-          allGuideItems.map((g, i) => ({
+        data={collectionPageSchema({
+          name: "Freshwater Aquarium Plant Care Guides",
+          description: INTRO,
+          url: CARE_BASE,
+          items: allGuides.map((g, i) => ({
             name: g.title,
             url: g.href,
             position: i + 1,
           })),
-        )}
+        })}
       />
 
       {/* Hero — storefront green/gold */}
@@ -75,53 +57,40 @@ export default function CareGuidesHubPage() {
         />
         <div className="relative mx-auto max-w-5xl px-4 py-14 sm:py-20">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-400">
-            AquaticMotiv care guides
+            Aquatic Motiv care guide library
           </p>
           <h1 className="mt-3 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Everything you need to keep it thriving
+            Freshwater Aquarium Plant Care Guides
           </h1>
-          <p className="mt-4 max-w-2xl text-lg text-leaf-50/90">
-            Expert, no-fluff care guides from the team that grows and ships
-            190+ tanks of freshwater plants, snails, shrimp, and bettas out of
-            New Jersey. Look up a species, fix a problem, or plan your next
-            aquascape.
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-leaf-50/90">
+            {INTRO}
           </p>
+
+          {/* Primary CTA — Planted Tank Quiz (Plant Finder) */}
+          <Link
+            href="/a/careguides/finder"
+            className="group mt-7 inline-flex max-w-2xl items-center gap-3 rounded-2xl bg-gold-400 px-6 py-4 text-left font-bold text-leaf-950 shadow-xl transition-transform hover:scale-[1.02]"
+          >
+            <span
+              aria-hidden
+              className="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-leaf-900 text-gold-400"
+            >
+              ✦
+            </span>
+            <span className="text-sm sm:text-base">
+              Planted Tank Quiz — answer a few questions about your setup and
+              we&rsquo;ll find the perfect plants for you
+              <span aria-hidden className="ml-1 inline-block transition-transform group-hover:translate-x-1">→</span>
+            </span>
+          </Link>
         </div>
       </header>
 
       <main className="mx-auto max-w-5xl px-4 pb-24 pt-10">
-        {/* Native tools */}
-        <section aria-labelledby="tools" className="mb-12">
-          <h2 id="tools" className="sr-only">
-            Interactive tools
-          </h2>
-          <ul className="grid gap-4 sm:grid-cols-3">
-            {TOOLS.map((tool) => (
-              <li key={tool.href}>
-                <Link
-                  href={tool.href}
-                  className="group block h-full rounded-2xl border border-leaf-100 bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-leaf-400 hover:shadow-md"
-                >
-                  <span className="inline-flex rounded-full bg-gold-400 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-leaf-950">
-                    Tool
-                  </span>
-                  <span className="mt-3 block text-lg font-bold text-leaf-900">
-                    {tool.title}
-                  </span>
-                  <span className="mt-1 block text-sm text-leaf-700/75">
-                    {tool.description}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {/* Searchable guide hub */}
-        <CareGuidesHub categories={categories} plantReference={plantReference} />
+        <CareGuidesHub categories={categories} />
 
         {/* Shop CTA */}
-        <section className="mt-14 rounded-3xl bg-leaf-900 p-8 text-center text-white sm:p-10">
+        <section className="mt-16 rounded-3xl bg-leaf-900 p-8 text-center text-white sm:p-10">
           <h2 className="text-2xl font-bold">Ready to stock your tank?</h2>
           <p className="mx-auto mt-2 max-w-xl text-leaf-50/85">
             Every species in these guides is grown in-house with a 100% live
@@ -131,7 +100,7 @@ export default function CareGuidesHubPage() {
             href={`${STORE_BASE}/collections/all`}
             className="mt-6 inline-block rounded-full bg-gold-400 px-7 py-3 text-sm font-bold text-leaf-950 shadow-lg transition-transform hover:scale-[1.03]"
           >
-            Shop all plants & livestock →
+            Shop all plants &amp; livestock →
           </a>
         </section>
       </main>

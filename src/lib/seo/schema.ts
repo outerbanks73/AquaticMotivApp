@@ -153,6 +153,33 @@ export function speciesSchema(input: {
   };
 }
 
+/** CollectionPage with an embedded ItemList — for hub/library pages. */
+export function collectionPageSchema(input: {
+  name: string;
+  description: string;
+  url: string;
+  items: { name: string; url: string; position: number }[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: input.name,
+    description: input.description,
+    url: input.url,
+    isPartOf: { "@type": "WebSite", name: "Aquatic Motiv", url: "https://aquaticmotiv.com" },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: input.items.length,
+      itemListElement: input.items.map((item) => ({
+        "@type": "ListItem",
+        position: item.position,
+        name: item.name,
+        url: item.url,
+      })),
+    },
+  };
+}
+
 export function itemListSchema(
   name: string,
   items: { name: string; url: string; position: number }[]
