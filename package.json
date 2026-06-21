@@ -1,7 +1,7 @@
 {
-  "name": "saveafishworks",
+  "name": "aquaticmotivapp",
   "version": "1.0.0",
-  "description": "Unified aquascape configurator and content site — SaveAFishWorks",
+  "description": "Unified aquascape configurator and content site — AquaticMotivApp",
   "private": true,
   "scripts": {
     "dev": "next dev",
