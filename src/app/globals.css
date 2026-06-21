@@ -34,6 +34,25 @@
   --color-sand-100: #fef9c3;
   --color-sand-200: #fef08a;
 
+  /* AquaticMotiv storefront brand — used by the care-guides hub (/a/careguides)
+     to match the look/feel of the Shopify care-guides page. */
+  --color-leaf-50: #f1f6f1;
+  --color-leaf-100: #dde9de;
+  --color-leaf-200: #bcd3bd;
+  --color-leaf-300: #8fb592;
+  --color-leaf-400: #5e8d62;
+  --color-leaf-500: #446c47;
+  --color-leaf-600: #375a3a;
+  --color-leaf-700: #2d4830;
+  --color-leaf-800: #263c28;
+  --color-leaf-900: #203221;
+  --color-leaf-950: #0f1c11;
+
+  --color-gold-300: #ffe34d;
+  --color-gold-400: #ffd800;
+  --color-gold-500: #fbcd0a;
+  --color-gold-600: #e0b400;
+
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 

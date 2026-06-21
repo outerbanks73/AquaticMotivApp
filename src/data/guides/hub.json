@@ -1,0 +1,117 @@
+{
+  "_comment": "Curated index for the official care-guides hub at /a/careguides. Cards link OUT to existing Shopify guides (owner decision: those convert and stay live, never 301'd). To add a guide: drop an entry under the right category. `image` is optional (Shopify CDN url); cards render a colored accent tile when omitted. Verified 2026-06-21.",
+  "categories": [
+    {
+      "id": "snails-inverts",
+      "title": "Snail & Invertebrate Care Guides",
+      "blurb": "The livestock we grow and ship from New Jersey — and where AquaticMotiv ranks #1–#3 in search. Organic guides are the primary way buyers find these species.",
+      "guides": [
+        {
+          "title": "Ultimate Aquarium Snail Care Guide",
+          "href": "https://aquaticmotiv.com/blogs/news/ultimate-aquarium-snail-care-guide",
+          "blurb": "How to choose, introduce, and maintain healthy freshwater snails.",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/articles/ultimate-aquarium-snail-care-guide-how-to-choose-introduce_600x.webp"
+        },
+        {
+          "title": "Mystery Snail Care Guide",
+          "href": "https://aquaticmotiv.com/blogs/news/the-mystery-snail-care-guide-keeping-pomacea-bridgesii-thriving",
+          "blurb": "Keeping Pomacea bridgesii thriving — diet, breeding, tank mates, and colors."
+        },
+        {
+          "title": "Nerite Snail Care Guide",
+          "href": "https://aquaticmotiv.com/blogs/news/nerite-snail-care-guide-the-best-algae-eaters-for-your-tank",
+          "blurb": "The best algae eaters for your tank — care, the white-egg question, and varieties."
+        },
+        {
+          "title": "Rabbit Snail Care Guide",
+          "href": "https://aquaticmotiv.com/blogs/news/rabbit-snail-care-guide-the-fascinating-tylomelania-genus",
+          "blurb": "The fascinating Tylomelania genus — care, breeding, and color varieties.",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/articles/orange_rabbit_snail_large_0831e334-77f8-48b3-8705-ef3a4c6f894a_600x.webp"
+        },
+        {
+          "title": "Assassin Snail Care Guide",
+          "href": "https://aquaticmotiv.com/blogs/news/assassin-snail-care-guide-care-diet-behavior-parameters-habitat-health",
+          "blurb": "Care, diet, behavior, parameters, habitat, and health.",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/articles/assassin-snail-care-guide-diet-behavior-parameters-habitat-health_600x.webp"
+        },
+        {
+          "title": "Why Nerite Snails Are the Best Algae Cleaners",
+          "href": "https://aquaticmotiv.com/blogs/news/nerite-snails-algae-cleaners",
+          "blurb": "What makes nerites the most effective freshwater algae crew."
+        }
+      ]
+    },
+    {
+      "id": "shrimp-betta",
+      "title": "Shrimp & Betta Care Guides",
+      "blurb": "Dwarf shrimp and bettas — high-demand livestock with deep informational search interest.",
+      "guides": [
+        {
+          "title": "Neocaridina Shrimp Care Guide",
+          "href": "https://aquaticmotiv.com/blogs/news/the-neocaridina-shrimp-care-guide-keeping-dwarf-shrimp",
+          "blurb": "Keeping dwarf shrimp — water parameters, colors, and breeding.",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/articles/neocaridina-shrimp-mix-pack-355_600x.webp"
+        },
+        {
+          "title": "Betta Fish Care Guide",
+          "href": "https://aquaticmotiv.com/blogs/news/the-ultimate-betta-fish-care-guide-how-to-keep-your-siamese-fighting-fish-happy-and-healthy",
+          "blurb": "How to keep your Siamese fighting fish happy and healthy.",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/articles/koi-galaxy-plakat-female-betta-sorority-pack-bettas-828_600x.webp"
+        }
+      ]
+    },
+    {
+      "id": "aquascaping-plant-health",
+      "title": "Aquascaping & Plant Health Guides",
+      "blurb": "Aquascaping technique, water chemistry, and troubleshooting for planted tanks.",
+      "guides": [
+        {
+          "title": "Top 5 Red Plants You Can Grow Without CO2",
+          "href": "https://aquaticmotiv.com/blogs/news/top-5-red-plants-you-can-grow-without-co2-supplementation",
+          "blurb": "Get red color in a low-tech tank — no CO2 supplementation required."
+        },
+        {
+          "title": "How to Choose the Right Week Aqua Light",
+          "href": "https://aquaticmotiv.com/blogs/news/choose-right-week-aqua-light",
+          "blurb": "Pick the right Week Aqua series (L, M, P, V, A, Z) for your tank."
+        }
+      ]
+    }
+  ],
+  "plantReference": {
+    "title": "Plant Care Reference (A–Z)",
+    "blurb": "Quick-reference care profiles for the freshwater plant species we grow — water parameters, light, CO2, and placement at a glance.",
+    "guides": [
+      { "title": "Amazon Sword", "href": "https://aquaticmotiv.com/pages/amazon-sword-echinodorus-amazonicus" },
+      { "title": "Anacharis", "href": "https://aquaticmotiv.com/pages/anacharis-egeria-densa" },
+      { "title": "Anubias Nana", "href": "https://aquaticmotiv.com/pages/anubias-nana-dwarf-anubias" },
+      { "title": "Anubias Nana Petite", "href": "https://aquaticmotiv.com/pages/anubias-nana-petite-anubias-barteri-var-nana-petite" },
+      { "title": "Bacopa Caroliniana", "href": "https://aquaticmotiv.com/pages/bacopa-caroliniana" },
+      { "title": "Chain Sword (Narrow-Leaf)", "href": "https://aquaticmotiv.com/pages/narrow-leaf-chain-sword-echinodorus-tenellus" },
+      { "title": "Christmas Moss", "href": "https://aquaticmotiv.com/pages/christmas-moss-vesicularia-montagnei" },
+      { "title": "Cryptocoryne Wendtii Green", "href": "https://aquaticmotiv.com/pages/cryptocoryne-wendtii-green-cryptocoryne-wendtii" },
+      { "title": "Duckweed", "href": "https://aquaticmotiv.com/pages/duckweed-plant-lemna-minor" },
+      { "title": "Dwarf Baby Tears", "href": "https://aquaticmotiv.com/pages/dwarf-baby-tears-hemianthus-callitrichoides" },
+      { "title": "Dwarf Hairgrass", "href": "https://aquaticmotiv.com/pages/dwarf-hairgrass-eleocharis-parvula" },
+      { "title": "Fissidens Nobilis", "href": "https://aquaticmotiv.com/pages/fissidens-nobilis" },
+      { "title": "Hornwort", "href": "https://aquaticmotiv.com/pages/hornwort-ceratophyllum-demersum" },
+      { "title": "Java Fern", "href": "https://aquaticmotiv.com/pages/java-fern-microsorum-pteropus" },
+      { "title": "Java Fern Windelov", "href": "https://aquaticmotiv.com/pages/java-fern-windelov-microsorum-pteropus-windelov" },
+      { "title": "Java Moss", "href": "https://aquaticmotiv.com/pages/java-moss-taxiphyllum-barbieri" },
+      { "title": "Jungle Val", "href": "https://aquaticmotiv.com/pages/jungle-val-vallisneria-americana" },
+      { "title": "Lobelia Cardinalis (Dwarf)", "href": "https://aquaticmotiv.com/pages/lobelia-cardinalis-lobelia-cardinalis-dwarf" },
+      { "title": "Ludwigia Super Red Mini", "href": "https://aquaticmotiv.com/pages/ludwigia-sp-super-red-mini-ludwigia-palustris-super-red-mini" },
+      { "title": "Monte Carlo", "href": "https://aquaticmotiv.com/pages/monte-carlo-micranthemum-tweediei" },
+      { "title": "Pearl Weed", "href": "https://aquaticmotiv.com/pages/pearl-weed-micranthemum-micranthemoides" },
+      { "title": "Pogostemon Stellatus (Narrow-Leaf)", "href": "https://aquaticmotiv.com/pages/pogostemon-stellatus-narrow-leaf" },
+      { "title": "Red Root Floaters", "href": "https://aquaticmotiv.com/pages/red-root-floaters-phyllanthus-fluitans" },
+      { "title": "Red Tiger Lotus", "href": "https://aquaticmotiv.com/pages/red-tiger-lotus-nymphaea-zenkeri" },
+      { "title": "Salvinia Cucullata", "href": "https://aquaticmotiv.com/pages/salvinia-cucullata" },
+      { "title": "Salvinia Minima", "href": "https://aquaticmotiv.com/pages/salvinia-minima-salvinia-minima" },
+      { "title": "Vallisneria Spiralis", "href": "https://aquaticmotiv.com/pages/vallisneria-spiralis-italian-val" },
+      { "title": "Water Lettuce", "href": "https://aquaticmotiv.com/pages/water-lettuce-pistia-stratiotes" },
+      { "title": "Water Sprite", "href": "https://aquaticmotiv.com/pages/water-sprite-ceratopteris-thalictroides" },
+      { "title": "Water Wisteria", "href": "https://aquaticmotiv.com/pages/water-wisteria-hygrophila-difformis" }
+    ]
+  }
+}

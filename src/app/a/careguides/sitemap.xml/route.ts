@@ -4,7 +4,7 @@
 
 import { getPlantSlugs } from "@/lib/data/plants";
 import { getActiveFacets } from "@/lib/data/plant-facets";
-import { PLANTS_BASE, FINDER_URL, plantUrl } from "@/lib/data/plant-pages";
+import { CARE_BASE, PLANTS_BASE, FINDER_URL, plantUrl } from "@/lib/data/plant-pages";
 import { getInvertSlugs } from "@/lib/data/inverts";
 import { getActiveInvertFacets } from "@/lib/data/invert-facets";
 import { INVERTS_BASE, invertUrl } from "@/lib/data/invert-pages";
@@ -20,6 +20,7 @@ function urlEntry(loc: string): string {
 
 export async function GET() {
   const urls = [
+    CARE_BASE,
     PLANTS_BASE,
     FINDER_URL,
     INVERTS_BASE,

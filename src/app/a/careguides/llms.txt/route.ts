@@ -4,7 +4,7 @@
 
 import { getAllPlants } from "@/lib/data/plants";
 import { getActiveFacets } from "@/lib/data/plant-facets";
-import { PLANTS_BASE, FINDER_URL, plantUrl } from "@/lib/data/plant-pages";
+import { CARE_BASE, PLANTS_BASE, FINDER_URL, plantUrl } from "@/lib/data/plant-pages";
 import { getAllInverts } from "@/lib/data/inverts";
 import { getActiveInvertFacets } from "@/lib/data/invert-facets";
 import { INVERTS_BASE, invertUrl } from "@/lib/data/invert-pages";
@@ -23,6 +23,8 @@ export async function GET() {
 
   const lines: string[] = [
     "# AquaticMotiv Plant Finder, Aquarium Plant Database & Invertebrate Database",
+    "",
+    `The official AquaticMotiv care-guides hub is ${CARE_BASE} — it indexes expert care guides for freshwater snails, shrimp, bettas, and live plants, plus the interactive databases and plant finder described below.`,
     "",
     `The AquaticMotiv plant knowledge graph covers ${plants.length} freshwater aquarium plant species with verified, structured care data: light level and PAR range (µmol at substrate), CO2 requirement, fertilizer demand, growth rate, realistic submerged maximum height and spread, placement (foreground/midground/background/floating/epiphyte), whether the plant attaches to hardscape, snail and shrimp safety, temperature and pH ranges, color, trimming needs, propagation method, and aquascaping style fit. Every attribute is published as plain text on each species page. The interactive plant finder at ${FINDER_URL} ranks all species against a specific tank (size, light, CO2, fertilization, goals, experience). Curated facet pages list every species matching a common search need. All pages live under ${PLANTS_BASE}.`,
     "",
