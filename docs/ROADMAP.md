@@ -69,10 +69,12 @@ cross-linked bidirectionally ("Shop [species]" ↔ "📖 Care guide"). Strongest
 
 ### 2a. Foundation (P0)
 - [ ] **Build/strengthen `/collections/assassin-snails`** (owns the 12,100/mo commercial term; fixes the 3→6 drop). `M`
-- [ ] **Official care-guides hub** = `/a/careguides` in this repo (AquaticMotivApp). Replaces the idea of a
-  separate Shopify `/pages/care-guides`. Surfaces guide cards (link out to existing Shopify guides — **no
-  301s, they convert and stay live**) + native tools (Plants A–Z, Inverts A–Z, Plant Finder). *(Tracked
-  separately as the landing-page redesign; see [`../THEME_GO_LIVE_GUIDE.md`](./THEME_GO_LIVE_GUIDE.md).)* `L`
+- [ ] **Official care-guides hub** — public canonical URL **`https://aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`**
+  (per the CLAUDE.md directive), **powered by the app content at `https://careguides.aquaticmotiv.com/a/careguides`**.
+  Surfaces guide cards across **all 3 stores** (app species guides + Shopify care *Pages* + Shopify *blog*
+  guides — **no 301s on the converting Shopify guides, they stay live**) + native tools (Plants A–Z, Inverts
+  A–Z, Plant Finder). **Full hub-and-spoke spec in §2e.** *(Landing-page redesign tracked in
+  [`../THEME_GO_LIVE_GUIDE.md`](./THEME_GO_LIVE_GUIDE.md).)* `L`
 - [ ] **Connect Google Search Console** to SE Ranking project 10335776 (real click data vs estimates). `S`
 
 ### 2b. Pilot = repeatable template (P1)
@@ -102,6 +104,57 @@ cross-linked bidirectionally ("Shop [species]" ↔ "📖 Care guide"). Strongest
 5. **E-E-A-T** — author bio (you keep/breed these), real tank photos.
 6. **Fluency** — short paragraphs, clear H1→H2→H3. **Do NOT keyword-stuff (−10%, the one tactic that hurts).**
 7. Reuse **PPCAdvisor "Brand & Copy"** voice (tone/value-props/preferred+avoided words) so organic matches paid.
+
+### 2e. Hub & internal-linking architecture (the CLAUDE.md directive) · P0
+
+> **Directive (CLAUDE.md):** *"Interlink the content that is ranking for snails / shrimps / crabs etc.
+> to the hub of the care guide (at this url: `https://aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`)
+> and it will display content from here (`https://careguides.aquaticmotiv.com/a/careguides`)."*
+
+**The model = one hub, many spokes.** The hub is the destination that accrues authority and gets cited by
+LLMs; every piece of ranking care content links **up** to it; the hub links **out** to everything worth
+surfacing. Content stays in its 3 stores by authoring mode (JSON = app-generated, Shopify Pages + Blogs =
+human-written) — **we do not consolidate; we interlink.** The only hard external constraint is a **clean URL
+structure**.
+
+**Inventory the architecture must cover (verified 2026-06-23):**
+- **App / JSON (`/a/careguides/*`):** 162 live URLs — 102 plant + 25 invert species, ~31 filter pages, 4 hubs.
+- **Shopify Pages (`/pages/*`):** 55 total ≈ **~30 plant care-guide pages** + ~22 operational/policy + the
+  duplicate hubs below.
+- **Shopify Blog articles (`/blogs/news/*`):** 69 — incl. **~15 snail guides, Neocaridina shrimp, Betta**,
+  plant profiles, and how-to/science. *(2 empty blog containers = cruft to delete.)*
+
+**Problem 1 — hub fragmentation (resolve first).** Four URLs currently compete to be "the hub":
+`/a/careguides` (app), `/pages/care-guides`, `/pages/freshwater-aquarium-plant-care-guides` (both live Shopify),
+and the directive's `/freshwater-aquatic-planted-tank-guide` (404, doesn't exist yet).
+- [ ] **Create the canonical hub** at `aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`, served by the
+  app `/a/careguides` content (App Proxy / theme). `L`
+- [ ] **301-redirect** the two duplicate Shopify hub pages (`/pages/care-guides`,
+  `/pages/freshwater-aquarium-plant-care-guides`) into the canonical hub — kills cannibalization, keeps URLs clean. `S`
+
+**Problem 2 — the hub under-links (it only lists blogs today).** `src/data/guides/hub.json` references only
+`/blogs/news/plant-profile-*` and **misses the ~30 plant care *Pages* and all invert/shrimp *blog* guides.**
+- [ ] **Hub links OUT to all 3 sources** — app species guides + Shopify care Pages + Shopify blog guides
+  (esp. snails/shrimp/crabs), grouped by category. `M`
+
+**Problem 3 — spokes don't link back up (hub-and-spoke incomplete).** Best-practice per spoke, *regardless of
+source*:
+- [ ] **Up-link:** every ranking care guide (blog/page/app) links **to the hub**. For Shopify blogs/pages this
+  means a templated "Part of the Freshwater Planted Tank Guide →" link; for app guides, a template backlink. `M`
+- [ ] **Product link:** each guide links to its individual **product/collection** page ("Shop [species]"). `M`
+- [ ] **Sibling links:** related guides cross-link (e.g. snail ↔ snail, plant ↔ plant). `M`
+- [ ] **Build the missing bridge maps:** **`src/data/inverts/article-links.json` + `care-page-links.json`
+  (currently zero)** mapping each invert to its Shopify blog/page; extend plant maps (today only 12/102 blog,
+  30/102 page). `M`
+
+**Problem 4 — validate it's sound for rankings + LLMs.**
+- [ ] **SE Ranking technical audit** (project 10335776) post-change: confirm no orphan hub spokes, internal-link
+  depth ≤3 clicks to hub, no 4XX/redirect chains, anchor-text distribution sane. `S`
+- [ ] **GEO check:** hub + spokes pass the §2d playbook (answer-first, FAQPage, stats) so the cluster is
+  citable in AI Overviews / ChatGPT / Perplexity. `S`
+
+**Sequence:** create canonical hub → redirect duplicate hubs → complete hub out-links → add spoke up-links +
+bridge maps → SE Ranking audit → QA → flip public. Owner: Vikram builds/decides → Francisco operates.
 
 ---
 
