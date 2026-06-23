@@ -12,10 +12,14 @@ import {
   type InvertCommerceInfo,
 } from "@/lib/data/invert-pages";
 import {
+  articleSchema,
   breadcrumbSchema,
   faqSchema,
   plantProductSchema,
   speciesSchema,
+  CARE_GUIDE_AUTHOR,
+  CARE_GUIDE_PUBLISHED,
+  CARE_GUIDE_UPDATED,
 } from "@/lib/seo/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -83,6 +87,17 @@ export function InvertProfile({
           synonyms: invert.synonyms,
           description: invert.careSummary,
           url,
+        })}
+      />
+      <JsonLd
+        data={articleSchema({
+          title: `${invert.commonName} Care Guide`,
+          description: invert.careSummary,
+          url,
+          image: commerce?.image ?? null,
+          publishedAt: CARE_GUIDE_PUBLISHED,
+          updatedAt: CARE_GUIDE_UPDATED,
+          author: CARE_GUIDE_AUTHOR,
         })}
       />
       {invert.faqs.length > 0 && <JsonLd data={faqSchema(invert.faqs)} />}

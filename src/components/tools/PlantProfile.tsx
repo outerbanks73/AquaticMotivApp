@@ -11,10 +11,14 @@ import {
   type PlantCommerceInfo,
 } from "@/lib/data/plant-pages";
 import {
+  articleSchema,
   breadcrumbSchema,
   faqSchema,
   plantProductSchema,
   speciesSchema,
+  CARE_GUIDE_AUTHOR,
+  CARE_GUIDE_PUBLISHED,
+  CARE_GUIDE_UPDATED,
 } from "@/lib/seo/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -81,6 +85,17 @@ export function PlantProfile({ plant, commerce, alternatives, facets, articles =
           synonyms: plant.synonyms,
           description: plant.careSummary,
           url,
+        })}
+      />
+      <JsonLd
+        data={articleSchema({
+          title: `${plant.commonName} Care Guide`,
+          description: plant.careSummary,
+          url,
+          image: commerce?.image ?? null,
+          publishedAt: CARE_GUIDE_PUBLISHED,
+          updatedAt: CARE_GUIDE_UPDATED,
+          author: CARE_GUIDE_AUTHOR,
         })}
       />
       {plant.faqs.length > 0 && <JsonLd data={faqSchema(plant.faqs)} />}

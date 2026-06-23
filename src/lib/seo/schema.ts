@@ -40,11 +40,22 @@ export function faqSchema(faqs: { question: string; answer: string }[]) {
   };
 }
 
+/**
+ * Editorial metadata for the native care guides. These pages are evergreen, so
+ * a site-wide author + date pair is the honest signal (no per-species edit dates
+ * exist). The byline carries the E-E-A-T signal the GEO playbook calls for —
+ * Francisco operates/maintains the guides. Bump CARE_GUIDE_UPDATED when guide
+ * content is materially revised.
+ */
+export const CARE_GUIDE_AUTHOR = "Francisco Fernandes";
+export const CARE_GUIDE_PUBLISHED = "2026-06-13";
+export const CARE_GUIDE_UPDATED = "2026-06-21";
+
 export function articleSchema(input: {
   title: string;
   description: string;
   url: string;
-  image: string;
+  image?: string | null;
   publishedAt: string;
   updatedAt: string;
   author: string;
@@ -55,7 +66,8 @@ export function articleSchema(input: {
     headline: input.title,
     description: input.description,
     url: input.url,
-    image: input.image,
+    mainEntityOfPage: input.url,
+    ...(input.image ? { image: input.image } : {}),
     datePublished: input.publishedAt,
     dateModified: input.updatedAt,
     author: { "@type": "Person", name: input.author },
