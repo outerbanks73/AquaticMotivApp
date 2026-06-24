@@ -107,6 +107,223 @@
       ]
     },
     {
+      "id": "plant-care-pages",
+      "title": "Plant Species Care Guides",
+      "blurb": "In-depth, species-by-species care pages for every plant we grow and ship \u2014 water parameters, placement, and propagation, each linked to the live plant to buy.",
+      "guides": [
+        {
+          "title": "Amazon Sword (Echinodorus amazonicus)",
+          "href": "https://aquaticmotiv.com/pages/amazon-sword-echinodorus-amazonicus",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/amazon-sword-plant-echinodorus-amazonicus-plants-720.webp?v=1763989211",
+          "alt": "Amazon Sword (Echinodorus amazonicus) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/amazon-sword-plant-echinodorus-amazonicus"
+        },
+        {
+          "title": "Anacharis (Egeria densa)",
+          "href": "https://aquaticmotiv.com/pages/anacharis-egeria-densa",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/anacharis-egeria-densa-plants-344.webp?v=1781054854",
+          "alt": "Anacharis (Egeria densa) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/anacharis-egeria-densa"
+        },
+        {
+          "title": "Anubias Nana (Anubias barteri var. nana)",
+          "href": "https://aquaticmotiv.com/pages/anubias-nana-dwarf-anubias",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/anubias-nana-thick-leaf-potted-plants-158.webp?v=1764016951",
+          "alt": "Anubias Nana (Anubias barteri var. nana) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/anubias-nana-thick-leaf-potted"
+        },
+        {
+          "title": "Anubias Nana Petite (Anubias barteri var. nana 'Petite')",
+          "href": "https://aquaticmotiv.com/pages/anubias-nana-petite-anubias-barteri-var-nana-petite",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/anubias-nana-petite-potted-plants-611.webp?v=1764110782",
+          "alt": "Anubias Nana Petite (Anubias barteri var. nana 'Petite') \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/anubias-nana-petite-potted"
+        },
+        {
+          "title": "Bacopa Caroliniana (Bacopa caroliniana)",
+          "href": "https://aquaticmotiv.com/pages/bacopa-caroliniana",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/bacopa-bacopa-caroliniana-plants-463.webp?v=1764119905",
+          "alt": "Bacopa Caroliniana (Bacopa caroliniana) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/bacopa-bacopa-caroliniana"
+        },
+        {
+          "title": "Christmas Moss (Vesicularia montagnei)",
+          "href": "https://aquaticmotiv.com/pages/christmas-moss-vesicularia-montagnei",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/christmas-moss-vesicularia-montagnei-plants-948.webp?v=1764178090",
+          "alt": "Christmas Moss (Vesicularia montagnei) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/christmas-moss-vesicularia-montagnei"
+        },
+        {
+          "title": "Cryptocoryne Wendtii (Cryptocoryne wendtii)",
+          "href": "https://aquaticmotiv.com/pages/cryptocoryne-wendtii-green-cryptocoryne-wendtii",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/cryptocoryne-wendtii-green-plants-909.webp?v=1763989027",
+          "alt": "Cryptocoryne Wendtii (Cryptocoryne wendtii) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/cryptocoryne-wendtii-green"
+        },
+        {
+          "title": "Duckweed (Lemna minor)",
+          "href": "https://aquaticmotiv.com/pages/duckweed-plant-lemna-minor",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/duckweed-lemma-minor-aquatic-plants-634.webp?v=1764616577",
+          "alt": "Duckweed (Lemna minor) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/duckweed-lemma-minor"
+        },
+        {
+          "title": "Dwarf Baby Tears (Hemianthus callitrichoides 'Cuba')",
+          "href": "https://aquaticmotiv.com/pages/dwarf-baby-tears-hemianthus-callitrichoides",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/dwarf-baby-tears-hemianthus-callitrichoides-pot-plants-502.webp?v=1764127578",
+          "alt": "Dwarf Baby Tears (Hemianthus callitrichoides 'Cuba') \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/dwarf-baby-tears-hemianthus-callitrichoides-pot"
+        },
+        {
+          "title": "Dwarf Hairgrass (Eleocharis parvula)",
+          "href": "https://aquaticmotiv.com/pages/dwarf-hairgrass-eleocharis-parvula",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/dwarf-hairgrass-eleocharis-parvula-plants-886.webp?v=1764126753",
+          "alt": "Dwarf Hairgrass (Eleocharis parvula) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/dwarf-hairgrass-eleocharis-parvula"
+        },
+        {
+          "title": "Dwarf Lobelia Cardinalis (Lobelia cardinalis 'Dwarf')",
+          "href": "https://aquaticmotiv.com/pages/lobelia-cardinalis-lobelia-cardinalis-dwarf",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/lobelia-cardinalis-cardinal-plant-dwarf-plants-120.webp?v=1764112099",
+          "alt": "Dwarf Lobelia Cardinalis (Lobelia cardinalis 'Dwarf') \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/lobelia-cardinalis-cardinal-plant-dwarf"
+        },
+        {
+          "title": "Fissidens Nobilis (Fissidens nobilis)",
+          "href": "https://aquaticmotiv.com/pages/fissidens-nobilis",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/fissidens-nobilis-moss-mat-fissidens-nobilis-plants-408.webp?v=1781054927",
+          "alt": "Fissidens Nobilis (Fissidens nobilis) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/fissidens-nobilis-moss-mat-fissidens-nobilis"
+        },
+        {
+          "title": "Hornwort (Ceratophyllum demersum)",
+          "href": "https://aquaticmotiv.com/pages/hornwort-ceratophyllum-demersum",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/hornwort-ceratophyllum-demersum-plants-342.webp?v=1781054881",
+          "alt": "Hornwort (Ceratophyllum demersum) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/hornwort-ceratophyllum-demersum"
+        },
+        {
+          "title": "Java Fern 'Windelov' (Microsorum pteropus 'Windelov')",
+          "href": "https://aquaticmotiv.com/pages/java-fern-windelov-microsorum-pteropus-windelov",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/java-fern-windelov-lacey-fern-plants-717.webp?v=1781054868",
+          "alt": "Java Fern 'Windelov' (Microsorum pteropus 'Windelov') \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/java-fern-windelov-lacey-java-fern"
+        },
+        {
+          "title": "Java Fern (Microsorum pteropus)",
+          "href": "https://aquaticmotiv.com/pages/java-fern-microsorum-pteropus",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/java-fern-microsorum-pteropus-pot-plants-150.webp?v=1764710193",
+          "alt": "Java Fern (Microsorum pteropus) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/java-fern-microsorum-pteropus-pot"
+        },
+        {
+          "title": "Java Moss (Taxiphyllum barbieri)",
+          "href": "https://aquaticmotiv.com/pages/java-moss-taxiphyllum-barbieri",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/java-moss-taxiphyllum-barieri-portion-plants-178.webp?v=1781054848",
+          "alt": "Java Moss (Taxiphyllum barbieri) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/java-moss-taxiphyllum-barieri-portion"
+        },
+        {
+          "title": "Jungle Val (Vallisneria americana)",
+          "href": "https://aquaticmotiv.com/pages/jungle-val-vallisneria-americana",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/jungle-val-vallisneria-americana-plants-315.webp?v=1763989286",
+          "alt": "Jungle Val (Vallisneria americana) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/jungle-val-vallisneria-americana"
+        },
+        {
+          "title": "Ludwigia 'Super Red Mini' (Ludwigia palustris 'Super Red')",
+          "href": "https://aquaticmotiv.com/pages/ludwigia-sp-super-red-mini-ludwigia-palustris-super-red-mini",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/ludwigia-sp-super-red-mini-plants-160.webp?v=1764119890",
+          "alt": "Ludwigia 'Super Red Mini' (Ludwigia palustris 'Super Red') \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/ludwigia-sp-super-red-mini"
+        },
+        {
+          "title": "Monte Carlo (Micranthemum tweediei 'Monte Carlo')",
+          "href": "https://aquaticmotiv.com/pages/monte-carlo-micranthemum-tweediei",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/micranthemum-monte-carlo-plants-727.webp?v=1764110802",
+          "alt": "Monte Carlo (Micranthemum tweediei 'Monte Carlo') \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/micranthemum-monte-carlo"
+        },
+        {
+          "title": "Narrow-Leaf Chain Sword (Helanthium tenellum)",
+          "href": "https://aquaticmotiv.com/pages/narrow-leaf-chain-sword-echinodorus-tenellus",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/narrow-leaf-chain-sword-echinodorus-tenellus-plants-406.webp?v=1764611062",
+          "alt": "Narrow-Leaf Chain Sword (Helanthium tenellum) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/narrow-leaf-chain-sword-echinodorus-tenellus"
+        },
+        {
+          "title": "Pearl Weed (Hemianthus glomeratus)",
+          "href": "https://aquaticmotiv.com/pages/pearl-weed-micranthemum-micranthemoides",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/pearl-weed-micranthemum-micranthemoides-pot-plants-800.webp?v=1763989308",
+          "alt": "Pearl Weed (Hemianthus glomeratus) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/pearl-weed-micranthemum-micranthemoides-pot"
+        },
+        {
+          "title": "Pogostemon Stellatus (Pogostemon stellatus)",
+          "href": "https://aquaticmotiv.com/pages/pogostemon-stellatus-narrow-leaf",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/pogostemon-stellatus-narrow-leaf-plants-866.webp?v=1764102751",
+          "alt": "Pogostemon Stellatus (Pogostemon stellatus) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/pogostemon-stellatus-narrow-leaf"
+        },
+        {
+          "title": "Red Root Floaters (Phyllanthus fluitans)",
+          "href": "https://aquaticmotiv.com/pages/red-root-floaters-phyllanthus-fluitans",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/red-root-floaters-phyllanthus-fluitans-plants-583.webp?v=1781054843",
+          "alt": "Red Root Floaters (Phyllanthus fluitans) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/red-root-floaters-phyllanthus-fluitans"
+        },
+        {
+          "title": "Red Tiger Lotus (Nymphaea zenkeri)",
+          "href": "https://aquaticmotiv.com/pages/red-tiger-lotus-nymphaea-zenkeri",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/red-tiger-lotus-nymphaea-zenkeri-plants-935.webp?v=1781054886",
+          "alt": "Red Tiger Lotus (Nymphaea zenkeri) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/red-tiger-lotus-nymphaea-zenkeri"
+        },
+        {
+          "title": "Salvinia Cucullata (Salvinia cucullata)",
+          "href": "https://aquaticmotiv.com/pages/salvinia-cucullata",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/salvinia-cucullata-aquatic-plants-846.webp?v=1781054860",
+          "alt": "Salvinia Cucullata (Salvinia cucullata) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/salvinia-cucullata"
+        },
+        {
+          "title": "Salvinia Minima (Salvinia minima)",
+          "href": "https://aquaticmotiv.com/pages/salvinia-minima-salvinia-minima",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/salvinia-minima-aquatic-plants-149.webp?v=1781054934",
+          "alt": "Salvinia Minima (Salvinia minima) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/salvinia-minima"
+        },
+        {
+          "title": "Vallisneria Spiralis (Vallisneria spiralis)",
+          "href": "https://aquaticmotiv.com/pages/vallisneria-spiralis-italian-val",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/vallisneria-spiralis-plants-980.webp?v=1764102746",
+          "alt": "Vallisneria Spiralis (Vallisneria spiralis) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/vallisneria-spiralis"
+        },
+        {
+          "title": "Water Lettuce (Pistia stratiotes)",
+          "href": "https://aquaticmotiv.com/pages/water-lettuce-pistia-stratiotes",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/water-lettuce-rosette-pistia-sp-aquatic-plants-985.webp?v=1763989319",
+          "alt": "Water Lettuce (Pistia stratiotes) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/water-lettuce-rosette-pistia-sp"
+        },
+        {
+          "title": "Water Sprite (Ceratopteris thalictroides)",
+          "href": "https://aquaticmotiv.com/pages/water-sprite-ceratopteris-thalictroides",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/water-sprite-aquatic-plants-895.webp?v=1781054945",
+          "alt": "Water Sprite (Ceratopteris thalictroides) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/water-sprite"
+        },
+        {
+          "title": "Water Wisteria (Hygrophila difformis)",
+          "href": "https://aquaticmotiv.com/pages/water-wisteria-hygrophila-difformis",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/files/water-wisteria-hygrophila-difformis-plants-525.webp?v=1781054892",
+          "alt": "Water Wisteria (Hygrophila difformis) \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/products/water-wisteria-hygrophila-difformis"
+        }
+      ]
+    },
+    {
       "id": "beginner-plants",
       "title": "Beginner Plant Guides",
       "blurb": "New to planted tanks? Start here \u2014 the easiest species and carpets to grow first.",
@@ -137,6 +354,13 @@
           "href": "https://aquaticmotiv.com/blogs/news/tissue-culture-vs-potted-bunched-aquatic-plants-the-ultimate-aquasaper-s-guide",
           "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/articles/tissue-culture-vs-potted-bunched-aquatic-plants-the-ultimate.webp?v=1781903853",
           "alt": "Tissue Culture vs. Potted & Bunched Plants \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/collections/beginner-plants"
+        },
+        {
+          "title": "Top 5 Floating Plants to Lower Nitrates",
+          "href": "https://aquaticmotiv.com/blogs/news/top-5-best-floating-aquarium-plants-to-lower-nitrates-fast",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/articles/salvinia-natans-aquatic-plants-640.webp?v=1782229507",
+          "alt": "Top 5 Floating Plants to Lower Nitrates \u2014 Aquatic Motiv care guide",
           "shopHref": "https://aquaticmotiv.com/collections/beginner-plants"
         }
       ]
@@ -327,6 +551,20 @@
           "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/articles/is-a-week-aqua-light-long-term-investment-for-serious-aquascaping.jpg?v=1764727504",
           "alt": "Is a Week Aqua Light Worth It \u2014 Aquatic Motiv care guide",
           "shopHref": "https://aquaticmotiv.com/collections/co2"
+        },
+        {
+          "title": "Complete Week Aqua Buying Guide",
+          "href": "https://aquaticmotiv.com/blogs/news/week-aqua-light-buying-guide",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/articles/how-to-choose-the-right-week-aqua-light-series-l-m-p-v-a-or-z.webp?v=1764727446",
+          "alt": "Complete Week Aqua Buying Guide \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/collections/co2"
+        },
+        {
+          "title": "Week Aqua Bluetooth Module 3.0 Setup",
+          "href": "https://aquaticmotiv.com/blogs/news/week-aqua-bluetooth-module-automation-guide",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/articles/how-to-set-up-the-week-aqua-l-series-pro-k-for-maximum-plant-growth.webp?v=1764727476",
+          "alt": "Week Aqua Bluetooth Module 3.0 Setup \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/collections/co2"
         }
       ]
     },
@@ -361,6 +599,13 @@
           "href": "https://aquaticmotiv.com/blogs/news/how-often-should-you-actually-change-your-aquarium-water-the-definitive-guide",
           "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/articles/how-often-should-you-actually-change-your-aquarium-water.webp?v=1782052833",
           "alt": "How Often to Change Aquarium Water \u2014 Aquatic Motiv care guide",
+          "shopHref": "https://aquaticmotiv.com/collections/all-plants"
+        },
+        {
+          "title": "How Deep Should Your Substrate Be?",
+          "href": "https://aquaticmotiv.com/blogs/news/how-deep-should-your-aquarium-substrate-be-the-ultimate-guide",
+          "image": "https://cdn.shopify.com/s/files/1/0271/2505/5523/articles/Aquarium_plant_substrate_placement.png?v=1782143072",
+          "alt": "How Deep Should Your Substrate Be \u2014 Aquatic Motiv care guide",
           "shopHref": "https://aquaticmotiv.com/collections/all-plants"
         }
       ]

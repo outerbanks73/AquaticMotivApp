@@ -14,7 +14,19 @@ import json, os, re
 
 CDN = "https://cdn.shopify.com/s/files/1/0271/2505/5523/articles/"
 BLOG = "https://aquaticmotiv.com/blogs/news/"
+PAGE = "https://aquaticmotiv.com/pages/"
 STORE = "https://aquaticmotiv.com"
+
+# The human-written Shopify care-guide PAGES (aquaticmotiv.com/pages/*). Unlike blog
+# articles these are NOT hardcoded here: the set is derived at gen time from
+# src/data/plants/care-page-links.json (species -> page handle) joined to
+# src/data/plants/species.json (name + product handle). Pages have no og image, so the
+# card image comes from src/data/guides/page-card-images.json (product handle -> image).
+PLANT_CARE_PAGES_CATEGORY = (
+    "plant-care-pages", "Plant Species Care Guides",
+    "In-depth, species-by-species care pages for every plant we grow and ship — water "
+    "parameters, placement, and propagation, each linked to the live plant to buy.",
+)
 
 # (handle, title, image-file) — image-file is the part after /articles/
 ARTICLES = [
@@ -38,6 +50,7 @@ ARTICLES = [
     ("top-5-best-foreground-plants-for-beginners", "Top 5 Best Foreground Plants for Beginners", "top-5-best-foreground-plants-for-beginners.webp?v=1764725662"),
     ("dwarf-baby-tears-hc-cuba-vs-monte-carlo-the-ultimate-aquarium-carpet-guide", "HC Cuba vs. Monte Carlo: Carpet Guide", "dwarf-baby-tears-hc-cuba-vs-monte-carlo-the-ultimate-aquarium.webp?v=1781054434"),
     ("tissue-culture-vs-potted-bunched-aquatic-plants-the-ultimate-aquasaper-s-guide", "Tissue Culture vs. Potted & Bunched Plants", "tissue-culture-vs-potted-bunched-aquatic-plants-the-ultimate.webp?v=1781903853"),
+    ("top-5-best-floating-aquarium-plants-to-lower-nitrates-fast", "Top 5 Floating Plants to Lower Nitrates", "salvinia-natans-aquatic-plants-640.webp?v=1782229507"),
     # --- Plant health & troubleshooting ---
     ("why-do-my-aquarium-plant-leaves-have-holes-in-them-diagnosis-fixes", "Why Do My Plant Leaves Have Holes?", "ludwigia-sp-super-red-mini-plants-442.webp?v=1781703512"),
     ("why-are-my-aquarium-plants-losing-leaves", "Why Are My Aquarium Plants Losing Leaves?", "water-sprite-aquatic-plants-204-sk.webp?v=1781277810"),
@@ -65,11 +78,15 @@ ARTICLES = [
     ("what-differentiates-week-aqua-l", "What Makes the Week Aqua L Series Unique", "what-makes-the-week-aqua-l-series-unique-among-aquarium-lights.webp?v=1764727547"),
     ("why-aquascapers-prefer-week-aqua", "Why Aquascapers Prefer Week Aqua", "why-do-aquascapers-prefer-week-aqua-over-other-led-brands.webp?v=1764727575"),
     ("week-aqua-light-long-term-investment", "Is a Week Aqua Light Worth It?", "is-a-week-aqua-light-long-term-investment-for-serious-aquascaping.jpg?v=1764727504"),
+    # These 2 have no featured image on Shopify (og:image = logo); reuse representative Week Aqua art until unique images are set.
+    ("week-aqua-light-buying-guide", "Complete Week Aqua Buying Guide", "how-to-choose-the-right-week-aqua-light-series-l-m-p-v-a-or-z.webp?v=1764727446"),
+    ("week-aqua-bluetooth-module-automation-guide", "Week Aqua Bluetooth Module 3.0 Setup", "how-to-set-up-the-week-aqua-l-series-pro-k-for-maximum-plant-growth.webp?v=1764727476"),
     # --- Aquascaping & setup ---
     ("choosing-the-best-planted-aquarium-substrate-aquasoil-vs-sand-vs-gravel", "Best Substrate: Aquasoil vs. Sand vs. Gravel", "choosing-the-best-planted-aquarium-substrate-aquasoil-vs-sand.webp?v=1781054471"),
     ("low-tech-vs-high-tech-aquascaping-which-is-right-for-you", "Low-Tech vs. High-Tech Aquascaping", "low-tech-vs-high-aquascaping-which-is-right.webp?v=1781877699"),
     ("a-beginners-guide-to-the-aquarium-nitrogen-cycle", "Beginner's Guide to the Nitrogen Cycle", "a-beginners-guide-to-the-aquarium-nitrogen-cycle.webp?v=1764726185"),
     ("how-often-should-you-actually-change-your-aquarium-water-the-definitive-guide", "How Often to Change Aquarium Water", "how-often-should-you-actually-change-your-aquarium-water.webp?v=1782052833"),
+    ("how-deep-should-your-aquarium-substrate-be-the-ultimate-guide", "How Deep Should Your Substrate Be?", "Aquarium_plant_substrate_placement.png?v=1782143072"),
     # --- Snail & invertebrate care guides ---
     ("ultimate-aquarium-snail-care-guide", "Ultimate Aquarium Snail Care Guide", "ultimate-aquarium-snail-care-guide-how-to-choose-introduce.webp?v=1764727052"),
     ("the-mystery-snail-care-guide-keeping-pomacea-bridgesii-thriving", "Mystery Snail Care Guide", "IMG_9034.webp?v=1781798627"),
@@ -132,7 +149,8 @@ CATEGORIES = [
      "beginner-plants", [
         "top-10-easy-aquarium-plants-for-beginners","top-5-best-foreground-plants-for-beginners",
         "dwarf-baby-tears-hc-cuba-vs-monte-carlo-the-ultimate-aquarium-carpet-guide",
-        "tissue-culture-vs-potted-bunched-aquatic-plants-the-ultimate-aquasaper-s-guide"]),
+        "tissue-culture-vs-potted-bunched-aquatic-plants-the-ultimate-aquasaper-s-guide",
+        "top-5-best-floating-aquarium-plants-to-lower-nitrates-fast"]),
     ("plant-health", "Plant Health & Troubleshooting",
      "Diagnose and fix the common problems — melting, holes, deficiencies, and algae.",
      "all-plants", [
@@ -160,14 +178,16 @@ CATEGORIES = [
         "spectrum-balance-vs-light-brightness-growth",
         "cri-influence-aquascape-realism-lighting",
         "choose-right-week-aqua-light","week-aqua-l-series-pro-k-setup-guide",
-        "what-differentiates-week-aqua-l","why-aquascapers-prefer-week-aqua","week-aqua-light-long-term-investment"]),
+        "what-differentiates-week-aqua-l","why-aquascapers-prefer-week-aqua","week-aqua-light-long-term-investment",
+        "week-aqua-light-buying-guide","week-aqua-bluetooth-module-automation-guide"]),
     ("aquascaping", "Aquascaping & Tank Setup",
      "Plan the build — substrate, low-tech vs high-tech, cycling, and maintenance.",
      "all-plants", [
         "choosing-the-best-planted-aquarium-substrate-aquasoil-vs-sand-vs-gravel",
         "low-tech-vs-high-tech-aquascaping-which-is-right-for-you",
         "a-beginners-guide-to-the-aquarium-nitrogen-cycle",
-        "how-often-should-you-actually-change-your-aquarium-water-the-definitive-guide"]),
+        "how-often-should-you-actually-change-your-aquarium-water-the-definitive-guide",
+        "how-deep-should-your-aquarium-substrate-be-the-ultimate-guide"]),
     ("snails-inverts", "Snail & Invertebrate Care Guides",
      "The livestock we grow and ship from New Jersey — and where Aquatic Motiv ranks best. Organic guides are how buyers find these species.",
      "snails", [
@@ -196,6 +216,47 @@ def alt_for(title):
     return f"{base} — Aquatic Motiv care guide"
 
 
+def load_json(here, *parts):
+    with open(os.path.join(here, *parts)) as f:
+        return json.load(f)
+
+
+def build_plant_care_pages(here):
+    """Build the 'Plant Species Care Guides' category from the Shopify care PAGES.
+
+    Joins care-page-links.json (species -> page handle) with species.json (name +
+    product handle) and page-card-images.json (product handle -> image). Each card
+    links to the live /pages/* guide and shops the actual product (not a collection).
+    """
+    cid, title, blurb = PLANT_CARE_PAGES_CATEGORY
+    links = {k: v for k, v in load_json(here, "src", "data", "plants", "care-page-links.json").items()
+             if not k.startswith("_")}
+    species = {s["slug"]: s for s in load_json(here, "src", "data", "plants", "species.json")}
+    images = {k: v for k, v in load_json(here, "src", "data", "guides", "page-card-images.json").items()
+              if not k.startswith("_")}
+
+    guides = []
+    for slug, page_handle in links.items():
+        s = species.get(slug)
+        if not s:
+            raise SystemExit(f"care-page-links slug not in species.json: {slug}")
+        shop_handle = s.get("shopifyHandle", "")
+        img = images.get(shop_handle)
+        if not img:
+            raise SystemExit(f"No card image for page '{page_handle}' (product '{shop_handle}'). Re-fetch page-card-images.json.")
+        sci = s.get("scientificName", "").strip()
+        gtitle = f"{s.get('commonName', slug)} ({sci})" if sci else s.get("commonName", slug)
+        guides.append({
+            "title": gtitle,
+            "href": PAGE + page_handle,
+            "image": img,
+            "alt": alt_for(gtitle),
+            "shopHref": f"{STORE}/products/{shop_handle}" if shop_handle else f"{STORE}/collections/all-plants",
+        })
+    guides.sort(key=lambda g: g["title"].lower())
+    return {"id": cid, "title": title, "blurb": blurb, "guides": guides}
+
+
 def main():
     used = set()
     cats = []
@@ -219,11 +280,18 @@ def main():
     if missing:
         raise SystemExit(f"Articles not placed in any category: {missing}")
 
+    here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    # Insert the human-written Shopify care PAGES right after the blog plant profiles,
+    # so species-level content (both authoring sources) leads the hub.
+    page_cat = build_plant_care_pages(here)
+    insert_at = next((i + 1 for i, c in enumerate(cats) if c["id"] == "plant-profiles"), len(cats))
+    cats.insert(insert_at, page_cat)
+
     out = {
         "_comment": "GENERATED by scripts/gen_careguides_hub.py from AquaticMotiv Shopify blog articles. Do not hand-edit; re-run the script. Cards link OUT to the live Shopify guides (never 301'd). Plants lead per SEO strategy.",
         "categories": cats,
     }
-    here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     path = os.path.join(here, "src", "data", "guides", "hub.json")
     with open(path, "w") as f:
         json.dump(out, f, indent=2)
