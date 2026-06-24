@@ -17,16 +17,36 @@ BLOG = "https://aquaticmotiv.com/blogs/news/"
 PAGE = "https://aquaticmotiv.com/pages/"
 STORE = "https://aquaticmotiv.com"
 
-# The human-written Shopify care-guide PAGES (aquaticmotiv.com/pages/*). Unlike blog
-# articles these are NOT hardcoded here: the set is derived at gen time from
-# src/data/plants/care-page-links.json (species -> page handle) joined to
-# src/data/plants/species.json (name + product handle). Pages have no og image, so the
-# card image comes from src/data/guides/page-card-images.json (product handle -> image).
-PLANT_CARE_PAGES_CATEGORY = (
-    "plant-care-pages", "Plant Species Care Guides",
-    "In-depth, species-by-species care pages for every plant we grow and ship — water "
-    "parameters, placement, and propagation, each linked to the live plant to buy.",
+# Category 1 merges the per-species plant content from BOTH stores into one section:
+# the human-written Shopify care PAGES (aquaticmotiv.com/pages/*) plus the blog plant
+# PROFILES. Pages are derived at gen time from src/data/plants/care-page-links.json
+# (species -> page handle) joined to species.json (name + product handle); their card
+# image comes from src/data/guides/page-card-images.json (pages have no og image).
+# When a species has BOTH a page and a profile, the converting PAGE wins (one card/species).
+PLANT_CARE_CATEGORY = (
+    "freshwater-plant-care", "Freshwater Aquatic Plant Care Guides",
+    "Species-by-species care for every freshwater plant we grow and ship — light, CO2, "
+    "placement, parameters, and propagation, each linked to the live plant to buy.",
 )
+
+# Blog plant-profile handle -> species slug. Used to de-dupe against the care PAGES and
+# to fold the remaining profiles (species with no page) into category 1.
+PROFILE_SPECIES = {
+    "plant-profile-monte-carlo": "monte-carlo",
+    "plant-profile-dwarf-hairgrass": "dwarf-hairgrass",
+    "plant-profile-dwarf-baby-tear": "dwarf-baby-tears",
+    "plant-profile-java-moss": "java-moss",
+    "plant-profile-bacopa": "bacopa-caroliniana",
+    "plant-profile-water-wisteria": "water-wisteria",
+    "plant-profile-water-sprite": "water-sprite",
+    "plant-profile-alternanthera-reineckii": "alternanthera-reineckii",
+    "plant-profile-limnophila-hippuridoides": "limnophila-hippuridoides",
+    "plant-profile-mermaid-weed": "mermaid-weed",
+    "plant-profile-ammannia-gracilis": "ammannia-gracilis",
+    "plant-profile-ludwigia-ovalis": "ludwigia-ovalis",
+    "plant-profile-ludwigia-super-red-mini": "ludwigia-super-red-mini",
+    "bucephalandra-master-care-guide-unlocking-the-secrets-of-borneo-s-royal-plant": "bucephalandra",
+}
 
 # (handle, title, image-file) — image-file is the part after /articles/
 ARTICLES = [
@@ -134,23 +154,18 @@ SHOP = {
     "top-10-easy-aquarium-plants-for-beginners": "beginner-plants",
 }
 
-# Ordered categories: each = (id, title, blurb, default shop collection, [handles]).
+# Ordered article categories (category 1, Freshwater Aquatic Plant Care Guides, is built
+# separately by build_plant_care_section and prepended). Each = (id, title, blurb,
+# default shop collection, [handles]).
 CATEGORIES = [
-    ("plant-profiles", "Aquarium Plant Care Profiles",
-     "Species-by-species care for the freshwater plants we grow — light, CO2, placement, and the quirks that keep them thriving.",
-     "all-plants", [
-        "plant-profile-monte-carlo","plant-profile-dwarf-hairgrass","plant-profile-dwarf-baby-tear",
-        "plant-profile-java-moss","plant-profile-bacopa","plant-profile-water-wisteria","plant-profile-water-sprite",
-        "plant-profile-alternanthera-reineckii","plant-profile-limnophila-hippuridoides","plant-profile-mermaid-weed",
-        "plant-profile-ammannia-gracilis","plant-profile-ludwigia-ovalis","plant-profile-ludwigia-super-red-mini",
-        "bucephalandra-master-care-guide-unlocking-the-secrets-of-borneo-s-royal-plant"]),
     ("beginner-plants", "Beginner Plant Guides",
-     "New to planted tanks? Start here — the easiest species and carpets to grow first.",
+     "New to planted tanks? Start here — the easiest species, carpets, and tankmates to grow first.",
      "beginner-plants", [
         "top-10-easy-aquarium-plants-for-beginners","top-5-best-foreground-plants-for-beginners",
         "dwarf-baby-tears-hc-cuba-vs-monte-carlo-the-ultimate-aquarium-carpet-guide",
         "tissue-culture-vs-potted-bunched-aquatic-plants-the-ultimate-aquasaper-s-guide",
-        "top-5-best-floating-aquarium-plants-to-lower-nitrates-fast"]),
+        "top-5-best-floating-aquarium-plants-to-lower-nitrates-fast",
+        "the-best-aquarium-plants-for-bettas-detailed-guide"]),
     ("plant-health", "Plant Health & Troubleshooting",
      "Diagnose and fix the common problems — melting, holes, deficiencies, and algae.",
      "all-plants", [
@@ -165,9 +180,14 @@ CATEGORIES = [
         "how-to-use-aquarium-glue-to-secure-epiphytes-to-hardscape",
         "aquarium-green-water-causes-and-how-to-get-rid-of-it",
         "how-to-get-rid-of-black-beard-algae"]),
-    ("co2-lighting", "CO2, Fertilization & Lighting",
-     "Dial in the inputs that drive growth — carbon, nutrients, PAR, and spectrum.",
+    ("planted-tank-setup", "Planted Tank Setup",
+     "Build and dial in the tank — substrate, cycling, CO2, fertilization, lighting, and maintenance.",
      "co2", [
+        "choosing-the-best-planted-aquarium-substrate-aquasoil-vs-sand-vs-gravel",
+        "how-deep-should-your-aquarium-substrate-be-the-ultimate-guide",
+        "low-tech-vs-high-tech-aquascaping-which-is-right-for-you",
+        "a-beginners-guide-to-the-aquarium-nitrogen-cycle",
+        "how-often-should-you-actually-change-your-aquarium-water-the-definitive-guide",
         "the-ultimate-guide-to-co2-in-planted-aquariums-unlock-lush-algae-free-growth",
         "the-truth-about-liquid-carbon-what-is-it-and-how-does-it-work",
         "carbon-dioxide-supplementation-what-plants-need-it-and-what-plants-don-t",
@@ -180,15 +200,7 @@ CATEGORIES = [
         "choose-right-week-aqua-light","week-aqua-l-series-pro-k-setup-guide",
         "what-differentiates-week-aqua-l","why-aquascapers-prefer-week-aqua","week-aqua-light-long-term-investment",
         "week-aqua-light-buying-guide","week-aqua-bluetooth-module-automation-guide"]),
-    ("aquascaping", "Aquascaping & Tank Setup",
-     "Plan the build — substrate, low-tech vs high-tech, cycling, and maintenance.",
-     "all-plants", [
-        "choosing-the-best-planted-aquarium-substrate-aquasoil-vs-sand-vs-gravel",
-        "low-tech-vs-high-tech-aquascaping-which-is-right-for-you",
-        "a-beginners-guide-to-the-aquarium-nitrogen-cycle",
-        "how-often-should-you-actually-change-your-aquarium-water-the-definitive-guide",
-        "how-deep-should-your-aquarium-substrate-be-the-ultimate-guide"]),
-    ("snails-inverts", "Snail & Invertebrate Care Guides",
+    ("snails-shrimp-inverts", "Snail, Shrimp & Invertebrate Care Guides",
      "The livestock we grow and ship from New Jersey — and where Aquatic Motiv ranks best. Organic guides are how buyers find these species.",
      "snails", [
         "ultimate-aquarium-snail-care-guide","the-mystery-snail-care-guide-keeping-pomacea-bridgesii-thriving",
@@ -199,13 +211,12 @@ CATEGORIES = [
         "nerite-snails-algae-cleaners","snails-are-essential-for-a-self-sustaining-aquarium",
         "rabbit-snails-tylomelania-aquascaping","best-snail-pack-balanced-aquarium",
         "mystery-snails-are-perfect-for-beginner-tanks","mystery-snails-diet",
-        "rabbit-snails-with-mystery-nerite","can-nerite-snails-reproduce-in-freshwater"]),
-    ("shrimp-betta", "Shrimp & Betta Care Guides",
-     "Dwarf shrimp and bettas — care, compatibility, and the best plants for them.",
-     "shrimp", [
-        "the-neocaridina-shrimp-care-guide-keeping-dwarf-shrimp",
-        "the-ultimate-betta-fish-care-guide-how-to-keep-your-siamese-fighting-fish-happy-and-healthy",
-        "the-best-aquarium-plants-for-bettas-detailed-guide"]),
+        "rabbit-snails-with-mystery-nerite","can-nerite-snails-reproduce-in-freshwater",
+        "the-neocaridina-shrimp-care-guide-keeping-dwarf-shrimp"]),
+    ("other", "Other",
+     "Everything else in the freshwater hobby we keep and ship.",
+     "all-plants", [
+        "the-ultimate-betta-fish-care-guide-how-to-keep-your-siamese-fighting-fish-happy-and-healthy"]),
 ]
 
 BY_HANDLE = {h: (h, t, img) for h, t, img in ARTICLES}
@@ -221,21 +232,26 @@ def load_json(here, *parts):
         return json.load(f)
 
 
-def build_plant_care_pages(here):
-    """Build the 'Plant Species Care Guides' category from the Shopify care PAGES.
+def build_plant_care_section(here):
+    """Build category 1 ('Freshwater Aquatic Plant Care Guides').
 
-    Joins care-page-links.json (species -> page handle) with species.json (name +
-    product handle) and page-card-images.json (product handle -> image). Each card
-    links to the live /pages/* guide and shops the actual product (not a collection).
+    Merges the per-species content from both stores into one de-duped section:
+      - Every Shopify care PAGE (care-page-links.json), card image from the linked
+        product (page-card-images.json), shop link to the live product.
+      - Each blog plant PROFILE whose species has NO page (the page wins when both exist).
+    Returns (category, consumed_profile_handles) so main() can mark ALL profile handles
+    handled — both the ones folded in and the ones dropped as duplicates.
     """
-    cid, title, blurb = PLANT_CARE_PAGES_CATEGORY
+    cid, title, blurb = PLANT_CARE_CATEGORY
     links = {k: v for k, v in load_json(here, "src", "data", "plants", "care-page-links.json").items()
              if not k.startswith("_")}
     species = {s["slug"]: s for s in load_json(here, "src", "data", "plants", "species.json")}
     images = {k: v for k, v in load_json(here, "src", "data", "guides", "page-card-images.json").items()
               if not k.startswith("_")}
+    page_species = set(links)
 
     guides = []
+    # Shopify care PAGES (one per species).
     for slug, page_handle in links.items():
         s = species.get(slug)
         if not s:
@@ -253,13 +269,36 @@ def build_plant_care_pages(here):
             "alt": alt_for(gtitle),
             "shopHref": f"{STORE}/products/{shop_handle}" if shop_handle else f"{STORE}/collections/all-plants",
         })
+
+    # Blog plant PROFILES for species with no care page (dropped when a page exists).
+    for handle, slug in PROFILE_SPECIES.items():
+        if slug in page_species:
+            continue  # page wins — drop the duplicate profile
+        if handle not in BY_HANDLE:
+            raise SystemExit(f"PROFILE_SPECIES handle not in ARTICLES: {handle}")
+        _, gtitle, img = BY_HANDLE[handle]
+        guides.append({
+            "title": gtitle,
+            "href": BLOG + handle,
+            "image": CDN + img,
+            "alt": alt_for(gtitle),
+            "shopHref": f"{STORE}/collections/{SHOP.get(handle, 'all-plants')}",
+        })
+
     guides.sort(key=lambda g: g["title"].lower())
-    return {"id": cid, "title": title, "blurb": blurb, "guides": guides}
+    return {"id": cid, "title": title, "blurb": blurb, "guides": guides}, set(PROFILE_SPECIES)
 
 
 def main():
+    here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     used = set()
-    cats = []
+
+    # Category 1: merged plant care (Shopify care pages + de-duped blog profiles). Leads the hub.
+    plant_cat, profile_handles = build_plant_care_section(here)
+    used |= profile_handles
+    cats = [plant_cat]
+
+    # Categories 2..n: blog-article based.
     for cid, title, blurb, shop_default, handles in CATEGORIES:
         guides = []
         for h in handles:
@@ -280,16 +319,8 @@ def main():
     if missing:
         raise SystemExit(f"Articles not placed in any category: {missing}")
 
-    here = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-    # Insert the human-written Shopify care PAGES right after the blog plant profiles,
-    # so species-level content (both authoring sources) leads the hub.
-    page_cat = build_plant_care_pages(here)
-    insert_at = next((i + 1 for i, c in enumerate(cats) if c["id"] == "plant-profiles"), len(cats))
-    cats.insert(insert_at, page_cat)
-
     out = {
-        "_comment": "GENERATED by scripts/gen_careguides_hub.py from AquaticMotiv Shopify blog articles. Do not hand-edit; re-run the script. Cards link OUT to the live Shopify guides (never 301'd). Plants lead per SEO strategy.",
+        "_comment": "GENERATED by scripts/gen_careguides_hub.py. Do not hand-edit; re-run the script. Cards link OUT to live Shopify guides (blogs + pages, never 301'd) + de-duped plant species. Plants lead per SEO strategy.",
         "categories": cats,
     }
     path = os.path.join(here, "src", "data", "guides", "hub.json")
