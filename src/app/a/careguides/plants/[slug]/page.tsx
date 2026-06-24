@@ -49,6 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: facet.metaTitle,
       description: facet.metaDescription,
       alternates: { canonical: plantUrl(facet.slug) },
+      ...(facet.noindex && { robots: { index: false, follow: true } }),
     };
   }
 

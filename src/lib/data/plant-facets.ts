@@ -21,6 +21,14 @@ export interface PlantFacet {
   predicate: (p: PlantSpecies) => boolean;
   /** Querystring preset for the finder CTA, e.g. "light=low" */
   finderParams?: string;
+  /**
+   * When true, the facet page renders and stays reachable (no 404) but is served
+   * `robots: noindex,follow` — links pass equity, the page does not compete in
+   * search. Use for facets whose data isn't a real discriminator yet, and (at
+   * Phase 1) for any combinable multi-facet/sort URLs that would otherwise be
+   * crawl-trap duplicates. See docs/CARE-GUIDES-SCALING-PLAN.md Phase 0.
+   */
+  noindex?: boolean;
 }
 
 export const MIN_SPECIES_PER_FACET = 6;
@@ -260,6 +268,12 @@ const FACETS: PlantFacet[] = [
           "Epiphytes grow at the same (typically slow) pace whether on rock or wood — they were never substrate feeders. Feed them through the water column with a liquid fertilizer rather than root tabs.",
       },
     ],
+    // Shares its predicate with `attach-to-wood` by design, not by oversight:
+    // epiphytes attach to stone and driftwood identically (they feed through
+    // their leaves and grip any inert surface), so the same species qualify for
+    // both. The two pages are kept distinct because "plants for rocks" and
+    // "plants for driftwood" are separate search queries — they carry different
+    // titles, meta, directAnswer, and FAQs, and each canonicals to itself.
     predicate: (p) => p.attachesToHardscape,
     finderParams: "goals=attach_to_hardscape",
   },
@@ -392,6 +406,14 @@ const FACETS: PlantFacet[] = [
     ],
     predicate: (p) => p.snailSafe,
     finderParams: "goals=snail_safe",
+    // noindex: `snailSafe` is true on all 102 species, so this facet matches
+    // every plant and screens nothing — it is not a real discriminator. That
+    // is also broadly *correct* (the snails sold in the hobby graze biofilm and
+    // decaying matter, not healthy plants — see this facet's own directAnswer),
+    // so there is no meaningful subset to surface. Kept reachable for the few
+    // genuinely-soft exceptions, but noindex'd until species-level data marks
+    // the real exceptions. Re-index once snailSafe carries discriminating data.
+    noindex: true,
   },
   {
     slug: "red",

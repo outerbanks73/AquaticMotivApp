@@ -50,6 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: facet.metaTitle,
       description: facet.metaDescription,
       alternates: { canonical: invertUrl(facet.slug) },
+      ...(facet.noindex && { robots: { index: false, follow: true } }),
     };
   }
 

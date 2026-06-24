@@ -24,9 +24,10 @@ export async function GET() {
     PLANTS_BASE,
     FINDER_URL,
     INVERTS_BASE,
-    ...getActiveFacets().map((f) => plantUrl(f.slug)),
+    // noindex facets stay reachable but are kept out of the sitemap.
+    ...getActiveFacets().filter((f) => !f.noindex).map((f) => plantUrl(f.slug)),
     ...getPlantSlugs().map((slug) => plantUrl(slug)),
-    ...getActiveInvertFacets().map((f) => invertUrl(f.slug)),
+    ...getActiveInvertFacets().filter((f) => !f.noindex).map((f) => invertUrl(f.slug)),
     ...getInvertSlugs().map((slug) => invertUrl(slug)),
   ];
 

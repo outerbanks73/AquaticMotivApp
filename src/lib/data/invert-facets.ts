@@ -19,6 +19,12 @@ export interface InvertFacet {
   directAnswer: string;
   faqs: InvertFaq[];
   predicate: (i: InvertSpecies) => boolean;
+  /**
+   * When true, the facet page renders and stays reachable (no 404) but is served
+   * `robots: noindex,follow`. Mirrors the plant-facets mechanism — see
+   * docs/CARE-GUIDES-SCALING-PLAN.md Phase 0.
+   */
+  noindex?: boolean;
 }
 
 export const MIN_SPECIES_PER_FACET = 4;
