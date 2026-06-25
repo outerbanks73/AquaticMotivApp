@@ -38,24 +38,24 @@ export default async function PlantFinderPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-aqua-50 via-white to-ocean-50">
-      <header className="relative overflow-hidden bg-gradient-to-b from-ocean-950 via-ocean-800 to-aqua-700 text-white">
+    <div className="min-h-screen bg-gradient-to-b from-leaf-50 via-white to-leaf-50">
+      <header className="relative overflow-hidden bg-gradient-to-b from-leaf-950 via-leaf-800 to-leaf-700 text-white">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-20"
           style={{
             backgroundImage:
-              "radial-gradient(ellipse 60% 40% at 20% 0%, #5eead4 0%, transparent 60%), radial-gradient(ellipse 50% 35% at 80% 10%, #60a5fa 0%, transparent 55%)",
+              "radial-gradient(ellipse 60% 40% at 20% 0%, #8fb592 0%, transparent 60%), radial-gradient(ellipse 50% 35% at 80% 10%, #ffd800 0%, transparent 55%)",
           }}
         />
         <div className="relative mx-auto max-w-3xl px-4 py-12 sm:py-16">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-aqua-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-400">
             AquaticMotiv plant finder
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-5xl">
-            Stop watching your plants <em className="font-serif text-aqua-200">melt</em>.
+            Stop watching your plants <em className="font-serif text-leaf-200">melt</em>.
           </h1>
-          <p className="mt-4 max-w-xl text-ocean-100">
+          <p className="mt-4 max-w-xl text-leaf-100">
             Answer four quick questions and get plants matched to your exact setup —
             the ones that thrive, not just survive. Grown across our 190+ tanks and
             shipped with a 100% live-arrival guarantee.

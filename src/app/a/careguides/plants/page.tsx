@@ -41,7 +41,7 @@ export default function PlantsHubPage() {
   const facets = getActiveFacets();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-aqua-50 via-white to-ocean-50">
+    <div className="min-h-screen bg-gradient-to-b from-leaf-50 via-white to-leaf-50">
       <JsonLd
         data={breadcrumbSchema([
           { name: "AquaticMotiv", url: `${STORE_BASE}/` },
@@ -60,23 +60,23 @@ export default function PlantsHubPage() {
       />
 
       {/* Hero */}
-      <header className="relative overflow-hidden bg-gradient-to-b from-ocean-950 via-ocean-800 to-aqua-700 text-white">
+      <header className="relative overflow-hidden bg-gradient-to-b from-leaf-950 via-leaf-800 to-leaf-700 text-white">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-20"
           style={{
             backgroundImage:
-              "radial-gradient(ellipse 60% 40% at 20% 0%, #5eead4 0%, transparent 60%), radial-gradient(ellipse 50% 35% at 80% 10%, #60a5fa 0%, transparent 55%)",
+              "radial-gradient(ellipse 60% 40% at 20% 0%, #8fb592 0%, transparent 60%), radial-gradient(ellipse 50% 35% at 80% 10%, #ffd800 0%, transparent 55%)",
           }}
         />
         <div className="relative mx-auto max-w-4xl px-4 py-12 sm:py-16">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-aqua-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-400">
             AquaticMotiv plant database
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-5xl">
             Aquarium plant database
           </h1>
-          <p className="mt-4 max-w-2xl text-ocean-100">
+          <p className="mt-4 max-w-2xl text-leaf-100">
             Verified care data for {plants.length} freshwater aquarium plant
             species: light and PAR ranges, CO2 requirements, realistic submerged
             heights, temperature floors, placement, and snail safety. Every
@@ -89,15 +89,15 @@ export default function PlantsHubPage() {
 
       <main className="mx-auto max-w-4xl px-4 pb-24 pt-10">
         {/* Finder CTA */}
-        <div className="rounded-2xl bg-ocean-950 p-6 text-white sm:p-8">
+        <div className="rounded-2xl bg-leaf-950 p-6 text-white sm:p-8">
           <h2 className="text-lg font-bold">Not sure where to start?</h2>
-          <p className="mt-1 text-sm text-ocean-100">
+          <p className="mt-1 text-sm text-leaf-100">
             The plant finder asks four questions — tank size, light, CO2, goals —
             and ranks every species here against your exact setup.
           </p>
           <Link
             href="/a/careguides/finder"
-            className="mt-4 inline-block rounded-full bg-aqua-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-aqua-600/25 transition-transform hover:scale-[1.02]"
+            className="mt-4 inline-block rounded-full bg-gold-400 px-6 py-2.5 text-sm font-semibold text-leaf-950 shadow-lg shadow-gold-400/30 transition-transform hover:scale-[1.02]"
           >
             Open the plant finder →
           </Link>
@@ -105,7 +105,7 @@ export default function PlantsHubPage() {
 
         {/* Facet directory */}
         <section aria-labelledby="browse" className="mt-12">
-          <h2 id="browse" className="text-xl font-bold text-ocean-950">
+          <h2 id="browse" className="text-xl font-bold text-leaf-950">
             Browse by what your tank needs
           </h2>
           <div className="mt-5 space-y-6">
@@ -114,7 +114,7 @@ export default function PlantsHubPage() {
               if (groupFacets.length === 0) return null;
               return (
                 <div key={group.id}>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-ocean-900/60">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-leaf-900/60">
                     {group.label}
                   </h3>
                   <ul className="mt-3 flex flex-wrap gap-2">
@@ -122,7 +122,7 @@ export default function PlantsHubPage() {
                       <li key={facet.slug}>
                         <Link
                           href={`/a/careguides/plants/${facet.slug}`}
-                          className="inline-block rounded-full border-2 border-ocean-100 bg-white px-4 py-1.5 text-sm font-medium text-ocean-900 transition-colors hover:border-aqua-300 hover:text-aqua-700"
+                          className="inline-block rounded-full border-2 border-leaf-100 bg-white px-4 py-1.5 text-sm font-medium text-leaf-900 transition-colors hover:border-leaf-400 hover:text-leaf-800"
                         >
                           {facet.title}
                         </Link>
@@ -137,10 +137,10 @@ export default function PlantsHubPage() {
 
         {/* All species — searchable */}
         <section aria-labelledby="all-species" className="mt-12">
-          <h2 id="all-species" className="text-xl font-bold text-ocean-950">
+          <h2 id="all-species" className="text-xl font-bold text-leaf-950">
             Find a plant
           </h2>
-          <p className="mt-1 mb-4 text-sm text-ocean-900/60">
+          <p className="mt-1 mb-4 text-sm text-leaf-900/60">
             Search {plants.length} species by common or scientific name.
           </p>
           <SpeciesSearchList

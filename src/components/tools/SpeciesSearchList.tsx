@@ -41,16 +41,16 @@ export function SpeciesSearchList({
         onChange={(e) => setQ(e.target.value)}
         placeholder={placeholder}
         aria-label={placeholder}
-        className="w-full rounded-xl border-2 border-ocean-100 bg-white px-4 py-3 text-ocean-950 placeholder:text-ocean-900/40 focus:border-aqua-400 focus:outline-none"
+        className="w-full rounded-xl border-2 border-leaf-100 bg-white px-4 py-3 text-leaf-950 placeholder:text-leaf-900/40 focus:border-leaf-400 focus:outline-none"
       />
-      <p className="mt-2 text-sm text-ocean-900/50" aria-live="polite">
+      <p className="mt-2 text-sm text-leaf-900/50" aria-live="polite">
         {q.trim()
           ? `${filtered.length} of ${items.length} species`
           : `${items.length} species`}
       </p>
 
       {filtered.length === 0 ? (
-        <p className="mt-6 rounded-xl border border-dashed border-ocean-200 p-8 text-center text-ocean-900/60">
+        <p className="mt-6 rounded-xl border border-dashed border-leaf-200 p-8 text-center text-leaf-900/60">
           No species match “{q.trim()}”. Try a common or scientific name.
         </p>
       ) : (
@@ -59,15 +59,15 @@ export function SpeciesSearchList({
             <li key={it.href}>
               <Link
                 href={it.href}
-                className="block h-full rounded-xl border border-ocean-100 bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-aqua-300 hover:shadow-md"
+                className="block h-full rounded-xl border border-leaf-100 bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-leaf-400 hover:shadow-md"
               >
-                <span className="block font-bold text-ocean-950">{it.name}</span>
-                <span className="block text-sm italic text-ocean-900/50">{it.sub}</span>
+                <span className="block font-bold text-leaf-950">{it.name}</span>
+                <span className="block text-sm italic text-leaf-900/50">{it.sub}</span>
                 <span className="mt-2 flex flex-wrap gap-1.5">
                   {it.badges.map((b) => (
                     <span
                       key={b}
-                      className="rounded-full bg-aqua-100 px-2.5 py-0.5 text-xs font-medium text-aqua-800"
+                      className="rounded-full bg-leaf-100 px-2.5 py-0.5 text-xs font-medium text-leaf-800"
                     >
                       {b}
                     </span>

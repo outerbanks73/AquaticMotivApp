@@ -12,22 +12,22 @@ const NAV = [
 
 export function CareHeader() {
   return (
-    <header className="border-b border-ocean-100 bg-white">
+    <header className="border-b border-leaf-100 bg-white">
       <div className="mx-auto flex max-w-5xl items-center gap-6 px-4 py-3">
         <Link
           href="/a/careguides"
           className="text-lg font-bold tracking-wide"
           aria-label="AquaticMotiv care guides"
         >
-          <span className="text-ocean-900">AQUATIC</span>
-          <span className="text-aqua-600">MOTIV</span>
+          <span className="text-leaf-900">AQUATIC</span>
+          <span className="text-leaf-600">MOTIV</span>
         </Link>
         <nav className="hidden items-center gap-5 text-sm sm:flex">
           {NAV.map((n) => (
             <Link
               key={n.href}
               href={n.href}
-              className="text-ocean-900/70 transition-colors hover:text-aqua-700"
+              className="text-leaf-900/70 transition-colors hover:text-leaf-700"
             >
               {n.label}
             </Link>
@@ -35,7 +35,7 @@ export function CareHeader() {
         </nav>
         <a
           href="https://aquaticmotiv.com/collections/all"
-          className="ml-auto rounded-full bg-aqua-600 px-4 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-aqua-700"
+          className="ml-auto rounded-full bg-gold-400 px-4 py-1.5 text-sm font-semibold text-leaf-950 transition-colors hover:bg-gold-500"
         >
           Shop
         </a>

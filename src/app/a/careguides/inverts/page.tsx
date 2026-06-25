@@ -53,7 +53,7 @@ export default function InvertsHubPage() {
   const facets = getActiveInvertFacets();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-aqua-50 via-white to-ocean-50">
+    <div className="min-h-screen bg-gradient-to-b from-leaf-50 via-white to-leaf-50">
       <JsonLd
         data={breadcrumbSchema([
           { name: "AquaticMotiv", url: `${STORE_BASE}/` },
@@ -72,23 +72,23 @@ export default function InvertsHubPage() {
       />
 
       {/* Hero */}
-      <header className="relative overflow-hidden bg-gradient-to-b from-ocean-950 via-ocean-800 to-aqua-700 text-white">
+      <header className="relative overflow-hidden bg-gradient-to-b from-leaf-950 via-leaf-800 to-leaf-700 text-white">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-20"
           style={{
             backgroundImage:
-              "radial-gradient(ellipse 60% 40% at 20% 0%, #5eead4 0%, transparent 60%), radial-gradient(ellipse 50% 35% at 80% 10%, #60a5fa 0%, transparent 55%)",
+              "radial-gradient(ellipse 60% 40% at 20% 0%, #8fb592 0%, transparent 60%), radial-gradient(ellipse 50% 35% at 80% 10%, #ffd800 0%, transparent 55%)",
           }}
         />
         <div className="relative mx-auto max-w-4xl px-4 py-12 sm:py-16">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-aqua-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-400">
             AquaticMotiv invertebrate database
           </p>
           <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-5xl">
             Freshwater invertebrate database
           </h1>
-          <p className="mt-4 max-w-2xl text-ocean-100">
+          <p className="mt-4 max-w-2xl text-leaf-100">
             Verified care data for {inverts.length} freshwater invertebrate
             species — snails, shrimp, crabs, clams, and crayfish: size,
             lifespan, temperature and pH ranges, general hardness and calcium
@@ -103,7 +103,7 @@ export default function InvertsHubPage() {
       <main className="mx-auto max-w-4xl px-4 pb-24 pt-10">
         {/* Facet directory */}
         <section aria-labelledby="browse">
-          <h2 id="browse" className="text-xl font-bold text-ocean-950">
+          <h2 id="browse" className="text-xl font-bold text-leaf-950">
             Browse by what your tank needs
           </h2>
           <div className="mt-5 space-y-6">
@@ -112,7 +112,7 @@ export default function InvertsHubPage() {
               if (groupFacets.length === 0) return null;
               return (
                 <div key={group.id}>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-ocean-900/60">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-leaf-900/60">
                     {group.label}
                   </h3>
                   <ul className="mt-3 flex flex-wrap gap-2">
@@ -120,7 +120,7 @@ export default function InvertsHubPage() {
                       <li key={facet.slug}>
                         <Link
                           href={`/a/careguides/inverts/${facet.slug}`}
-                          className="inline-block rounded-full border-2 border-ocean-100 bg-white px-4 py-1.5 text-sm font-medium text-ocean-900 transition-colors hover:border-aqua-300 hover:text-aqua-700"
+                          className="inline-block rounded-full border-2 border-leaf-100 bg-white px-4 py-1.5 text-sm font-medium text-leaf-900 transition-colors hover:border-leaf-400 hover:text-leaf-800"
                         >
                           {facet.title}
                         </Link>
@@ -135,7 +135,7 @@ export default function InvertsHubPage() {
 
         {/* A–Z species cards grouped by type */}
         <section aria-labelledby="all-species" className="mt-12">
-          <h2 id="all-species" className="text-xl font-bold text-ocean-950">
+          <h2 id="all-species" className="text-xl font-bold text-leaf-950">
             All species, A–Z by type
           </h2>
           <div className="mt-5 space-y-10">
@@ -144,7 +144,7 @@ export default function InvertsHubPage() {
               if (group.length === 0) return null;
               return (
                 <div key={type}>
-                  <h3 className="text-sm font-semibold uppercase tracking-wide text-ocean-900/60">
+                  <h3 className="text-sm font-semibold uppercase tracking-wide text-leaf-900/60">
                     {label}
                   </h3>
                   <ul className="mt-3 grid gap-3 sm:grid-cols-2">
@@ -152,19 +152,19 @@ export default function InvertsHubPage() {
                       <li key={invert.slug}>
                         <Link
                           href={`/a/careguides/inverts/${invert.slug}`}
-                          className="block h-full rounded-xl border border-ocean-100 bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-aqua-300 hover:shadow-md"
+                          className="block h-full rounded-xl border border-leaf-100 bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-leaf-400 hover:shadow-md"
                         >
-                          <span className="block font-bold text-ocean-950">
+                          <span className="block font-bold text-leaf-950">
                             {invert.commonName}
                           </span>
-                          <span className="block text-sm italic text-ocean-900/50">
+                          <span className="block text-sm italic text-leaf-900/50">
                             {invert.scientificName}
                           </span>
                           <span className="mt-2 flex flex-wrap gap-1.5">
                             {speciesBadges(invert).map((badge) => (
                               <span
                                 key={badge}
-                                className="rounded-full bg-aqua-100 px-2.5 py-0.5 text-xs font-medium text-aqua-800"
+                                className="rounded-full bg-leaf-100 px-2.5 py-0.5 text-xs font-medium text-leaf-800"
                               >
                                 {badge}
                               </span>
@@ -181,9 +181,9 @@ export default function InvertsHubPage() {
         </section>
 
         {/* Plants cross-link CTA */}
-        <div className="mt-12 rounded-2xl bg-ocean-950 p-6 text-white sm:p-8">
+        <div className="mt-12 rounded-2xl bg-leaf-950 p-6 text-white sm:p-8">
           <h2 className="text-lg font-bold">Planting the same tank?</h2>
-          <p className="mt-1 text-sm text-ocean-100">
+          <p className="mt-1 text-sm text-leaf-100">
             Nearly every invert here does its best work in a planted tank.
             Browse the plant database, or let the finder rank every plant
             against your exact setup.
@@ -191,13 +191,13 @@ export default function InvertsHubPage() {
           <div className="mt-4 flex flex-wrap gap-3">
             <Link
               href="/a/careguides/plants"
-              className="inline-block rounded-full bg-aqua-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-aqua-600/25 transition-transform hover:scale-[1.02]"
+              className="inline-block rounded-full bg-gold-400 px-6 py-2.5 text-sm font-semibold text-leaf-950 shadow-lg shadow-gold-400/30 transition-transform hover:scale-[1.02]"
             >
               Browse the plant database →
             </Link>
             <Link
               href="/a/careguides/finder"
-              className="inline-block rounded-full border-2 border-aqua-400/60 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:border-aqua-300"
+              className="inline-block rounded-full border-2 border-leaf-400/60 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:border-leaf-400"
             >
               Open the plant finder →
             </Link>
