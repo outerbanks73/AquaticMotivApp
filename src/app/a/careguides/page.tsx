@@ -42,11 +42,17 @@ function invertChip(slug: string, label: string): BrowseChip {
 
 // Setup has no faceted DB, so its chips jump straight to the strongest guide
 // for each topic — resolved from the live data so a chip never points nowhere.
+const plantGuides = guidesOf("freshwater-plant-care", "beginner-plants");
+const invertGuides = guidesOf("snails-shrimp-inverts");
 const setupGuides = guidesOf("planted-tank-setup", "plant-health", "other");
 function setupChip(keyword: string, label: string): BrowseChip | null {
   const g = setupGuides.find((x) => x.title.toLowerCase().includes(keyword));
   return g ? { label, href: g.href } : null;
 }
+
+// How many cards each collection features on the hub. The rest live on the
+// collection's own "See all" page — the hub stays this size at 99 or 500 guides.
+const FEATURED = 8;
 
 const METAS: MetaCategory[] = [
   {
@@ -58,9 +64,9 @@ const METAS: MetaCategory[] = [
       category("beginner-plants")?.guides[0]?.image ??
       category("freshwater-plant-care")?.guides[0]?.image ??
       "",
-    exploreHref: "/a/careguides/plants",
-    exploreLabel: `Explore ${PLANT_COUNT} plants`,
-    countLabel: `${PLANT_COUNT} species`,
+    seeAllHref: "/a/careguides/plants",
+    seeAllLabel: "Explore all plants & guides",
+    countLabel: `${PLANT_COUNT} species · ${plantGuides.length} guides`,
     chips: [
       plantChip("low-light", "Low light"),
       plantChip("carpet", "Carpets"),
@@ -69,7 +75,8 @@ const METAS: MetaCategory[] = [
       plantChip("red", "Red plants"),
       plantChip("nano-tank", "Nano tanks"),
     ],
-    guides: guidesOf("freshwater-plant-care", "beginner-plants"),
+    featured: plantGuides.slice(0, FEATURED),
+    guides: plantGuides,
   },
   {
     id: "critter-care",
@@ -77,9 +84,9 @@ const METAS: MetaCategory[] = [
     tagline:
       "Your cleanup crew — what each snail, shrimp, and critter does, how to keep it healthy, and which ones leave your plants alone.",
     image: category("snails-shrimp-inverts")?.guides[0]?.image ?? "",
-    exploreHref: "/a/careguides/inverts",
-    exploreLabel: `Explore ${INVERT_COUNT} critters`,
-    countLabel: `${INVERT_COUNT} species`,
+    seeAllHref: "/a/careguides/inverts",
+    seeAllLabel: "Explore all critters & guides",
+    countLabel: `${INVERT_COUNT} species · ${invertGuides.length} guides`,
     chips: [
       invertChip("snails", "Snails"),
       invertChip("shrimp", "Shrimp"),
@@ -88,7 +95,8 @@ const METAS: MetaCategory[] = [
       invertChip("beginner", "Beginner"),
       invertChip("wont-overrun-tank", "Won't overrun"),
     ],
-    guides: guidesOf("snails-shrimp-inverts"),
+    featured: invertGuides.slice(0, FEATURED),
+    guides: invertGuides,
   },
   {
     id: "tank-setup",
@@ -96,8 +104,8 @@ const METAS: MetaCategory[] = [
     tagline:
       "From substrate and lighting to algae fixes and water changes — set the tank up right, then keep it thriving for the long haul.",
     image: category("planted-tank-setup")?.guides[0]?.image ?? "",
-    exploreHref: "#tank-setup",
-    exploreLabel: `Browse ${setupGuides.length} guides`,
+    seeAllHref: "/a/careguides/tank-setup",
+    seeAllLabel: `Browse all ${setupGuides.length} setup guides`,
     countLabel: `${setupGuides.length} guides`,
     chips: [
       setupChip("substrate", "Substrate"),
@@ -107,6 +115,7 @@ const METAS: MetaCategory[] = [
       setupChip("cycl", "Cycling"),
       setupChip("fertil", "Fertilizing"),
     ].filter((c): c is BrowseChip => c !== null),
+    featured: setupGuides.slice(0, FEATURED),
     guides: setupGuides,
   },
 ];

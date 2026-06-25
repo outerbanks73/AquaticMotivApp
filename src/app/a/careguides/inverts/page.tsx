@@ -15,6 +15,12 @@ import {
 } from "@/lib/data/invert-pages";
 import { breadcrumbSchema, itemListSchema } from "@/lib/seo/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { GuideCardGrid, type HubGuide } from "@/components/tools/GuideCard";
+import hub from "@/data/guides/hub.json";
+
+const invertGuides = (hub.categories as { id: string; guides: HubGuide[] }[])
+  .filter((c) => c.id === "snails-shrimp-inverts")
+  .flatMap((c) => c.guides);
 
 export const metadata: Metadata = {
   title: "Freshwater Invertebrate Database — Snails, Shrimp & More | AquaticMotiv",
@@ -101,6 +107,18 @@ export default function InvertsHubPage() {
       </header>
 
       <main className="mx-auto max-w-4xl px-4 pb-24 pt-10">
+        {/* Care guides */}
+        <section aria-labelledby="guides" className="mb-12">
+          <h2 id="guides" className="text-xl font-bold text-leaf-950">
+            Snail, shrimp &amp; critter care guides
+          </h2>
+          <p className="mt-1 mb-5 text-sm text-leaf-900/60">
+            In-depth, photo-illustrated guides for keeping and breeding
+            freshwater invertebrates.
+          </p>
+          <GuideCardGrid guides={invertGuides} />
+        </section>
+
         {/* Facet directory */}
         <section aria-labelledby="browse">
           <h2 id="browse" className="text-xl font-bold text-leaf-950">

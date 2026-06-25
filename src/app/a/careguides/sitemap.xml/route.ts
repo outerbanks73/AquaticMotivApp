@@ -24,6 +24,7 @@ export async function GET() {
     PLANTS_BASE,
     FINDER_URL,
     INVERTS_BASE,
+    `${CARE_BASE}/tank-setup`,
     // noindex facets stay reachable but are kept out of the sitemap.
     ...getActiveFacets().filter((f) => !f.noindex).map((f) => plantUrl(f.slug)),
     ...getPlantSlugs().map((slug) => plantUrl(slug)),

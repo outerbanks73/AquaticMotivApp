@@ -11,6 +11,13 @@ import {
 import { breadcrumbSchema, itemListSchema } from "@/lib/seo/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SpeciesSearchList } from "@/components/tools/SpeciesSearchList";
+import { GuideCardGrid, type HubGuide } from "@/components/tools/GuideCard";
+import hub from "@/data/guides/hub.json";
+
+const rawCategories = hub.categories as { id: string; guides: HubGuide[] }[];
+const plantGuides = rawCategories
+  .filter((c) => c.id === "freshwater-plant-care" || c.id === "beginner-plants")
+  .flatMap((c) => c.guides);
 
 export const metadata: Metadata = {
   title: "Aquarium Plant Database — Care Data for Every Species | AquaticMotiv",
@@ -102,6 +109,18 @@ export default function PlantsHubPage() {
             Open the plant finder →
           </Link>
         </div>
+
+        {/* Care guides */}
+        <section aria-labelledby="guides" className="mt-12">
+          <h2 id="guides" className="text-xl font-bold text-leaf-950">
+            Plant care guides
+          </h2>
+          <p className="mt-1 mb-5 text-sm text-leaf-900/60">
+            In-depth, photo-illustrated guides — individual plant profiles plus
+            planting and care techniques.
+          </p>
+          <GuideCardGrid guides={plantGuides} />
+        </section>
 
         {/* Facet directory */}
         <section aria-labelledby="browse" className="mt-12">

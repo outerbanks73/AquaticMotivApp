@@ -1,33 +1,30 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { GuideCard, GuideCardGrid, type HubGuide } from "./GuideCard";
 
-export interface HubGuide {
-  title: string;
-  href: string;
-  image: string;
-  alt: string;
-  shopHref: string;
-}
+export type { HubGuide };
 
 export interface BrowseChip {
   label: string;
   href: string;
 }
 
-// A meta-category is one of the three top-level "spines" the whole library
-// hangs off (Plant Care · Critter Care · Tank Setup & Care). Each renders a
-// photo portal up top and a card section below — the portal is the navigation
-// that stays fixed-size as the library grows from ~99 to 500+ guides.
+// A meta-collection is one of the three top-level spines (Plant Care · Critter
+// Care · Tank Setup). The hub shows a compact banner + a FEW featured cards +
+// "See all" — the full list lives on the category page at `seeAllHref`, so the
+// landing stays fixed-size as the library grows toward 500. `guides` carries the
+// complete list purely so search can span everything from the hub.
 export interface MetaCategory {
   id: string;
   title: string;
   tagline: string;
   image: string;
-  exploreHref: string;
-  exploreLabel: string;
+  seeAllHref: string;
+  seeAllLabel: string;
   countLabel: string;
   chips: BrowseChip[];
+  featured: HubGuide[];
   guides: HubGuide[];
 }
 
@@ -37,18 +34,20 @@ export function CareGuidesLaunchpad({ metas }: { metas: MetaCategory[] }) {
 
   const total = metas.reduce((n, m) => n + m.guides.length, 0);
 
-  const filtered = useMemo(
+  const results = useMemo(
     () =>
-      metas.map((m) => ({
-        ...m,
-        matches: query
-          ? m.guides.filter((g) => g.title.toLowerCase().includes(query))
-          : m.guides,
-      })),
+      query
+        ? metas.map((m) => ({
+            ...m,
+            matches: m.guides.filter((g) =>
+              g.title.toLowerCase().includes(query),
+            ),
+          }))
+        : [],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [query],
   );
-  const shownCount = filtered.reduce((n, m) => n + m.matches.length, 0);
+  const shownCount = results.reduce((n, m) => n + m.matches.length, 0);
 
   return (
     <div>
@@ -79,162 +78,126 @@ export function CareGuidesLaunchpad({ metas }: { metas: MetaCategory[] }) {
             className="mt-2 px-1 text-center text-sm text-leaf-700"
             aria-live="polite"
           >
-            {query ? `${shownCount} of ${total} guides match` : `${total} care guides across 3 collections`}
+            {query
+              ? `${shownCount} of ${total} guides match`
+              : `${total} care guides across 3 collections`}
           </p>
         </div>
       </div>
 
-      {/* ── Three meta portals — the scalable spine ───────────────────── */}
-      {!query && (
-        <section aria-label="Browse by collection" className="mb-16">
-          <div className="grid gap-5 md:grid-cols-3">
-            {metas.map((m) => (
-              <Portal key={m.id} meta={m} />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* ── Library — grouped under the same three spines ─────────────── */}
-      {shownCount === 0 ? (
-        <p className="rounded-2xl border border-dashed border-leaf-200 bg-white p-10 text-center text-leaf-700">
-          No guides match “{q.trim()}”. Try a species or topic — e.g.{" "}
-          <em>nerite</em>, <em>betta</em>, <em>CO₂</em>.
-        </p>
-      ) : (
-        <div className="space-y-16">
-          {filtered.map((m) =>
-            m.matches.length === 0 ? null : (
-              <section key={m.id} id={m.id} aria-labelledby={`${m.id}-h`} className="scroll-mt-24">
-                <div className="flex flex-wrap items-end justify-between gap-3 border-b-2 border-leaf-100 pb-3">
-                  <div>
-                    <h2
-                      id={`${m.id}-h`}
-                      className="text-2xl font-extrabold tracking-tight text-leaf-900"
-                    >
-                      {m.title}
-                    </h2>
-                    <p className="mt-1 max-w-2xl text-sm text-leaf-700/80">{m.tagline}</p>
-                  </div>
-                  <a
-                    href={m.exploreHref}
-                    className="whitespace-nowrap text-sm font-bold text-leaf-600 hover:text-leaf-800"
+      {query ? (
+        /* ── Search results — flat across all collections ─────────────── */
+        shownCount === 0 ? (
+          <p className="rounded-2xl border border-dashed border-leaf-200 bg-white p-10 text-center text-leaf-700">
+            No guides match “{q.trim()}”. Try a species or topic — e.g.{" "}
+            <em>nerite</em>, <em>betta</em>, <em>CO₂</em>.
+          </p>
+        ) : (
+          <div className="space-y-12">
+            {results.map((m) =>
+              m.matches.length === 0 ? null : (
+                <section key={m.id} aria-labelledby={`r-${m.id}`}>
+                  <h2
+                    id={`r-${m.id}`}
+                    className="mb-5 text-lg font-bold text-leaf-900"
                   >
-                    {m.exploreLabel}
-                    <span aria-hidden className="ml-1 inline-block">→</span>
-                  </a>
-                </div>
-                <ul className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
-                  {m.matches.map((g) => (
-                    <li key={g.href}>
-                      <GuideCard guide={g} />
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ),
-          )}
+                    {m.title}{" "}
+                    <span className="font-normal text-leaf-700/70">
+                      ({m.matches.length})
+                    </span>
+                  </h2>
+                  <GuideCardGrid guides={m.matches} />
+                </section>
+              ),
+            )}
+          </div>
+        )
+      ) : (
+        /* ── Default — one compact block per collection ───────────────── */
+        <div className="space-y-16">
+          {metas.map((m) => (
+            <Collection key={m.id} meta={m} />
+          ))}
         </div>
       )}
     </div>
   );
 }
 
-// A tall, photo-backed portal — the "front door" to one collection. Title,
-// live count, plain-language tagline, a few browse-by-need chips (real deep
-// links into the faceted database for SEO + navigation), and an explore link.
-function Portal({ meta }: { meta: MetaCategory }) {
+// One collection block: a photo banner (title, count, tagline, browse-by-need
+// chips, "See all") followed by a handful of featured guide cards. Fixed height
+// regardless of how many guides the collection holds.
+function Collection({ meta }: { meta: MetaCategory }) {
+  const remaining = meta.guides.length - meta.featured.length;
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-3xl bg-leaf-900 shadow-lg ring-1 ring-leaf-900/10 transition-transform hover:-translate-y-1">
-      {/* Photo header */}
-      <a href={meta.exploreHref} className="relative block aspect-[16/10] overflow-hidden">
+    <section aria-labelledby={meta.id} className="scroll-mt-24">
+      {/* Banner */}
+      <div className="relative overflow-hidden rounded-3xl bg-leaf-900 shadow-lg">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={meta.image}
-          alt={meta.title}
+          alt=""
+          aria-hidden
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="absolute inset-0 h-full w-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-leaf-950 via-leaf-950/40 to-transparent" />
-        <span className="absolute right-3 top-3 rounded-full bg-gold-400 px-3 py-1 text-xs font-bold text-leaf-950 shadow">
-          {meta.countLabel}
-        </span>
-        <h2 className="absolute inset-x-0 bottom-0 p-4 text-2xl font-extrabold leading-tight text-white drop-shadow">
-          {meta.title}
-        </h2>
-      </a>
-
-      {/* Body */}
-      <div className="flex flex-1 flex-col p-5">
-        <p className="text-sm leading-relaxed text-leaf-50/85">{meta.tagline}</p>
-
-        {meta.chips.length > 0 && (
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {meta.chips.map((chip) => (
-              <li key={chip.href}>
-                <a
-                  href={chip.href}
-                  className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white ring-1 ring-inset ring-white/20 transition-colors hover:bg-gold-400 hover:text-leaf-950 hover:ring-gold-400"
-                >
-                  {chip.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
-
-        <a
-          href={meta.exploreHref}
-          className="mt-5 inline-flex items-center gap-1.5 self-start rounded-full bg-gold-400 px-5 py-2 text-sm font-bold text-leaf-950 shadow transition-transform group-hover:scale-[1.03]"
-        >
-          {meta.exploreLabel}
-          <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
-        </a>
-      </div>
-    </div>
-  );
-}
-
-// The single card used for EVERY guide — uniform structure so the grid stays
-// tidy at any scale. Image + title link to the guide; Shop link splits the
-// commercial intent off to the matching collection.
-function GuideCard({ guide }: { guide: HubGuide }) {
-  return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-leaf-100 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-leaf-400 hover:shadow-lg">
-      <a href={guide.href} className="relative block aspect-square overflow-hidden bg-leaf-50">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={guide.image}
-          alt={guide.alt}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-        <span className="absolute left-2 top-2 rounded-full bg-gold-400 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-leaf-950 shadow">
-          Guide
-        </span>
-      </a>
-      <div className="flex flex-1 flex-col p-3">
-        <h3 className="text-sm font-bold leading-snug text-leaf-900">
-          <a href={guide.href} className="hover:text-leaf-600">
-            {guide.title}
-          </a>
-        </h3>
-        <div className="mt-auto flex items-center justify-between pt-3">
+        <div className="absolute inset-0 bg-gradient-to-r from-leaf-950 via-leaf-950/85 to-leaf-900/50" />
+        <div className="relative flex flex-col gap-4 p-6 sm:p-8">
+          <div className="flex flex-wrap items-center gap-3">
+            <h2 id={meta.id} className="text-2xl font-extrabold text-white sm:text-3xl">
+              {meta.title}
+            </h2>
+            <span className="rounded-full bg-gold-400 px-3 py-1 text-xs font-bold text-leaf-950">
+              {meta.countLabel}
+            </span>
+          </div>
+          <p className="max-w-2xl text-sm leading-relaxed text-leaf-50/85">
+            {meta.tagline}
+          </p>
+          {meta.chips.length > 0 && (
+            <ul className="flex flex-wrap gap-2">
+              {meta.chips.map((chip) => (
+                <li key={chip.href}>
+                  <a
+                    href={chip.href}
+                    className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white ring-1 ring-inset ring-white/20 transition-colors hover:bg-gold-400 hover:text-leaf-950 hover:ring-gold-400"
+                  >
+                    {chip.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
           <a
-            href={guide.href}
-            className="inline-flex items-center gap-1 text-xs font-semibold text-leaf-600 hover:text-leaf-800"
+            href={meta.seeAllHref}
+            className="inline-flex items-center gap-1.5 self-start rounded-full bg-gold-400 px-5 py-2 text-sm font-bold text-leaf-950 shadow transition-transform hover:scale-[1.03]"
           >
-            Read guide
-            <span aria-hidden className="transition-transform group-hover:translate-x-0.5">→</span>
-          </a>
-          <a
-            href={guide.shopHref}
-            className="rounded-full bg-leaf-50 px-3 py-1 text-xs font-bold text-leaf-800 ring-1 ring-inset ring-leaf-200 transition-colors hover:bg-gold-400 hover:text-leaf-950 hover:ring-gold-400"
-          >
-            Shop
+            {meta.seeAllLabel}
+            <span aria-hidden>→</span>
           </a>
         </div>
       </div>
-    </article>
+
+      {/* Featured cards */}
+      <ul className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
+        {meta.featured.map((g) => (
+          <li key={g.href}>
+            <GuideCard guide={g} />
+          </li>
+        ))}
+      </ul>
+
+      {remaining > 0 && (
+        <div className="mt-6 text-center">
+          <a
+            href={meta.seeAllHref}
+            className="inline-flex items-center gap-1.5 rounded-full border-2 border-leaf-200 px-6 py-2.5 text-sm font-bold text-leaf-700 transition-colors hover:border-leaf-400 hover:text-leaf-900"
+          >
+            See all {meta.guides.length} {meta.title.toLowerCase()} guides
+            <span aria-hidden>→</span>
+          </a>
+        </div>
+      )}
+    </section>
   );
 }
