@@ -156,16 +156,17 @@ source*:
 **Sequence:** create canonical hub → redirect duplicate hubs → complete hub out-links → add spoke up-links +
 bridge maps → SE Ranking audit → QA → flip public. Owner: Vikram builds/decides → Francisco operates.
 
-### 2f. Hub IA, interactive tools & mobile at scale (~500 guides) · planning
+### 2f. Care-guides plan · SIMPLIFIED (2026-06-27)
 
-Full strategy in [`CARE-GUIDES-SCALING-PLAN.md`](./CARE-GUIDES-SCALING-PLAN.md) (2026-06-24). Summary:
-promote the **existing faceted-browse engine** (`plant-facets.ts`/`invert-facets.ts`) to the primary IA
-under **3 meta-categories** (Plant Care · Invert Care · Tank Setup & Maintenance), demote `hub.json` to a
-deep-link appendix; add mega-menu + search + A-Z; ship interactive tools (stocking calc, compatibility
-pages, build-my-tank); evaluate a **PWA** (management-first; plant-ID as a "best match" assist).
-**Phase 0 fixes:** broken `snail-safe` facet (true on all 102 plants), duplicate attach predicate,
-sub-gate invert types, faceted-SEO noindex control. **3 open decisions pending Vikram:** first phase,
-mobile appetite, hub theme.
+**Scope cut.** The old "interactive tools + mobile/PWA at scale" plan is retired. We are building
+one thing: a clean, mobile-friendly **hub page** that links out to all existing Shopify guides/blogs
+plus the new AI/LLM-optimized articles we write, with the **planted-tank quiz** as the *only*
+interactive feature — then plug it into Shopify at the canonical URL.
+
+The full plan lives in [`CARE-GUIDES-PLAN.md`](./CARE-GUIDES-PLAN.md). **Out of scope / erased:** all
+other tools (stocking calc, compatibility pages, build-my-tank, dosing, "My Tank", comparison, Tank
+Doctor) and the entire **mobile/PWA** track — complex tooling has been unstable. Kept: hub, plant/invert
+species pages (care content), the quiz, and new articles.
 
 ---
 

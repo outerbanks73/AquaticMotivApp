@@ -144,7 +144,10 @@ function Collection({ meta }: { meta: MetaCategory }) {
         <div className="absolute inset-0 bg-gradient-to-r from-leaf-950 via-leaf-950/85 to-leaf-900/50" />
         <div className="relative flex flex-col gap-4 p-6 sm:p-8">
           <div className="flex flex-wrap items-center gap-3">
-            <h2 id={meta.id} className="text-2xl font-extrabold text-white sm:text-3xl">
+            <h2
+              id={meta.id}
+              className="font-[family-name:var(--font-display)] text-2xl font-semibold text-white sm:text-3xl"
+            >
               {meta.title}
             </h2>
             <span className="rounded-full bg-gold-400 px-3 py-1 text-xs font-bold text-leaf-950">

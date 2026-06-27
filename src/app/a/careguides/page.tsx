@@ -113,7 +113,7 @@ const METAS: MetaCategory[] = [
       setupChip("co2", "CO₂"),
       setupChip("algae", "Algae fixes"),
       setupChip("cycl", "Cycling"),
-      setupChip("fertil", "Fertilizing"),
+      setupChip("feeder", "Feeding"),
     ].filter((c): c is BrowseChip => c !== null),
     featured: setupGuides.slice(0, FEATURED),
     guides: setupGuides,
@@ -133,6 +133,14 @@ export const metadata: Metadata = {
 export default function CareGuidesHubPage() {
   const allGuides = METAS.flatMap((m) => m.guides);
   const totalGuides = allGuides.length;
+
+  // A few real guide photos for the hero collage — pulled from live data so the
+  // hero never points at a missing asset.
+  const heroImages = [
+    category("freshwater-plant-care")?.guides[0]?.image,
+    category("snails-shrimp-inverts")?.guides[0]?.image,
+    category("planted-tank-setup")?.guides[0]?.image,
+  ].filter(Boolean) as string[];
 
   return (
     <div className="min-h-screen bg-white">
@@ -155,58 +163,102 @@ export default function CareGuidesHubPage() {
         })}
       />
 
-      {/* Hero — storefront green/gold */}
-      <header className="relative overflow-hidden bg-gradient-to-b from-leaf-900 via-leaf-700 to-leaf-600 text-white">
+      {/* Hero — editorial botanical */}
+      <header className="relative overflow-hidden bg-leaf-950 text-white">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-25"
+          className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage:
-              "radial-gradient(ellipse 55% 45% at 18% 0%, #8fb592 0%, transparent 60%), radial-gradient(ellipse 45% 40% at 85% 5%, #ffd800 0%, transparent 55%)",
+              "radial-gradient(ellipse 48% 55% at 10% 6%, #2d4830 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 92% 0%, #375a3a 0%, transparent 55%), radial-gradient(circle at 80% 95%, rgba(255,216,0,0.16) 0%, transparent 45%)",
           }}
         />
-        <div className="relative mx-auto max-w-5xl px-4 py-14 sm:py-20">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-400">
-            Aquatic Motiv care guide library
-          </p>
-          <h1 className="mt-3 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Freshwater Aquarium Care Guides
-          </h1>
-          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-leaf-50/90">
-            {INTRO}
-          </p>
-
-          {/* Depth at a glance */}
-          <dl className="mt-7 flex flex-wrap gap-x-8 gap-y-3">
-            {[
-              [`${PLANT_COUNT + INVERT_COUNT}`, "species with care data"],
-              [`${totalGuides}`, "in-depth guides"],
-              ["3", "free planning tools"],
-            ].map(([n, label]) => (
-              <div key={label}>
-                <dt className="text-3xl font-extrabold text-gold-400">{n}</dt>
-                <dd className="text-sm text-leaf-50/80">{label}</dd>
-              </div>
-            ))}
-          </dl>
-
-          {/* Primary CTA — Planted Tank Quiz (Plant Finder) */}
-          <Link
-            href="/a/careguides/finder"
-            className="group mt-8 inline-flex max-w-2xl items-center gap-3 rounded-2xl bg-gold-400 px-6 py-4 text-left font-bold text-leaf-950 shadow-xl transition-transform hover:scale-[1.02]"
-          >
-            <span
-              aria-hidden
-              className="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-leaf-900 text-gold-400"
+        <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:py-20 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-12">
+          {/* Left — editorial copy */}
+          <div>
+            <p className="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-gold-400">
+              <span aria-hidden className="h-px w-8 bg-gold-400/60" />
+              Aquatic Motiv care guide library
+            </p>
+            <h1
+              className="mt-5 font-[family-name:var(--font-display)] font-semibold leading-[0.95] tracking-tight"
+              style={{ fontSize: "clamp(2.5rem, 6vw, 4.25rem)" }}
             >
-              ✦
-            </span>
-            <span className="text-sm sm:text-base">
-              Planted Tank Quiz — answer a few questions about your setup and
-              we&rsquo;ll find the perfect plants for you
-              <span aria-hidden className="ml-1 inline-block transition-transform group-hover:translate-x-1">→</span>
-            </span>
-          </Link>
+              Freshwater aquarium{" "}
+              <span className="italic text-gold-300">care guides</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-leaf-50/80 sm:text-lg">
+              {INTRO}
+            </p>
+
+            {/* Depth at a glance */}
+            <dl className="mt-8 flex flex-wrap gap-x-9 gap-y-4">
+              {[
+                [`${PLANT_COUNT + INVERT_COUNT}`, "species with care data"],
+                [`${totalGuides}`, "in-depth guides"],
+                ["1", "free planted-tank quiz"],
+              ].map(([n, label]) => (
+                <div key={label}>
+                  <dt className="font-[family-name:var(--font-display)] text-4xl font-semibold text-gold-300">
+                    {n}
+                  </dt>
+                  <dd className="mt-1 text-sm text-leaf-50/70">{label}</dd>
+                </div>
+              ))}
+            </dl>
+
+            {/* Primary CTA — Planted Tank Quiz (Plant Finder) */}
+            <Link
+              href="/a/careguides/finder"
+              className="group mt-9 flex max-w-md items-center gap-4 rounded-2xl border border-gold-400/40 bg-white/[0.06] p-4 ring-1 ring-inset ring-white/10 backdrop-blur transition-colors hover:border-gold-400 hover:bg-white/[0.1]"
+            >
+              <span
+                aria-hidden
+                className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-gold-400 text-xl text-leaf-950 shadow-lg shadow-gold-400/30"
+              >
+                ✦
+              </span>
+              <span className="min-w-0">
+                <span className="block font-[family-name:var(--font-display)] text-base font-semibold text-white">
+                  Take the Planted Tank Quiz
+                </span>
+                <span className="mt-0.5 block text-sm leading-snug text-leaf-50/70">
+                  Answer a few questions — we&rsquo;ll match the perfect plants
+                  to your setup
+                  <span aria-hidden className="ml-1 inline-block transition-transform group-hover:translate-x-1">→</span>
+                </span>
+              </span>
+            </Link>
+          </div>
+
+          {/* Right — overlapping aquascape collage (desktop only) */}
+          <div className="relative hidden h-[440px] lg:block" aria-hidden>
+            <div className="absolute right-2 top-1/2 h-44 w-44 -translate-y-1/2 rounded-full bg-gold-400/15 blur-3xl" />
+            {heroImages[0] && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={heroImages[0]}
+                alt=""
+                className="absolute right-4 top-0 h-64 w-52 rotate-[3deg] rounded-2xl object-cover shadow-2xl ring-1 ring-white/15"
+              />
+            )}
+            {heroImages[1] && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={heroImages[1]}
+                alt=""
+                className="absolute left-0 top-24 h-56 w-44 -rotate-[5deg] rounded-2xl object-cover shadow-2xl ring-1 ring-white/15"
+              />
+            )}
+            {heroImages[2] && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={heroImages[2]}
+                alt=""
+                className="absolute bottom-0 right-16 h-52 w-60 rotate-[1deg] rounded-2xl object-cover shadow-2xl ring-1 ring-white/15"
+              />
+            )}
+          </div>
         </div>
       </header>
 
@@ -215,7 +267,9 @@ export default function CareGuidesHubPage() {
 
         {/* Shop CTA */}
         <section className="mt-16 rounded-3xl bg-leaf-900 p-8 text-center text-white sm:p-10">
-          <h2 className="text-2xl font-bold">Ready to stock your tank?</h2>
+          <h2 className="font-[family-name:var(--font-display)] text-2xl font-semibold sm:text-3xl">
+            Ready to stock your tank?
+          </h2>
           <p className="mx-auto mt-2 max-w-xl text-leaf-50/85">
             Every species in these guides is grown in-house with a 100% live
             arrival guarantee and fast 1–3 day shipping.

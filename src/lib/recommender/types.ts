@@ -45,6 +45,10 @@ export interface ScoredPlant {
   cautions: string[];
   /** True when a live, in-stock AquaticMotiv SKU backs this plant */
   inStock: boolean;
+  /** How many of the user's selected goals this plant actually satisfies */
+  goalsMet: number;
+  /** Which of the user's selected goals this plant actually satisfies */
+  metGoals: RecommenderGoal[];
 }
 
 export interface RecommenderResult {

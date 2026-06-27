@@ -32,11 +32,62 @@ const GOALS: { id: RecommenderGoal; label: string; hint: string }[] = [
   { id: "attach_to_hardscape", label: "Secure Plants to Stone & Wood", hint: "epiphytes that need no substrate" },
   { id: "background_wall", label: "Build a Sturdy Background Wall", hint: "fill the back glass with green" },
   { id: "red_accents", label: "Add Bold Red Color", hint: "showpiece reds and pinks" },
-  { id: "snail_safe", label: "Keep It Snail & Shrimp Safe", hint: "stands up to a cleanup crew" },
   { id: "low_maintenance", label: "Keep Maintenance Low", hint: "minimal trimming, fuss-free" },
   { id: "floating_cover", label: "Add Floating Cover", hint: "shade and security up top" },
   { id: "betta_tank", label: "Make a Betta Feel at Home", hint: "resting spots and gentle cover" },
 ];
+
+// Plain-language restatement of each goal, used to lead the results with the
+// outcome the person actually asked for ("To add bold red color, …").
+const GOAL_OUTCOME: Record<RecommenderGoal, string> = {
+  carpet: "grow a lush carpet",
+  attach_to_hardscape: "attach plants to stone & wood",
+  background_wall: "build a background wall",
+  red_accents: "add bold red color",
+  snail_safe: "keep it snail & shrimp safe",
+  low_maintenance: "keep maintenance low",
+  floating_cover: "add floating cover",
+  betta_tank: "make a betta feel at home",
+};
+
+function outcomePhrase(goals: RecommenderGoal[]): string {
+  const parts = goals.map((g) => GOAL_OUTCOME[g]);
+  if (parts.length <= 1) return parts[0] ?? "";
+  if (parts.length === 2) return `${parts[0]} and ${parts[1]}`;
+  return `${parts.slice(0, -1).join(", ")}, and ${parts[parts.length - 1]}`;
+}
+
+// Noun-phrase label for each goal, used in the "For …" section headings so they
+// read as grammatical English ("For bold red color", not "For add bold red color").
+const GOAL_NOUN: Record<RecommenderGoal, string> = {
+  carpet: "a lush carpet",
+  attach_to_hardscape: "plants on stone & wood",
+  background_wall: "a background wall",
+  red_accents: "bold red color",
+  snail_safe: "a snail-safe tank",
+  low_maintenance: "low maintenance",
+  floating_cover: "floating cover",
+  betta_tank: "a betta-friendly tank",
+};
+
+// Suggested number to buy, scaled by tank size: bigger tanks need more plants to
+// fill in. Carpets and stems scale most (they cover area / are sold in bunches);
+// centerpiece bulbs and floaters scale least.
+function suggestedQuantity(plant: PlantSpecies, tankGallons: number | null): number {
+  if (!tankGallons || tankGallons <= 0) return 1;
+  const size = tankGallons <= 10 ? 0 : tankGallons <= 29 ? 1 : 2; // nano / standard / large
+  switch (plant.type) {
+    case "carpet":
+      return [2, 4, 6][size];
+    case "stem":
+      return [3, 5, 8][size];
+    case "floating":
+    case "bulb":
+      return [1, 1, 2][size];
+    default: // rosette, rhizome, moss — accent / midground
+      return [1, 2, 3][size];
+  }
+}
 
 const LIGHT_OPTIONS = [
   { id: "low", label: "Low", hint: "Stock hood or basic LED — you've never fought algae from light" },
@@ -146,13 +197,53 @@ export function PlantFinderWizard({ plants, productInfo }: Props) {
   );
 
   const atResults = step >= RESULTS_STEP;
-  const visible = showAll ? result.recommendations : result.recommendations.slice(0, 10);
+  // When the user picked goals, the list is ONLY plants that actually deliver
+  // those goals — not every plant that merely survives the tank's hard filters.
+  // That is the difference between a recommendation and a 90-row data dump.
+  const matchers = goals.length
+    ? result.recommendations.filter((r) => r.goalsMet > 0)
+    : result.recommendations;
+  const visible = showAll ? matchers : matchers.slice(0, 8);
+
+  // For 2+ goals, group the results so EVERY chosen outcome is visibly served:
+  // plants that satisfy all goals lead, then a labelled set per goal. This stops
+  // a higher-scoring single goal (e.g. reds) from burying the other (carpets).
+  const multiGoal = goals.length > 1;
+  const bothMatch = multiGoal
+    ? matchers.filter((r) => r.metGoals.length === goals.length)
+    : [];
+  const perGoal = multiGoal
+    ? goals.map((goal) => ({
+        goal,
+        plants: matchers
+          .filter((r) => r.metGoals.includes(goal) && r.metGoals.length < goals.length)
+          .slice(0, 5),
+      }))
+    : [];
+
+  const renderList = (plants: ScoredPlant[]) => (
+    <ol className="mt-4 space-y-4">
+      {plants.map((r, i) => (
+        <ResultCard
+          key={r.plant.slug}
+          rank={i + 1}
+          scored={r}
+          info={r.plant.shopifyHandle ? productInfo[r.plant.shopifyHandle] : undefined}
+          onAquaticMotiv={onAquaticMotiv}
+          added={!!added[r.plant.shopifyHandle ?? ""]}
+          onAdd={addToCart}
+          quantity={suggestedQuantity(r.plant, input.tankGallons)}
+          tankGallons={input.tankGallons}
+        />
+      ))}
+    </ol>
+  );
 
   const onAquaticMotiv =
     typeof window !== "undefined" && /(^|\.)aquaticmotiv\.com$/.test(window.location.hostname);
 
   const addToCart = useCallback(
-    async (handle: string) => {
+    async (handle: string, quantity = 1) => {
       const info = productInfo[handle];
       const id = info && variantNumericId(info.variantId);
       if (!id) return;
@@ -160,7 +251,7 @@ export function PlantFinderWizard({ plants, productInfo }: Props) {
         const res = await fetch("/cart/add.js", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id: Number(id), quantity: 1 }),
+          body: JSON.stringify({ id: Number(id), quantity }),
         });
         if (res.ok) setAdded((a) => ({ ...a, [handle]: true }));
       } catch {
@@ -435,41 +526,100 @@ export function PlantFinderWizard({ plants, productInfo }: Props) {
         {/* Results */}
         {atResults && (
           <section aria-labelledby="results">
-            <div className="flex items-end justify-between gap-4">
-              <h2 id="results" className="text-xl font-bold text-leaf-950">
-                {result.recommendations.length} plants fit this tank
-              </h2>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h2
+                  id="results"
+                  className="font-[family-name:var(--font-display)] text-2xl font-semibold leading-tight text-leaf-950 sm:text-3xl"
+                >
+                  {goals.length
+                    ? `To ${outcomePhrase(goals)}, start with these plants`
+                    : "Top plants for your tank"}
+                </h2>
+                <p className="mt-3 text-base leading-relaxed text-leaf-900/80">
+                  {goals.length === 0
+                    ? "Our top picks for your tank."
+                    : multiGoal
+                      ? bothMatch.length > 0
+                        ? "Plants for each goal — the ones that do more than one are up top."
+                        : `No single plant does all of that, so here are the best for each goal you picked${tank ? ` and appropriate quantities for your ${tank.gallons}-gallon tank` : ""}.`
+                      : `${matchers.length} ${matchers.length === 1 ? "plant matches" : "plants match"} what you asked for${tank ? ` in your ${tank.gallons}-gallon tank` : ""}.`}
+                </p>
+              </div>
               <button
                 type="button"
                 onClick={() => setStep(0)}
-                className="text-sm font-medium text-leaf-700 underline-offset-2 hover:underline"
+                className="whitespace-nowrap text-sm font-medium text-leaf-700 underline-offset-2 hover:underline"
               >
                 Change answers
               </button>
             </div>
 
-            <ol className="mt-6 space-y-4">
-              {visible.map((r, i) => (
-                <ResultCard
-                  key={r.plant.slug}
-                  rank={i + 1}
-                  scored={r}
-                  info={r.plant.shopifyHandle ? productInfo[r.plant.shopifyHandle] : undefined}
-                  onAquaticMotiv={onAquaticMotiv}
-                  added={!!added[r.plant.shopifyHandle ?? ""]}
-                  onAdd={addToCart}
-                />
-              ))}
-            </ol>
+            {multiGoal ? (
+              matchers.length === 0 ? (
+                <p className="mt-6 rounded-xl border border-dashed border-leaf-200 bg-white p-6 text-center text-sm text-leaf-900/70">
+                  No plants match those goals in this exact setup. Try a different
+                  light level or{" "}
+                  <button
+                    type="button"
+                    onClick={() => setStep(1)}
+                    className="font-semibold text-leaf-700 underline"
+                  >
+                    change your goals
+                  </button>
+                  .
+                </p>
+              ) : (
+                <div className="mt-6 space-y-10">
+                  {bothMatch.length > 0 && (
+                    <div>
+                      <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-leaf-900">
+                        Delivers everything you asked for
+                      </h3>
+                      {renderList(bothMatch.slice(0, 8))}
+                    </div>
+                  )}
+                  {perGoal.map(({ goal, plants }) =>
+                    plants.length === 0 ? null : (
+                      <div key={goal}>
+                        <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-leaf-900">
+                          For {GOAL_NOUN[goal]}
+                        </h3>
+                        {renderList(plants)}
+                      </div>
+                    ),
+                  )}
+                </div>
+              )
+            ) : (
+              <>
+                {renderList(visible)}
 
-            {!showAll && result.recommendations.length > 10 && (
-              <button
-                type="button"
-                onClick={() => setShowAll(true)}
-                className="mt-6 w-full rounded-xl border-2 border-dashed border-leaf-300 py-3 font-medium text-leaf-700 hover:bg-leaf-50"
-              >
-                Show all {result.recommendations.length} matches
-              </button>
+                {matchers.length === 0 && (
+                  <p className="mt-6 rounded-xl border border-dashed border-leaf-200 bg-white p-6 text-center text-sm text-leaf-900/70">
+                    No plants match that goal in this exact setup. Try a different
+                    light level or loosen a goal — or{" "}
+                    <button
+                      type="button"
+                      onClick={() => setStep(1)}
+                      className="font-semibold text-leaf-700 underline"
+                    >
+                      change your goals
+                    </button>
+                    .
+                  </p>
+                )}
+
+                {!showAll && matchers.length > 8 && (
+                  <button
+                    type="button"
+                    onClick={() => setShowAll(true)}
+                    className="mt-6 w-full rounded-xl border-2 border-dashed border-leaf-300 py-3 font-medium text-leaf-700 hover:bg-leaf-50"
+                  >
+                    Show all {matchers.length} matches
+                  </button>
+                )}
+              </>
             )}
 
             {result.excluded.length > 0 && (
@@ -510,13 +660,17 @@ function ResultCard({
   onAquaticMotiv,
   added,
   onAdd,
+  quantity,
+  tankGallons,
 }: {
   rank: number;
   scored: ScoredPlant;
   info?: FinderProductInfo;
   onAquaticMotiv: boolean;
   added: boolean;
-  onAdd: (handle: string) => void;
+  onAdd: (handle: string, quantity?: number) => void;
+  quantity: number;
+  tankGallons: number | null;
 }) {
   const { plant, score, reasons, cautions } = scored;
   const inStock = info?.availableForSale ?? false;
@@ -580,6 +734,12 @@ function ResultCard({
             </ul>
           )}
 
+          {tankGallons && quantity > 1 && (
+            <p className="mt-3 text-sm font-semibold text-leaf-800">
+              Suggested: {quantity} for your {tankGallons}-gallon tank
+            </p>
+          )}
+
           <div className="mt-4 flex flex-wrap items-center gap-3">
             {info && (
               <span className="text-sm font-bold text-leaf-950">
@@ -594,7 +754,7 @@ function ResultCard({
             {storeUrl && onAquaticMotiv && inStock && plant.shopifyHandle && (
               <button
                 type="button"
-                onClick={() => onAdd(plant.shopifyHandle!)}
+                onClick={() => onAdd(plant.shopifyHandle!, quantity)}
                 disabled={added}
                 className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${
                   added
@@ -602,7 +762,7 @@ function ResultCard({
                     : "bg-gold-400 text-leaf-950 hover:bg-gold-500"
                 }`}
               >
-                {added ? "Added ✓" : "Add to cart"}
+                {added ? "Added ✓" : quantity > 1 ? `Add ${quantity} to cart` : "Add to cart"}
               </button>
             )}
             {storeUrl && (!onAquaticMotiv || !inStock) && (

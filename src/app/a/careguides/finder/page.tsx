@@ -52,8 +52,8 @@ export default async function PlantFinderPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-400">
             AquaticMotiv plant finder
           </p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-5xl">
-            Stop watching your plants <em className="font-serif text-leaf-200">melt</em>.
+          <h1 className="mt-2 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-tight sm:text-5xl">
+            Find the right plants for your tank
           </h1>
           <p className="mt-4 max-w-xl text-leaf-100">
             Answer four quick questions and get plants matched to your exact setup —

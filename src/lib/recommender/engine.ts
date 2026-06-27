@@ -56,9 +56,12 @@ function hardFilter(plant: PlantSpecies, input: RecommenderInput): string[] {
 function goalMatches(plant: PlantSpecies, goal: RecommenderGoal): string | null {
   switch (goal) {
     case "carpet":
-      return plant.type === "carpet" ||
-        (plant.placement.includes("foreground") && plant.maxHeightIn <= 4)
-        ? "Forms the low foreground coverage you're after"
+      // Genuine carpeting plants that spread into a low lawn (Monte Carlo, dwarf
+      // hairgrass, baby tears…). The old "any short foreground plant" heuristic
+      // wrongly swept in epiphytes (Anubias Petite, Bucephalandra) and small
+      // crypts that are foreground accents, not carpets — match on type instead.
+      return plant.type === "carpet"
+        ? "Forms the low carpet you're after"
         : null;
     case "attach_to_hardscape":
       return plant.attachesToHardscape
@@ -79,7 +82,11 @@ function goalMatches(plant: PlantSpecies, goal: RecommenderGoal): string | null 
         ? "Barely needs trimming"
         : null;
     case "floating_cover":
-      return plant.type === "floating" || plant.placement.includes("floating")
+      // True floating plants only (frogbit, salvinia, duckweed, red root
+      // floaters…). Many stems CAN be left to drift, so their data lists
+      // "floating" as a placement — but Anacharis/Hornwort/Water Sprite are not
+      // what someone means by "floating cover", so match on type, not placement.
+      return plant.type === "floating"
         ? "Provides the floating cover you asked for"
         : null;
     case "betta_tank":
@@ -170,11 +177,22 @@ function scorePlant(
   }
 
   // --- Goals ---
+  // The user's selected goals are explicit intent and must dominate the ranking.
+  // A plant that delivers a requested goal is boosted hard; one that misses it is
+  // demoted — otherwise generic light/CO2/in-stock bonuses float easy green plants
+  // above the red showpieces (etc.) the user actually asked for. With multiple
+  // goals selected, plants that satisfy more of them naturally rise to the top.
+  // `goalsMet` lets the UI show ONLY plants that deliver the goal, instead of
+  // dumping every plant that merely survives the tank's hard filters.
+  const metGoals: RecommenderGoal[] = [];
   for (const goal of input.goals) {
     const match = goalMatches(plant, goal);
     if (match) {
-      score += 14;
+      metGoals.push(goal);
+      score += 22;
       reasons.push(match);
+    } else {
+      score -= 12;
     }
   }
 
@@ -199,6 +217,8 @@ function scorePlant(
     reasons,
     cautions,
     inStock,
+    goalsMet: metGoals.length,
+    metGoals,
   };
 }
 
@@ -219,8 +239,12 @@ export function recommendPlants(
     (hardFails.length ? excluded : recommendations).push(scored);
   }
 
+  // Plants that satisfy MORE of the user's goals always rank first — so when two
+  // goals are picked, anything matching both leads, then single-goal matches.
+  // Within the same goals-met tier, fall back to the fit score.
   recommendations.sort(
     (a, b) =>
+      b.goalsMet - a.goalsMet ||
       b.score - a.score ||
       b.reasons.length - a.reasons.length ||
       a.cautions.length - b.cautions.length ||
