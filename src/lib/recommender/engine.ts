@@ -20,13 +20,13 @@ function hardFilter(plant: PlantSpecies, input: RecommenderInput): string[] {
     fails.push("Needs injected CO2, which this tank doesn't have.");
   }
 
-  // A plant that demands more light than the tank provides will starve.
+  // A plant that demands more light than the tank provides will starve, so any
+  // upward light gap is a hard exclude — never recommend a plant that needs more
+  // light than the tank has (a medium plant in a low tank grows poorly and reads
+  // as "needs more light" on its card). The reverse (a low plant under brighter
+  // light) is fine and handled as a scoring nuance, not a filter.
   if (input.light && LIGHT_ORDER[plant.light] > LIGHT_ORDER[input.light]) {
-    const gap = LIGHT_ORDER[plant.light] - LIGHT_ORDER[input.light];
-    if (gap >= 2 || plant.light === "high") {
-      fails.push(`Needs ${plant.light} light; this tank has ${input.light}.`);
-    }
-    // one-step gap for a medium-light plant is handled as a scoring penalty
+    fails.push(`Needs ${plant.light} light; this tank provides ${input.light}.`);
   }
 
   // Rosettes and bulbs can't be height-managed by trimming the way stems can.
