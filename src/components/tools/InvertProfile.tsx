@@ -5,6 +5,7 @@ import type { InvertFacet } from "@/lib/data/invert-facets";
 import {
   STORE_BASE,
   INVERTS_BASE,
+  CARE_BASE,
   invertUrl,
   capitalize,
   roleLabel,
@@ -76,6 +77,7 @@ export function InvertProfile({
       <JsonLd
         data={breadcrumbSchema([
           { name: "AquaticMotiv", url: `${STORE_BASE}/` },
+          { name: "Planted Tank Care Guide", url: CARE_BASE },
           { name: "Invertebrates", url: INVERTS_BASE },
           { name: invert.commonName, url },
         ])}
@@ -367,6 +369,16 @@ export function InvertProfile({
               Open the plant finder →
             </Link>
           </div>
+          <p className="mt-5 text-sm text-leaf-200">
+            Back to the{" "}
+            <Link
+              href={CARE_BASE}
+              className="font-semibold text-gold-300 underline underline-offset-2 hover:text-gold-200"
+            >
+              planted-tank care hub
+            </Link>
+            .
+          </p>
         </div>
       </main>
     </div>

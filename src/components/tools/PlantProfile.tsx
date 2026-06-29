@@ -6,6 +6,7 @@ import type { PlantArticleLink } from "@/lib/data/plants";
 import {
   STORE_BASE,
   PLANTS_BASE,
+  CARE_BASE,
   plantUrl,
   capitalize,
   type PlantCommerceInfo,
@@ -74,6 +75,7 @@ export function PlantProfile({ plant, commerce, alternatives, facets, articles =
       <JsonLd
         data={breadcrumbSchema([
           { name: "AquaticMotiv", url: `${STORE_BASE}/` },
+          { name: "Planted Tank Care Guide", url: CARE_BASE },
           { name: "Plants", url: PLANTS_BASE },
           { name: plant.commonName, url },
         ])}
@@ -363,6 +365,16 @@ export function PlantProfile({ plant, commerce, alternatives, facets, articles =
           >
             Open the plant finder →
           </Link>
+          <p className="mt-5 text-sm text-leaf-200">
+            Part of the{" "}
+            <Link
+              href={CARE_BASE}
+              className="font-semibold text-gold-300 underline underline-offset-2 hover:text-gold-200"
+            >
+              Freshwater Planted Tank Guide
+            </Link>
+            .
+          </p>
         </div>
       </main>
     </div>

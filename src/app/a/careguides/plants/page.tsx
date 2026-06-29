@@ -5,6 +5,7 @@ import { getActiveFacets, type FacetGroup } from "@/lib/data/plant-facets";
 import {
   STORE_BASE,
   PLANTS_BASE,
+  CARE_BASE,
   plantUrl,
   capitalize,
 } from "@/lib/data/plant-pages";
@@ -52,6 +53,7 @@ export default function PlantsHubPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "AquaticMotiv", url: `${STORE_BASE}/` },
+          { name: "Planted Tank Care Guide", url: CARE_BASE },
           { name: "Plants", url: PLANTS_BASE },
         ])}
       />

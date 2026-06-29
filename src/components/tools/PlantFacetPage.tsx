@@ -5,6 +5,7 @@ import type { PlantFacet } from "@/lib/data/plant-facets";
 import {
   STORE_BASE,
   PLANTS_BASE,
+  CARE_BASE,
   plantUrl,
   capitalize,
   firstSentence,
@@ -46,6 +47,7 @@ export function PlantFacetPage({ facet, species, commerceByHandle, siblings }: P
       <JsonLd
         data={breadcrumbSchema([
           { name: "AquaticMotiv", url: `${STORE_BASE}/` },
+          { name: "Planted Tank Care Guide", url: CARE_BASE },
           { name: "Plants", url: PLANTS_BASE },
           { name: facet.title, url },
         ])}
@@ -193,6 +195,16 @@ export function PlantFacetPage({ facet, species, commerceByHandle, siblings }: P
           >
             Open the plant finder →
           </Link>
+          <p className="mt-5 text-sm text-leaf-200">
+            See the{" "}
+            <Link
+              href={CARE_BASE}
+              className="font-semibold text-gold-300 underline underline-offset-2 hover:text-gold-200"
+            >
+              complete planted-tank care guide
+            </Link>
+            .
+          </p>
         </div>
 
         {/* Facet FAQs */}
