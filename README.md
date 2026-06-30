@@ -22,7 +22,13 @@ npm install
 npm run dev
 npm run lint
 npm run build
+npm run deploy:careguides
 ```
+
+`npm run deploy:careguides` is the PM2/VPS production path. It builds with
+`ASSET_ORIGIN=https://careguides.aquaticmotiv.com`, copies `.next/static` and
+`public/` into the standalone runtime, then restarts the `careguides` PM2
+process.
 
 ## Data And Scripts
 

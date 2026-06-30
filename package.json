@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "setup": "node scripts/setup-env.js",
+    "deploy:careguides": "bash scripts/deploy-careguides.sh",
     "postinstall": "node scripts/setup-env.js"
   },
   "dependencies": {
