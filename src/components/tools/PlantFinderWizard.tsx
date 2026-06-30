@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect, useCallback } from "react";
+import { useMemo, useState, useEffect, useCallback, useSyncExternalStore } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import type { PlantSpecies } from "@/types/plants";
@@ -128,9 +128,49 @@ function variantNumericId(gid: string): string | null {
   return m ? m[1] : null;
 }
 
+function shopifyImageSrc(src: string | null | undefined): string | null {
+  if (!src) return null;
+  const absoluteSrc = src.startsWith("/cdn/") ? `https://aquaticmotiv.com${src}` : src;
+
+  try {
+    const url = new URL(absoluteSrc);
+    const storefrontCdn =
+      (url.hostname === "aquaticmotiv.com" || url.hostname === "www.aquaticmotiv.com") &&
+      url.pathname.startsWith("/cdn/");
+    return url.protocol === "https:" && (url.hostname === "cdn.shopify.com" || storefrontCdn)
+      ? absoluteSrc
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+function formatPrice(price: unknown): string | null {
+  const numericPrice = typeof price === "number" ? price : Number(price);
+  return Number.isFinite(numericPrice) ? `$${numericPrice.toFixed(2)}` : null;
+}
+
+function subscribeToHostChange() {
+  return () => {};
+}
+
+function isShopifyStorefrontHost() {
+  if (typeof window === "undefined") return false;
+  return window.location.hostname === "aquaticmotiv.com" || window.location.hostname === "www.aquaticmotiv.com";
+}
+
+function serverHostSnapshot() {
+  return false;
+}
+
 export function PlantFinderWizard({ plants, productInfo }: Props) {
   const router = useRouter();
   const params = useSearchParams();
+  const onAquaticMotiv = useSyncExternalStore(
+    subscribeToHostChange,
+    isShopifyStorefrontHost,
+    serverHostSnapshot,
+  );
 
   const [step, setStep] = useState(() => {
     const s = Number(params.get("step") ?? 0);
@@ -164,7 +204,8 @@ export function PlantFinderWizard({ plants, productInfo }: Props) {
     if (experience !== "beginner") q.set("exp", experience);
     if (goals.length) q.set("goals", goals.join(","));
     if (unheated) q.set("unheated", "1");
-    router.replace(`?${q.toString()}`, { scroll: false });
+    const query = q.toString();
+    router.replace(query ? `?${query}` : window.location.pathname, { scroll: false });
   }, [step, tankId, light, co2, fert, experience, goals, unheated, router]);
 
   const tank = TANK_SIZES.find((t) => t.id === tankId) ?? null;
@@ -238,9 +279,6 @@ export function PlantFinderWizard({ plants, productInfo }: Props) {
       ))}
     </ol>
   );
-
-  const onAquaticMotiv =
-    typeof window !== "undefined" && /(^|\.)aquaticmotiv\.com$/.test(window.location.hostname);
 
   const addToCart = useCallback(
     async (handle: string, quantity = 1) => {
@@ -674,6 +712,8 @@ function ResultCard({
 }) {
   const { plant, score, reasons, cautions } = scored;
   const inStock = info?.availableForSale ?? false;
+  const imageSrc = shopifyImageSrc(info?.image);
+  const priceLabel = formatPrice(info?.price);
   const storeUrl = plant.shopifyHandle
     ? `https://aquaticmotiv.com/products/${plant.shopifyHandle}`
     : null;
@@ -685,9 +725,9 @@ function ResultCard({
           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-leaf-950 text-sm font-bold text-gold-400">
             {rank}
           </span>
-          {info?.image && (
+          {imageSrc && (
             <Image
-              src={info.image}
+              src={imageSrc}
               alt={plant.commonName}
               width={64}
               height={64}
@@ -743,7 +783,7 @@ function ResultCard({
           <div className="mt-4 flex flex-wrap items-center gap-3">
             {info && (
               <span className="text-sm font-bold text-leaf-950">
-                ${info.price.toFixed(2)}{" "}
+                {priceLabel ? `${priceLabel} ` : ""}
                 <span
                   className={`ml-1 text-xs font-semibold ${inStock ? "text-green-700" : "text-leaf-900/40"}`}
                 >

@@ -24,6 +24,16 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.shopify.com",
       },
+      {
+        protocol: "https",
+        hostname: "aquaticmotiv.com",
+        pathname: "/cdn/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.aquaticmotiv.com",
+        pathname: "/cdn/**",
+      },
     ],
   },
 };
