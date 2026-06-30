@@ -1,5 +1,12 @@
-import { redirect } from "next/navigation";
+import CareGuidesLayout from "./a/careguides/layout";
+import CareGuidesHubPage from "./a/careguides/page";
+
+export { metadata } from "./a/careguides/page";
 
 export default function HomePage() {
-  redirect("/a/careguides");
+  return (
+    <CareGuidesLayout>
+      <CareGuidesHubPage />
+    </CareGuidesLayout>
+  );
 }

@@ -9,11 +9,6 @@ const assetOrigin = process.env.ASSET_ORIGIN;
 const nextConfig: NextConfig = {
   output: "standalone",
   ...(assetOrigin ? { assetPrefix: assetOrigin } : {}),
-  async redirects() {
-    return [
-      { source: "/", destination: "/a/careguides", permanent: false },
-    ];
-  },
   turbopack: {
     root: __dirname,
   },
