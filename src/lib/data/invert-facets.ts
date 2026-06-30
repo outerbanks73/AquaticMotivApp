@@ -35,7 +35,7 @@ const FACETS: InvertFacet[] = [
     slug: "snails",
     group: "type",
     title: "Freshwater aquarium snails",
-    metaTitle: "Freshwater Aquarium Snails — Every Species Compared | AquaticMotiv",
+    metaTitle: "Freshwater Aquarium Snails — Every Species Compared",
     metaDescription:
       "Every freshwater snail we track with verified care data: size, lifespan, GH and calcium needs, breeding behavior, and whether it will overrun your tank.",
     directAnswer:
@@ -63,7 +63,7 @@ const FACETS: InvertFacet[] = [
     slug: "shrimp",
     group: "type",
     title: "Freshwater aquarium shrimp",
-    metaTitle: "Freshwater Aquarium Shrimp — Species & Care Compared | AquaticMotiv",
+    metaTitle: "Freshwater Aquarium Shrimp — Species & Care Compared",
     metaDescription:
       "Cherry, Amano, ghost, bamboo, and crystal shrimp compared on verified data: water parameters, breeding, algae-eating ability, and tankmate safety.",
     directAnswer:
@@ -93,7 +93,7 @@ const FACETS: InvertFacet[] = [
     slug: "best-algae-eaters",
     group: "goal",
     title: "The best algae-eating snails and shrimp",
-    metaTitle: "Best Algae Eaters — Snails & Shrimp That Actually Work | AquaticMotiv",
+    metaTitle: "Best Algae Eaters — Snails & Shrimp That Actually Work",
     metaDescription:
       "Invertebrates ranked by real algae-eating ability: nerites for glass and hardscape, Amano shrimp for hair algae, and the honest limits of each.",
     directAnswer:
@@ -121,7 +121,7 @@ const FACETS: InvertFacet[] = [
     slug: "wont-overrun-tank",
     group: "goal",
     title: "Snails and shrimp that won't overrun your tank",
-    metaTitle: "Inverts That Won't Overrun Your Tank — No Population Explosions | AquaticMotiv",
+    metaTitle: "Inverts That Won't Overrun Your Tank — No Population Explosions",
     metaDescription:
       "Snails, shrimp, and other inverts verified not to multiply out of control: species that can't breed in freshwater plus slow livebearers.",
     directAnswer:
@@ -150,7 +150,7 @@ const FACETS: InvertFacet[] = [
     slug: "betta-safe-tankmates",
     group: "goal",
     title: "Betta-safe invertebrate tankmates",
-    metaTitle: "Betta-Safe Tankmates — Snails & Inverts That Work | AquaticMotiv",
+    metaTitle: "Betta-Safe Tankmates — Snails & Inverts That Work",
     metaDescription:
       "Invertebrates verified to coexist with bettas: armored snails the betta ignores, plus the shrimp and crabs that need more caution.",
     directAnswer:
@@ -178,7 +178,7 @@ const FACETS: InvertFacet[] = [
     slug: "plant-safe",
     group: "goal",
     title: "Plant-safe snails, shrimp, and inverts",
-    metaTitle: "Plant-Safe Aquarium Inverts — Cleanup Crew That Won't Eat Plants | AquaticMotiv",
+    metaTitle: "Plant-Safe Aquarium Inverts — Cleanup Crew That Won't Eat Plants",
     metaDescription:
       "Invertebrates verified safe with live plants: species that graze algae and biofilm off leaves without eating healthy plant tissue.",
     directAnswer:
@@ -206,7 +206,7 @@ const FACETS: InvertFacet[] = [
     slug: "no-heater",
     group: "goal",
     title: "Inverts for unheated tanks",
-    metaTitle: "Cold Water Aquarium Inverts — No Heater Needed | AquaticMotiv",
+    metaTitle: "Cold Water Aquarium Inverts — No Heater Needed",
     metaDescription:
       "Snails and shrimp verified to tolerate 64°F and below — for unheated tanks, cool rooms, and outdoor ponds. Real temperature floors.",
     directAnswer:
@@ -229,7 +229,7 @@ const FACETS: InvertFacet[] = [
     slug: "beginner",
     group: "goal",
     title: "Aquarium inverts for beginners",
-    metaTitle: "Best Aquarium Inverts for Beginners — Easy Snails & Shrimp | AquaticMotiv",
+    metaTitle: "Best Aquarium Inverts for Beginners — Easy Snails & Shrimp",
     metaDescription:
       "Every snail, shrimp, and crab here is rated easy on verified care data — forgiving species for a first invertebrate, with honest caveats.",
     directAnswer:
@@ -257,7 +257,7 @@ const FACETS: InvertFacet[] = [
     slug: "pest-control",
     group: "goal",
     title: "Inverts that control pest snails and hydra",
-    metaTitle: "Biological Pest Control — Assassin Snails & Hydra Eaters | AquaticMotiv",
+    metaTitle: "Biological Pest Control — Assassin Snails & Hydra Eaters",
     metaDescription:
       "Invertebrates that hunt aquarium pests for you: assassin snails for pest-snail outbreaks and spixi snails for hydra, with honest caveats.",
     directAnswer:

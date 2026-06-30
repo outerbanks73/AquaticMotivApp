@@ -39,7 +39,7 @@ const FACETS: PlantFacet[] = [
     slug: "low-light",
     group: "light",
     title: "Aquarium plants that grow in low light",
-    metaTitle: "Low Light Aquarium Plants — No Special Fixture Needed | AquaticMotiv",
+    metaTitle: "Low Light Aquarium Plants — No Special Fixture Needed",
     metaDescription:
       "Aquarium plants that thrive under a stock hood or basic LED, roughly 10–40 µmol PAR. Real species data: height, CO2 needs, and temperature ranges.",
     directAnswer:
@@ -68,7 +68,7 @@ const FACETS: PlantFacet[] = [
     slug: "medium-light",
     group: "light",
     title: "Aquarium plants for medium light",
-    metaTitle: "Medium Light Aquarium Plants — The Widest Selection | AquaticMotiv",
+    metaTitle: "Medium Light Aquarium Plants — The Widest Selection",
     metaDescription:
       "Species that do their best work under a dedicated planted-tank LED at moderate settings. The largest group of aquarium plants, with full care data.",
     directAnswer:
@@ -92,7 +92,7 @@ const FACETS: PlantFacet[] = [
     slug: "high-light",
     group: "light",
     title: "Aquarium plants for high light setups",
-    metaTitle: "High Light Aquarium Plants — Demanding Showpieces | AquaticMotiv",
+    metaTitle: "High Light Aquarium Plants — Demanding Showpieces",
     metaDescription:
       "Species that need a high-output fixture to perform: intense reds, dense carpets, and fast growers. PAR ranges, CO2 requirements, and trimming demands.",
     directAnswer:
@@ -118,7 +118,7 @@ const FACETS: PlantFacet[] = [
     slug: "carpet",
     group: "placement",
     title: "Carpet plants for aquariums",
-    metaTitle: "Aquarium Carpet Plants — Build a Living Lawn | AquaticMotiv",
+    metaTitle: "Aquarium Carpet Plants — Build a Living Lawn",
     metaDescription:
       "Species that spread by runners into a dense foreground lawn. Compare light and CO2 demands from easy carpets to the showpiece species.",
     directAnswer:
@@ -147,7 +147,7 @@ const FACETS: PlantFacet[] = [
     slug: "foreground",
     group: "placement",
     title: "Foreground plants for aquariums",
-    metaTitle: "Foreground Aquarium Plants — Short Species for the Front | AquaticMotiv",
+    metaTitle: "Foreground Aquarium Plants — Short Species for the Front",
     metaDescription:
       "Short plants that stay low at the front glass without blocking the view: carpets, small rosettes, and compact crypts, with height and care data.",
     directAnswer:
@@ -170,7 +170,7 @@ const FACETS: PlantFacet[] = [
     slug: "midground",
     group: "placement",
     title: "Midground plants for aquariums",
-    metaTitle: "Midground Aquarium Plants — The Transition Layer | AquaticMotiv",
+    metaTitle: "Midground Aquarium Plants — The Transition Layer",
     metaDescription:
       "Medium-height species that bridge foreground and background: crypts, ferns, and compact stems that give an aquascape its depth.",
     directAnswer:
@@ -193,7 +193,7 @@ const FACETS: PlantFacet[] = [
     slug: "background",
     group: "placement",
     title: "Background plants for aquariums",
-    metaTitle: "Background Aquarium Plants — Fill the Back Wall | AquaticMotiv",
+    metaTitle: "Background Aquarium Plants — Fill the Back Wall",
     metaDescription:
       "Tall, fast species that build a green wall along the back glass, hide equipment, and give fish cover. Heights, growth rates, trimming needs.",
     directAnswer:
@@ -217,7 +217,7 @@ const FACETS: PlantFacet[] = [
     slug: "floating",
     group: "placement",
     title: "Floating plants for aquariums",
-    metaTitle: "Floating Aquarium Plants — Shade, Cover & Nitrate Control | AquaticMotiv",
+    metaTitle: "Floating Aquarium Plants — Shade, Cover & Nitrate Control",
     metaDescription:
       "Surface plants that need no substrate or CO2: instant shade, fry cover, and serious nitrate uptake. Species data and management tips.",
     directAnswer:
@@ -246,7 +246,7 @@ const FACETS: PlantFacet[] = [
     slug: "attach-to-stone",
     group: "placement",
     title: "Aquarium plants you can attach to stone",
-    metaTitle: "Aquarium Plants That Attach to Rocks & Stone | AquaticMotiv",
+    metaTitle: "Aquarium Plants That Attach to Rocks & Stone",
     metaDescription:
       "Epiphytes that grow glued or tied to rock — no substrate needed. Java Fern, Anubias, mosses, and more, with attachment technique.",
     directAnswer:
@@ -281,7 +281,7 @@ const FACETS: PlantFacet[] = [
     slug: "attach-to-wood",
     group: "placement",
     title: "Aquarium plants you can attach to driftwood",
-    metaTitle: "Aquarium Plants That Attach to Driftwood | AquaticMotiv",
+    metaTitle: "Aquarium Plants That Attach to Driftwood",
     metaDescription:
       "Species that root onto driftwood and branches for an instant aged look: ferns, Anubias, Bucephalandra, and mosses, with placement tips.",
     directAnswer:
@@ -307,7 +307,7 @@ const FACETS: PlantFacet[] = [
     slug: "no-co2",
     group: "goal",
     title: "Aquarium plants that don't need CO2",
-    metaTitle: "Aquarium Plants That Don't Need CO2 Injection | AquaticMotiv",
+    metaTitle: "Aquarium Plants That Don't Need CO2 Injection",
     metaDescription:
       "Species that grow well on the CO2 naturally present in aquarium water — no regulator, no diffuser. Full care data for every no-CO2 plant we track.",
     directAnswer:
@@ -335,7 +335,7 @@ const FACETS: PlantFacet[] = [
     slug: "under-3-inches",
     group: "goal",
     title: "Aquarium plants that stay under 3 inches",
-    metaTitle: "Aquarium Plants Under 3 Inches Tall | AquaticMotiv",
+    metaTitle: "Aquarium Plants Under 3 Inches Tall",
     metaDescription:
       "Truly small species with a verified mature height of 3 inches or less — for foregrounds, nano tanks, and detail work between hardscape.",
     directAnswer:
@@ -358,7 +358,7 @@ const FACETS: PlantFacet[] = [
     slug: "nano-tank",
     group: "goal",
     title: "Aquarium plants for nano tanks",
-    metaTitle: "Best Plants for Nano Aquariums (5–10 Gallons) | AquaticMotiv",
+    metaTitle: "Best Plants for Nano Aquariums (5–10 Gallons)",
     metaDescription:
       "Species that stay in scale in a 5–10 gallon tank — 8 inches or under at maturity. Compact carpets, small epiphytes, and slow growers.",
     directAnswer:
@@ -387,7 +387,7 @@ const FACETS: PlantFacet[] = [
     slug: "snail-safe",
     group: "goal",
     title: "Snail-safe aquarium plants",
-    metaTitle: "Snail-Safe Aquarium Plants — Survive the Cleanup Crew | AquaticMotiv",
+    metaTitle: "Snail-Safe Aquarium Plants — Survive the Cleanup Crew",
     metaDescription:
       "Plants that common aquarium snails and shrimp graze over without damaging — verified species data for tanks with a cleanup crew.",
     directAnswer:
@@ -419,7 +419,7 @@ const FACETS: PlantFacet[] = [
     slug: "red",
     group: "goal",
     title: "Red aquarium plants",
-    metaTitle: "Red Aquarium Plants — Real Color Beyond Green | AquaticMotiv",
+    metaTitle: "Red Aquarium Plants — Real Color Beyond Green",
     metaDescription:
       "Species with genuine red and orange coloration, and what it actually takes to keep them red: light intensity, CO2, and nutrient balance.",
     directAnswer:
@@ -448,7 +448,7 @@ const FACETS: PlantFacet[] = [
     slug: "fast-growing",
     group: "goal",
     title: "Fast-growing aquarium plants",
-    metaTitle: "Fast-Growing Aquarium Plants — Cycle Helpers & Algae Fighters | AquaticMotiv",
+    metaTitle: "Fast-Growing Aquarium Plants — Cycle Helpers & Algae Fighters",
     metaDescription:
       "Species that grow an inch or more a week in good conditions — ideal for new tanks, nutrient export, and outcompeting algae.",
     directAnswer:
@@ -471,7 +471,7 @@ const FACETS: PlantFacet[] = [
     slug: "slow-growing",
     group: "goal",
     title: "Slow-growing aquarium plants",
-    metaTitle: "Slow-Growing Aquarium Plants — Plant Once, Trim Rarely | AquaticMotiv",
+    metaTitle: "Slow-Growing Aquarium Plants — Plant Once, Trim Rarely",
     metaDescription:
       "Species that hold their shape for months between trims: ferns, Anubias, Bucephalandra, and crypts. The backbone of low-maintenance scapes.",
     directAnswer:
@@ -495,7 +495,7 @@ const FACETS: PlantFacet[] = [
     slug: "low-maintenance",
     group: "goal",
     title: "Low-maintenance aquarium plants",
-    metaTitle: "Low-Maintenance Aquarium Plants — Minimal Trimming | AquaticMotiv",
+    metaTitle: "Low-Maintenance Aquarium Plants — Minimal Trimming",
     metaDescription:
       "Species that need only occasional attention: minimal trimming, no fast growth to chase. The honest list for aquarists short on time.",
     directAnswer:
@@ -519,7 +519,7 @@ const FACETS: PlantFacet[] = [
     slug: "beginner",
     group: "goal",
     title: "Aquarium plants for beginners",
-    metaTitle: "Best Aquarium Plants for Beginners — Hard to Kill | AquaticMotiv",
+    metaTitle: "Best Aquarium Plants for Beginners — Hard to Kill",
     metaDescription:
       "Easy-rated species that forgive missed ferts, modest light, and learning-curve mistakes. Every plant here is rated easy on verified care data.",
     directAnswer:
@@ -548,7 +548,7 @@ const FACETS: PlantFacet[] = [
     slug: "betta-tank",
     group: "goal",
     title: "Aquarium plants for betta tanks",
-    metaTitle: "Best Plants for Betta Tanks — Resting Spots & Cover | AquaticMotiv",
+    metaTitle: "Best Plants for Betta Tanks — Resting Spots & Cover",
     metaDescription:
       "Plants suited to betta life: broad leaves to rest on, floating cover to patrol under, and tolerance for the warm, calm water bettas need.",
     directAnswer:
@@ -580,7 +580,7 @@ const FACETS: PlantFacet[] = [
     slug: "cold-water",
     group: "goal",
     title: "Cold water aquarium plants",
-    metaTitle: "Cold Water Aquarium Plants — No Heater Required | AquaticMotiv",
+    metaTitle: "Cold Water Aquarium Plants — No Heater Required",
     metaDescription:
       "Species verified to tolerate 62°F and below — for unheated tanks, goldfish setups, and cool rooms. Real minimum temperatures, not guesses.",
     directAnswer:
@@ -606,7 +606,7 @@ const FACETS: PlantFacet[] = [
     slug: "iwagumi",
     group: "style",
     title: "Plants for iwagumi aquascapes",
-    metaTitle: "Iwagumi Aquascape Plants — Carpets & Restraint | AquaticMotiv",
+    metaTitle: "Iwagumi Aquascape Plants — Carpets & Restraint",
     metaDescription:
       "The short list of species that suit iwagumi: low carpets and fine-textured accents that keep the stone arrangement as the subject.",
     directAnswer:
@@ -630,7 +630,7 @@ const FACETS: PlantFacet[] = [
     slug: "dutch-style",
     group: "style",
     title: "Plants for Dutch-style aquascapes",
-    metaTitle: "Dutch Aquascape Plants — Stems, Color & Contrast | AquaticMotiv",
+    metaTitle: "Dutch Aquascape Plants — Stems, Color & Contrast",
     metaDescription:
       "Species suited to the Dutch style: colorful stem plants arranged in dense, contrasting groups. The full stem palette with care data.",
     directAnswer:
@@ -654,7 +654,7 @@ const FACETS: PlantFacet[] = [
     slug: "jungle-style",
     group: "style",
     title: "Plants for jungle-style aquascapes",
-    metaTitle: "Jungle Aquascape Plants — Dense, Wild & Forgiving | AquaticMotiv",
+    metaTitle: "Jungle Aquascape Plants — Dense, Wild & Forgiving",
     metaDescription:
       "Species for the jungle look: big leaves, tall stems, mosses, and floaters growing into each other. The most forgiving aquascaping style.",
     directAnswer:

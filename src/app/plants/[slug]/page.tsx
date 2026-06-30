@@ -61,8 +61,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const hasCareGuide = Boolean(getCarePageForPlant(plant.slug));
   return {
     title: hasCareGuide
-      ? `${plant.commonName} — Specs, Parameters & Live Stock | AquaticMotiv`
-      : `${plant.commonName} Care — Light, CO2 & Growth | AquaticMotiv`,
+      ? `${plant.commonName} — Specs, Parameters & Live Stock`
+      : `${plant.commonName} Care — Light, CO2 & Growth`,
     description: leadSentences(plant.careSummary),
     alternates: { canonical: plantUrl(plant.slug) },
   };

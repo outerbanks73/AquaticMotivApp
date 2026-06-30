@@ -26,7 +26,7 @@ const INTRO =
   "Everything that keeps a planted tank running — choosing substrate and lighting, dialing in CO₂ and fertilizers, cycling a new tank, and fixing algae before it takes over. Practical, photo-illustrated guides from the growers who run these tanks every day.";
 
 export const metadata: Metadata = {
-  title: "Aquarium Setup & Maintenance Guides | Aquatic Motiv",
+  title: "Aquarium Setup & Maintenance Guides",
   description:
     "Planted aquarium setup and maintenance guides — substrate, lighting, CO₂, fertilizing, cycling, water changes, and algae control, written by the growers who keep these tanks.",
   alternates: { canonical: SETUP_URL },

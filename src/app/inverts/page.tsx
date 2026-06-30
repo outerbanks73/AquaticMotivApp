@@ -24,7 +24,7 @@ const invertGuides = (hub.categories as { id: string; guides: HubGuide[] }[])
   .flatMap((c) => c.guides);
 
 export const metadata: Metadata = {
-  title: "Freshwater Invertebrate Database — Snails, Shrimp & More | AquaticMotiv",
+  title: "Freshwater Invertebrate Database — Snails, Shrimp & More",
   description:
     "Verified care data for every freshwater invertebrate we track: snails, shrimp, crabs, clams, and crayfish — size, lifespan, GH, breeding behavior, and tankmate safety.",
   alternates: { canonical: INVERTS_BASE },

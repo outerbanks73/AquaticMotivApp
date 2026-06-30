@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const invert = getInvertBySlug(slug);
   if (!invert) return {};
   return {
-    title: `${invert.commonName} Care — Size, Lifespan & Tank Mates | AquaticMotiv`,
+    title: `${invert.commonName} Care — Size, Lifespan & Tank Mates`,
     description: leadSentences(invert.careSummary),
     alternates: { canonical: invertUrl(invert.slug) },
   };

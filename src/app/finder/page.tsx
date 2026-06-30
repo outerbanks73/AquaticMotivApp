@@ -6,7 +6,7 @@ import { getAllShopifyProducts } from "@/lib/shopify/cache";
 import { PlantFinderWizard, type FinderProductInfo } from "@/components/tools/PlantFinderWizard";
 
 export const metadata: Metadata = {
-  title: "Aquarium Plant Finder — Plants Matched to Your Exact Tank | AquaticMotiv",
+  title: "Aquarium Plant Finder — Plants Matched to Your Exact Tank",
   description:
     "Answer four questions about your tank — size, light, CO2, and goals — and get ranked aquarium plant recommendations with honest care expectations, from 50+ species.",
   alternates: {

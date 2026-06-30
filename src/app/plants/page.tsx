@@ -21,7 +21,7 @@ const plantGuides = rawCategories
   .flatMap((c) => c.guides);
 
 export const metadata: Metadata = {
-  title: "Aquarium Plant Database — Care Data for Every Species | AquaticMotiv",
+  title: "Aquarium Plant Database — Care Data for Every Species",
   description:
     "Verified care data for every aquarium plant we track: light, CO2, height, temperature, placement, and snail safety — browsable A–Z or by what your tank needs.",
   alternates: { canonical: PLANTS_BASE },
