@@ -12,11 +12,11 @@ Shopify store at the real URL.
 ## The two URLs (don't confuse them)
 
 - **Canonical public hub — the SEO target:**
-  `https://aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`
+  `https://careguides.aquaticmotiv.com`
   This is what Google/AI should index and what ranking snail/shrimp/plant content links into.
   Currently 404 — it goes live via Shopify **after** content QA.
 - **Build origin — where we work, not the canonical:**
-  `https://careguides.aquaticmotiv.com/a/careguides`
+  `https://careguides.aquaticmotiv.com`
   The live Next.js app on the VPS (`careguides` in PM2).
 
 ## In scope

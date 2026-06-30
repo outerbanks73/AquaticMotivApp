@@ -39,7 +39,7 @@ material conflicts the structured graph is correct; the graph was wrong once
 
 Nothing below has been changed on the live blog. On approval, these are applied via
 the Admin API as part of the Phase 6 retrofit (each edit also adds a link to the
-matching `/a/careguides/plants/...` page).
+matching `/plants/...` page).
 
 | Post | Field | Published says | Should say | Why |
 |---|---|---|---|---|

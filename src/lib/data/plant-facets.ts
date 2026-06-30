@@ -1,5 +1,5 @@
 // Facet definitions for the plant knowledge graph SEO pages.
-// Each facet is a reserved slug under /a/careguides/plants/[slug] — see docs/PLANT_FINDER_SPEC.md §5.
+// Each facet is a reserved slug under /plants/[slug] — see docs/PLANT_FINDER_SPEC.md §5.
 // A facet only renders (is "active") when at least MIN_SPECIES_PER_FACET species
 // match its predicate — the thin-content gate.
 
@@ -711,7 +711,7 @@ export function getFacetsForSpecies(species: PlantSpecies): PlantFacet[] {
 
 /**
  * Build-time guard: facet slugs and species slugs share one URL namespace
- * (/a/careguides/plants/[slug]); a collision would shadow a species page. Throws so
+ * (/plants/[slug]); a collision would shadow a species page. Throws so
  * the build fails loudly.
  */
 export function assertNoFacetSpeciesSlugCollision(): void {

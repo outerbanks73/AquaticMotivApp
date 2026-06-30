@@ -105,7 +105,7 @@ export default function PlantsHubPage() {
             and ranks every species here against your exact setup.
           </p>
           <Link
-            href="/a/careguides/finder"
+            href="/finder"
             className="mt-4 inline-block rounded-full bg-gold-400 px-6 py-2.5 text-sm font-semibold text-leaf-950 shadow-lg shadow-gold-400/30 transition-transform hover:scale-[1.02]"
           >
             Open the plant finder →
@@ -142,7 +142,7 @@ export default function PlantsHubPage() {
                     {groupFacets.map((facet) => (
                       <li key={facet.slug}>
                         <Link
-                          href={`/a/careguides/plants/${facet.slug}`}
+                          href={`/plants/${facet.slug}`}
                           className="inline-block rounded-full border-2 border-leaf-100 bg-white px-4 py-1.5 text-sm font-medium text-leaf-900 transition-colors hover:border-leaf-400 hover:text-leaf-800"
                         >
                           {facet.title}
@@ -167,7 +167,7 @@ export default function PlantsHubPage() {
           <SpeciesSearchList
             placeholder="Search plants — e.g. anubias, Microsorum, monte carlo…"
             items={plants.map((plant) => ({
-              href: `/a/careguides/plants/${plant.slug}`,
+              href: `/plants/${plant.slug}`,
               name: plant.commonName,
               sub: plant.scientificName,
               synonyms: plant.synonyms,

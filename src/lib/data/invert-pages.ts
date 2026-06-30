@@ -1,6 +1,6 @@
-// Shared helpers for the /a/careguides/inverts SEO page layer.
-// Same app-proxy constraint as plant-pages.ts: every canonical URL is
-// absolute on the store domain and internal links stay /a/careguides/-prefixed.
+// Shared helpers for the standalone /inverts SEO page layer.
+// Canonical care-guide URLs live on careguides.aquaticmotiv.com; commerce
+// links still point to aquaticmotiv.com.
 
 import type { InvertSpecies, InvertDifficulty, InvertRole } from "@/types/inverts";
 import {

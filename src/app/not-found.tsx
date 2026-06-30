@@ -13,22 +13,22 @@ export default function NotFound() {
       </p>
       <div className="flex flex-wrap justify-center gap-3">
         <Link
-          href="/fish"
+          href="/plants"
           className="rounded-lg bg-aqua-600 px-4 py-2 text-sm font-medium text-white hover:bg-aqua-700"
         >
-          Fish Profiles
+          Plant Guides
         </Link>
         <Link
-          href="/guides"
+          href="/inverts"
           className="rounded-lg bg-ocean-800 px-4 py-2 text-sm font-medium text-white hover:bg-ocean-900"
         >
-          Care Guides
+          Invertebrate Guides
         </Link>
         <Link
-          href="/products"
+          href="https://aquaticmotiv.com/collections/all"
           className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-ocean-900 hover:bg-gray-50"
         >
-          Products
+          Shop
         </Link>
       </div>
     </div>

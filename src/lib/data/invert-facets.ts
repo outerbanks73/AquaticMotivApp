@@ -1,5 +1,5 @@
 // Facet definitions for the invertebrate knowledge graph SEO pages.
-// Each facet is a reserved slug under /a/careguides/inverts/[slug] — same
+// Each facet is a reserved slug under /inverts/[slug] — same
 // pattern as plant-facets.ts. A facet only renders (is "active") when at
 // least MIN_SPECIES_PER_FACET species match its predicate.
 
@@ -309,7 +309,7 @@ export function getInvertFacetsForSpecies(species: InvertSpecies): InvertFacet[]
 
 /**
  * Build-time guard: facet slugs and species slugs share one URL namespace
- * (/a/careguides/inverts/[slug]); a collision would shadow a species page.
+ * (/inverts/[slug]); a collision would shadow a species page.
  * Throws so the build fails loudly.
  */
 export function assertNoInvertFacetSpeciesSlugCollision(): void {

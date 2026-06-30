@@ -6,18 +6,21 @@ Load SE Ranking, Shopify MCP connectors, and SEO skills only when a task needs t
 
 This repo is the focused Aquatic Motiv care-guides SEO/GEO app. It exists to publish and maintain a crawlable, mobile-friendly freshwater planted aquarium guide hub and supporting plant/invertebrate species pages.
 
-The active public namespace is `/a/careguides/*`, served through the Shopify app proxy. The strategic canonical hub target is:
+The active public surface is the standalone care-guides origin:
 
-`https://aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`
+`https://careguides.aquaticmotiv.com`
+
+There is intentionally no Shopify-prefixed care-guide namespace and no default Shopify storefront routing integration.
 
 Canonical plant care guides target:
 
 - Title: `Aquarium Plants: Care Guides, Setup & Troubleshooting`
-- URL: `https://aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`
+- URL: `https://careguides.aquaticmotiv.com`
 
-The app origin/build surface is:
+Shopify integration rule:
 
-`https://careguides.aquaticmotiv.com/a/careguides`
+- AquaticMotivApp is intentionally not plugged into Shopify storefront routing by default.
+- Do not load Shopify MCP connectors, inspect Shopify routing settings, create Shopify pages/redirects, or attempt Shop integration unless the user explicitly asks for Shopify integration help in that turn.
 
 ## Current Scope
 
@@ -49,9 +52,9 @@ Data access functions live in `src/lib/data/`. The Plant Finder uses `src/lib/re
 
 ## Component Organization
 
-- `src/app/a/careguides/` — all public care-guide routes.
+- `src/app/` — all public standalone care-guide routes.
 - `src/components/tools/` — hub, card, species, facet, and finder UI.
-- `src/components/layout/CareHeader.tsx` and `CareFooter.tsx` — minimal app-proxy-safe chrome.
+- `src/components/layout/CareHeader.tsx` and `CareFooter.tsx` — minimal standalone site chrome.
 - `src/lib/shopify/` — Storefront read-only product fetch/normalization.
 - `scripts/` — validation, hub generation, and Shopify metafield sync scripts.
 

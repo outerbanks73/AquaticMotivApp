@@ -1,5 +1,5 @@
 // llms.txt for AI crawlers — describes the plant and invertebrate knowledge
-// graphs and indexes every page in the proxied /a/careguides/* namespace
+// graphs and indexes every page on the standalone care-guides site
 // (GEO checklist, spec §9).
 
 import { getAllPlants } from "@/lib/data/plants";

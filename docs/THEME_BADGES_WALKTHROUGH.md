@@ -40,7 +40,7 @@ This is a one-time setup in the theme editor; ~10 minutes.
 
 - Boolean fields render as "true"/"false" in most themes. If that looks rough,
   either rename labels to read naturally ("CO2 required: false" → acceptable),
-  or wait for the app-proxy plant pages which render these properly.
+  or wait for the standalone plant pages which render these properly.
 - The "Plant guide slug" field (`plant_slug`) is plumbing for the upcoming
   finder pages — no need to display it.
 - Definitions and values are managed from the repo:

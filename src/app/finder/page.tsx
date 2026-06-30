@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getAllPlants } from "@/lib/data/plants";
+import { FINDER_URL } from "@/lib/data/plant-pages";
 import { getAllShopifyProducts } from "@/lib/shopify/cache";
 import { PlantFinderWizard, type FinderProductInfo } from "@/components/tools/PlantFinderWizard";
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Answer four questions about your tank — size, light, CO2, and goals — and get ranked aquarium plant recommendations with honest care expectations, from 50+ species.",
   alternates: {
-    canonical: "https://aquaticmotiv.com/a/careguides/finder",
+    canonical: FINDER_URL,
   },
 };
 

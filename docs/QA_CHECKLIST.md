@@ -7,17 +7,17 @@ QA window — please review thoroughly and log anything wrong or worth tweaking.
 ## Where to QA
 
 **Primary QA surface (use this):**
-`https://careguides.aquaticmotiv.com/a/careguides`
+`https://careguides.aquaticmotiv.com`
 
 This serves the complete system (all ~159 pages), is search-engine-hidden, and is
 safe to click around freely. It is identical to what customers will eventually see
-on `aquaticmotiv.com/a/careguides/...` **except** the "Add to cart" button — the
+on `aquaticmotiv.com//...` **except** the "Add to cart" button — the
 native store cart only works on the real store domain (see note at bottom).
 
 Key entry points:
-- Plant database hub: `/a/careguides/plants`
-- Invertebrate hub: `/a/careguides/inverts`
-- Plant finder (the quiz): `/a/careguides/finder`
+- Plant database hub: `/plants`
+- Invertebrate hub: `/inverts`
+- Plant finder (the quiz): `/finder`
 
 ## Priority 1 — species data accuracy (the most important QA)
 
@@ -44,7 +44,7 @@ place and it updates everywhere (page, finder, product metafield).
 
 ## Priority 2 — the plant finder
 
-Run `/a/careguides/finder` as a few real customer scenarios:
+Run `/finder` as a few real customer scenarios:
 - Low-tech 10g betta tank, no CO2 → should rank Anubias/Java fern/crypts/floaters,
   should NOT recommend demanding carpets or plants too tall for the tank
 - High-tech 20g with CO2, carpet goal → should rank carpeting plants
@@ -54,8 +54,8 @@ Check that the "why this fits" reasons and cautions read sensibly.
 ## Priority 3 — content & links
 
 - Care summaries and FAQs: accurate, on-brand, no awkward phrasing?
-- Facet pages (e.g. `/a/careguides/plants/low-light`,
-  `/a/careguides/inverts/best-algae-eaters`): right species listed?
+- Facet pages (e.g. `/plants/low-light`,
+  `/inverts/best-algae-eaters`): right species listed?
 - "Go deeper" links on species pages point to the correct existing care guide /
   blog post?
 - Anything factually wrong, or tone you'd change?

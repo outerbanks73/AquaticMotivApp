@@ -1,7 +1,7 @@
 # Plant Finder Spec
 
 The Plant Finder is the only interactive feature kept in the simplified care-guides app.
-It lives at `/a/careguides/finder` and is designed to support the care-guide hub, not become a full configurator.
+It lives at `/finder` and is designed to support the care-guide hub, not become a full configurator.
 
 ## Scope
 
@@ -12,7 +12,7 @@ It lives at `/a/careguides/finder` and is designed to support the care-guide hub
 
 ## Architecture
 
-- Page: `src/app/a/careguides/finder/page.tsx`
+- Page: `src/app/finder/page.tsx`
 - UI: `src/components/tools/PlantFinderWizard.tsx`
 - Engine: `src/lib/recommender/engine.ts`
 - Types: `src/lib/recommender/types.ts`

@@ -2,15 +2,15 @@
 
 SEO/GEO care-guide hub for [aquaticmotiv.com](https://aquaticmotiv.com). This is now a focused Next.js 16 static publishing surface for freshwater planted aquarium guides, plant species pages, invertebrate pages, and the Plant Finder quiz.
 
-The public app-proxy namespace is `/a/careguides/*`. The strategic canonical hub target remains `https://aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`, served from this app once the Shopify wiring is complete.
+The public care-guides site is standalone at `https://careguides.aquaticmotiv.com`. There is intentionally no Shopify-prefixed care-guide namespace and no default Shopify storefront routing integration.
 
 ## What This App Contains
 
-- `/a/careguides` — care-guide hub linking to Shopify blogs/pages and native species pages.
-- `/a/careguides/plants` — plant database, species pages, and plant facets.
-- `/a/careguides/inverts` — invertebrate database, species pages, and invert facets.
-- `/a/careguides/finder` — stateless Plant Finder quiz.
-- `/a/careguides/sitemap.xml` and `/a/careguides/llms.txt` — crawl/AI discovery helpers.
+- `/` — care-guide hub linking to Shopify blogs/pages and native species pages.
+- `/plants` — plant database, species pages, and plant facets.
+- `/inverts` — invertebrate database, species pages, and invert facets.
+- `/finder` — stateless Plant Finder quiz.
+- `/sitemap.xml` and `/llms.txt` — crawl/AI discovery helpers.
 - `src/data/plants`, `src/data/inverts`, `src/data/guides/hub.json` — versioned content/data sources.
 
 The old SaveAFish configurator, dashboard, auth, admin CMS, database, generic fish/product/glossary pages, and API routes have been removed.
@@ -50,4 +50,4 @@ SHOPIFY_STOREFRONT_TOKEN=your-storefront-token
 ASSET_ORIGIN=https://careguides.aquaticmotiv.com
 ```
 
-`ASSET_ORIGIN` is only needed for production app-proxy builds so `/_next/*` assets load from the origin host instead of the Shopify domain.
+`ASSET_ORIGIN` is optional in production and keeps asset URLs pinned to the standalone care-guides origin.

@@ -14,7 +14,7 @@
 > - **Owner model:** **Vikram builds/decides → Francisco operates** once documented. Build repeatable
 >   templates + checklists, not bespoke one-offs (Francisco maintains, doesn't build from scratch).
 > - **Effort:** S (<1h) · M (half-day) · L (1–2 days).
-> - **Care guides** are now built natively in this repo (**AquaticMotivApp**) at `/a/careguides` — see Tier 2.
+> - **Care guides** are now built natively in this repo (**AquaticMotivApp**) at `/` — see Tier 2.
 
 ---
 
@@ -69,8 +69,8 @@ cross-linked bidirectionally ("Shop [species]" ↔ "📖 Care guide"). Strongest
 
 ### 2a. Foundation (P0)
 - [ ] **Build/strengthen `/collections/assassin-snails`** (owns the 12,100/mo commercial term; fixes the 3→6 drop). `M`
-- [ ] **Official care-guides hub** — public canonical URL **`https://aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`**
-  (per the CLAUDE.md directive), **powered by the app content at `https://careguides.aquaticmotiv.com/a/careguides`**.
+- [ ] **Official care-guides hub** — public canonical URL **`https://careguides.aquaticmotiv.com`**
+  (per the CLAUDE.md directive), **powered by the app content at `https://careguides.aquaticmotiv.com`**.
   Surfaces guide cards across **all 3 stores** (app species guides + Shopify care *Pages* + Shopify *blog*
   guides — **no 301s on the converting Shopify guides, they stay live**) + native tools (Plants A–Z, Inverts
   A–Z, Plant Finder). **Full hub-and-spoke spec in §2e.** *(Landing-page redesign tracked in
@@ -108,8 +108,8 @@ cross-linked bidirectionally ("Shop [species]" ↔ "📖 Care guide"). Strongest
 ### 2e. Hub & internal-linking architecture (the CLAUDE.md directive) · P0
 
 > **Directive (CLAUDE.md):** *"Interlink the content that is ranking for snails / shrimps / crabs etc.
-> to the hub of the care guide (at this url: `https://aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`)
-> and it will display content from here (`https://careguides.aquaticmotiv.com/a/careguides`)."*
+> to the hub of the care guide (at this url: `https://careguides.aquaticmotiv.com`)
+> and it will display content from here (`https://careguides.aquaticmotiv.com`)."*
 
 **The model = one hub, many spokes.** The hub is the destination that accrues authority and gets cited by
 LLMs; every piece of ranking care content links **up** to it; the hub links **out** to everything worth
@@ -118,17 +118,17 @@ human-written) — **we do not consolidate; we interlink.** The only hard extern
 structure**.
 
 **Inventory the architecture must cover (verified 2026-06-23):**
-- **App / JSON (`/a/careguides/*`):** 162 live URLs — 102 plant + 25 invert species, ~31 filter pages, 4 hubs.
+- **App / JSON (`/`):** 162 live URLs — 102 plant + 25 invert species, ~31 filter pages, 4 hubs.
 - **Shopify Pages (`/pages/*`):** 55 total ≈ **~30 plant care-guide pages** + ~22 operational/policy + the
   duplicate hubs below.
 - **Shopify Blog articles (`/blogs/news/*`):** 69 — incl. **~15 snail guides, Neocaridina shrimp, Betta**,
   plant profiles, and how-to/science. *(2 empty blog containers = cruft to delete.)*
 
 **Problem 1 — hub fragmentation (resolve first).** Four URLs currently compete to be "the hub":
-`/a/careguides` (app), `/pages/care-guides`, `/pages/freshwater-aquarium-plant-care-guides` (both live Shopify),
-and the directive's `/freshwater-aquatic-planted-tank-guide` (404, doesn't exist yet).
-- [ ] **Create the canonical hub** at `aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`, served by the
-  app `/a/careguides` content (App Proxy / theme). `L`
+`/` (app), `/pages/care-guides`, `/pages/freshwater-aquarium-plant-care-guides` (both live Shopify),
+and the directive's `/` (404, doesn't exist yet).
+- [ ] **Create the canonical hub** at `careguides.aquaticmotiv.com`, served by the
+  app `/` content (App Proxy / theme). `L`
 - [ ] **301-redirect** the two duplicate Shopify hub pages (`/pages/care-guides`,
   `/pages/freshwater-aquarium-plant-care-guides`) into the canonical hub — kills cannibalization, keeps URLs clean. `S`
 

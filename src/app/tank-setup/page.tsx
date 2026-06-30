@@ -67,7 +67,7 @@ export default function TankSetupPage() {
         />
         <div className="relative mx-auto max-w-5xl px-4 py-12 sm:py-16">
           <nav className="text-sm text-leaf-50/80">
-            <Link href="/a/careguides" className="hover:text-gold-400">
+            <Link href="/" className="hover:text-gold-400">
               Care Guides
             </Link>{" "}
             <span aria-hidden>/</span> Tank Setup &amp; Maintenance
@@ -96,7 +96,7 @@ export default function TankSetupPage() {
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link
-              href="/a/careguides/finder"
+              href="/finder"
               className="rounded-full bg-gold-400 px-7 py-3 text-sm font-bold text-leaf-950 shadow-lg transition-transform hover:scale-[1.03]"
             >
               Take the Planted Tank Quiz →

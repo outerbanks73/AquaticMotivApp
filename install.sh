@@ -21,4 +21,4 @@ npm install
 node scripts/setup-env.js
 chmod +x start.sh stop.sh 2>/dev/null || true
 
-echo "Installation complete. Run ./start.sh and open http://localhost:3000/a/careguides."
+echo "Installation complete. Run ./start.sh and open http://localhost:3000."

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate src/data/guides/hub.json for the /a/careguides hub.
+"""Generate src/data/guides/hub.json for the / hub.
 
 Source of truth: AquaticMotiv Shopify blog articles (pulled via Admin GraphQL
 2026-06-21 — all 65 articles in the `news` blog, each with its CDN image).

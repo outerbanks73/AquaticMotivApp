@@ -79,7 +79,7 @@ export function PlantFacetPage({ facet, species, commerceByHandle, siblings }: P
           <nav aria-label="Breadcrumb" className="text-sm text-leaf-200">
             <ol className="flex flex-wrap items-center gap-1.5">
               <li>
-                <Link href="/a/careguides/plants" className="hover:text-white hover:underline">
+                <Link href="/plants" className="hover:text-white hover:underline">
                   Plants
                 </Link>
               </li>
@@ -130,7 +130,7 @@ export function PlantFacetPage({ facet, species, commerceByHandle, siblings }: P
                       <div className="flex flex-wrap items-baseline gap-x-3">
                         <h3 className="text-lg font-bold text-leaf-950">
                           <Link
-                            href={`/a/careguides/plants/${plant.slug}`}
+                            href={`/plants/${plant.slug}`}
                             className="hover:text-leaf-800 hover:underline"
                           >
                             {plant.commonName}
@@ -169,7 +169,7 @@ export function PlantFacetPage({ facet, species, commerceByHandle, siblings }: P
                           </span>
                         )}
                         <Link
-                          href={`/a/careguides/plants/${plant.slug}`}
+                          href={`/plants/${plant.slug}`}
                           className="text-sm font-semibold text-leaf-700 underline-offset-2 hover:underline"
                         >
                           Care profile →
@@ -191,7 +191,7 @@ export function PlantFacetPage({ facet, species, commerceByHandle, siblings }: P
             goals — with honest care expectations.
           </p>
           <Link
-            href={`/a/careguides/finder${facet.finderParams ? `?${facet.finderParams}` : ""}`}
+            href={`/finder${facet.finderParams ? `?${facet.finderParams}` : ""}`}
             className="mt-4 inline-block rounded-full bg-gold-400 px-6 py-2.5 text-sm font-semibold text-leaf-950 shadow-lg shadow-gold-400/30 transition-transform hover:scale-[1.02]"
           >
             Open the plant finder →
@@ -241,7 +241,7 @@ export function PlantFacetPage({ facet, species, commerceByHandle, siblings }: P
               {siblings.map((sibling) => (
                 <li key={sibling.slug}>
                   <Link
-                    href={`/a/careguides/plants/${sibling.slug}`}
+                    href={`/plants/${sibling.slug}`}
                     className="inline-block rounded-full border-2 border-leaf-100 bg-white px-4 py-1.5 text-sm font-medium text-leaf-900 transition-colors hover:border-leaf-400 hover:text-leaf-800"
                   >
                     {sibling.title}
