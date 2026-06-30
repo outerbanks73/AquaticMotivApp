@@ -124,7 +124,7 @@ const INTRO =
   "Photo-illustrated freshwater aquarium guides — plants, snails, shrimp, bettas, lighting, CO₂, and algae control — written by the growers who keep these species. Pick a collection, then narrow down to exactly what your tank needs.";
 
 export const metadata: Metadata = {
-  title: "Freshwater Aquarium Care Guides | Aquatic Motiv",
+  title: "Freshwater Aquarium Care Guides",
   description:
     "The Aquatic Motiv care guide library — photo-illustrated freshwater aquarium guides for plants, snails, shrimp, bettas, lighting, CO₂, and algae control, written by the growers who keep these species.",
   alternates: { canonical: HUB_CANONICAL_URL },
@@ -163,101 +163,77 @@ export default function CareGuidesHubPage() {
         })}
       />
 
-      {/* Hero — editorial botanical */}
-      <header className="relative overflow-hidden bg-leaf-950 text-white">
+      {/* Hero — compact storefront content header */}
+      <header className="relative overflow-hidden border-b border-leaf-100 bg-gradient-to-b from-leaf-50 to-white">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(ellipse 48% 55% at 10% 6%, #2d4830 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 92% 0%, #375a3a 0%, transparent 55%), radial-gradient(circle at 80% 95%, rgba(255,216,0,0.16) 0%, transparent 45%)",
-          }}
+          className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-white/70"
         />
-        <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:py-20 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-12">
-          {/* Left — editorial copy */}
-          <div>
-            <p className="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-gold-400">
-              <span aria-hidden className="h-px w-8 bg-gold-400/60" />
-              Aquatic Motiv care guide library
+        <div className="relative mx-auto grid max-w-5xl gap-8 px-4 py-8 sm:py-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+          <div className="max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-leaf-600">
+              AquaticMotiv care guide library
             </p>
-            <h1
-              className="mt-5 font-[family-name:var(--font-display)] font-semibold leading-[0.95] tracking-tight"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 4.25rem)" }}
-            >
-              Freshwater aquarium{" "}
-              <span className="italic text-gold-300">care guides</span>
+            <h1 className="mt-3 font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-leaf-950 sm:text-5xl">
+              Freshwater Aquarium Care Guides
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-leaf-50/80 sm:text-lg">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-leaf-900/75">
               {INTRO}
             </p>
 
-            {/* Depth at a glance */}
-            <dl className="mt-8 flex flex-wrap gap-x-9 gap-y-4">
+            <dl className="mt-6 flex flex-wrap gap-2">
               {[
                 [`${PLANT_COUNT + INVERT_COUNT}`, "species with care data"],
                 [`${totalGuides}`, "in-depth guides"],
                 ["1", "free planted-tank quiz"],
               ].map(([n, label]) => (
-                <div key={label}>
-                  <dt className="font-[family-name:var(--font-display)] text-4xl font-semibold text-gold-300">
-                    {n}
-                  </dt>
-                  <dd className="mt-1 text-sm text-leaf-50/70">{label}</dd>
+                <div
+                  key={label}
+                  className="rounded-full border border-leaf-200 bg-white px-4 py-2 text-sm shadow-sm"
+                >
+                  <dt className="inline font-bold text-leaf-950">{n}</dt>
+                  <dd className="inline text-leaf-700"> {label}</dd>
                 </div>
               ))}
             </dl>
 
-            {/* Primary CTA — Planted Tank Quiz (Plant Finder) */}
             <Link
               href="/a/careguides/finder"
-              className="group mt-9 flex max-w-md items-center gap-4 rounded-2xl border border-gold-400/40 bg-white/[0.06] p-4 ring-1 ring-inset ring-white/10 backdrop-blur transition-colors hover:border-gold-400 hover:bg-white/[0.1]"
+              className="group mt-7 inline-flex min-h-11 items-center gap-3 rounded-full bg-gold-400 px-5 py-3 text-sm font-bold text-leaf-950 shadow-sm transition-colors hover:bg-gold-500"
             >
               <span
                 aria-hidden
-                className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-gold-400 text-xl text-leaf-950 shadow-lg shadow-gold-400/30"
+                className="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-white/70 text-base"
               >
                 ✦
               </span>
-              <span className="min-w-0">
-                <span className="block font-[family-name:var(--font-display)] text-base font-semibold text-white">
-                  Take the Planted Tank Quiz
-                </span>
-                <span className="mt-0.5 block text-sm leading-snug text-leaf-50/70">
-                  Answer a few questions — we&rsquo;ll match the perfect plants
-                  to your setup
-                  <span aria-hidden className="ml-1 inline-block transition-transform group-hover:translate-x-1">→</span>
-                </span>
+              <span>
+                Take the Planted Tank Quiz
+                <span aria-hidden className="ml-1 inline-block transition-transform group-hover:translate-x-1">→</span>
               </span>
             </Link>
           </div>
 
-          {/* Right — overlapping aquascape collage (desktop only) */}
-          <div className="relative hidden h-[440px] lg:block" aria-hidden>
-            <div className="absolute right-2 top-1/2 h-44 w-44 -translate-y-1/2 rounded-full bg-gold-400/15 blur-3xl" />
+          <div className="hidden grid-cols-[1fr_8rem] gap-3 lg:grid" aria-hidden>
             {heroImages[0] && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={heroImages[0]}
                 alt=""
-                className="absolute right-4 top-0 h-64 w-52 rotate-[3deg] rounded-2xl object-cover shadow-2xl ring-1 ring-white/15"
+                className="h-72 w-full rounded-lg border border-leaf-100 bg-white object-cover shadow-sm"
               />
             )}
-            {heroImages[1] && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={heroImages[1]}
-                alt=""
-                className="absolute left-0 top-24 h-56 w-44 -rotate-[5deg] rounded-2xl object-cover shadow-2xl ring-1 ring-white/15"
-              />
-            )}
-            {heroImages[2] && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={heroImages[2]}
-                alt=""
-                className="absolute bottom-0 right-16 h-52 w-60 rotate-[1deg] rounded-2xl object-cover shadow-2xl ring-1 ring-white/15"
-              />
-            )}
+            <div className="grid gap-3">
+              {heroImages.slice(1, 3).map((src) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={src}
+                  src={src}
+                  alt=""
+                  className="h-[8.625rem] w-full rounded-lg border border-leaf-100 bg-white object-cover shadow-sm"
+                />
+              ))}
+            </div>
           </div>
         </div>
       </header>
