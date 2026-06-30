@@ -9,7 +9,7 @@ import {
 import {
   STORE_BASE,
   INVERTS_BASE,
-  CARE_BASE,
+  HUB_CANONICAL_URL,
   invertUrl,
   capitalize,
   roleLabel,
@@ -64,7 +64,7 @@ export default function InvertsHubPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "AquaticMotiv", url: `${STORE_BASE}/` },
-          { name: "Planted Tank Care Guide", url: CARE_BASE },
+          { name: "Planted Tank Care Guide", url: HUB_CANONICAL_URL },
           { name: "Invertebrates", url: INVERTS_BASE },
         ])}
       />

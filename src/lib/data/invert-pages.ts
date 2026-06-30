@@ -13,6 +13,7 @@ import {
 export {
   STORE_BASE,
   CARE_BASE,
+  HUB_CANONICAL_URL,
   PLANTS_BASE,
   FINDER_URL,
   capitalize,

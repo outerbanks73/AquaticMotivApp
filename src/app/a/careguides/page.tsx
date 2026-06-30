@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CARE_BASE, STORE_BASE } from "@/lib/data/plant-pages";
+import { HUB_CANONICAL_URL, STORE_BASE } from "@/lib/data/plant-pages";
 import { getAllPlants } from "@/lib/data/plants";
 import { getAllInverts } from "@/lib/data/inverts";
 import { breadcrumbSchema, collectionPageSchema } from "@/lib/seo/schema";
@@ -127,7 +127,7 @@ export const metadata: Metadata = {
   title: "Freshwater Aquarium Care Guides | Aquatic Motiv",
   description:
     "The Aquatic Motiv care guide library — photo-illustrated freshwater aquarium guides for plants, snails, shrimp, bettas, lighting, CO₂, and algae control, written by the growers who keep these species.",
-  alternates: { canonical: CARE_BASE },
+  alternates: { canonical: HUB_CANONICAL_URL },
 };
 
 export default function CareGuidesHubPage() {
@@ -147,14 +147,14 @@ export default function CareGuidesHubPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Aquatic Motiv", url: `${STORE_BASE}/` },
-          { name: "Freshwater Aquarium Care Guides", url: CARE_BASE },
+          { name: "Freshwater Aquarium Care Guides", url: HUB_CANONICAL_URL },
         ])}
       />
       <JsonLd
         data={collectionPageSchema({
           name: "Freshwater Aquarium Care Guides",
           description: INTRO,
-          url: CARE_BASE,
+          url: HUB_CANONICAL_URL,
           items: allGuides.map((g, i) => ({
             name: g.title,
             url: g.href,

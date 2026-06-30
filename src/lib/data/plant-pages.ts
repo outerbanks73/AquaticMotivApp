@@ -1,7 +1,7 @@
 // Shared helpers for the /a/careguides SEO page layer.
 // These pages are served on the store via a Shopify app proxy that covers ONLY
-// aquaticmotiv.com/a/careguides/*, so every canonical URL is absolute on the
-// store domain and internal links stay /a/careguides/-prefixed.
+// aquaticmotiv.com/a/careguides/*. The hub canonicals to the strategic
+// storefront URL; native species/tool pages stay in the app-proxy namespace.
 
 import type { PlantSpecies, PlantDifficulty } from "@/types/plants";
 import type { ShopifyProduct } from "@/types/shopify";
@@ -9,6 +9,7 @@ import { getAllShopifyProducts } from "@/lib/shopify/cache";
 
 export const STORE_BASE = "https://aquaticmotiv.com";
 export const CARE_BASE = `${STORE_BASE}/a/careguides`;
+export const HUB_CANONICAL_URL = `${STORE_BASE}/freshwater-aquatic-planted-tank-guide`;
 export const PLANTS_BASE = `${CARE_BASE}/plants`;
 export const FINDER_URL = `${CARE_BASE}/finder`;
 

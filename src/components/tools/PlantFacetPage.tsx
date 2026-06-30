@@ -6,6 +6,7 @@ import {
   STORE_BASE,
   PLANTS_BASE,
   CARE_BASE,
+  HUB_CANONICAL_URL,
   plantUrl,
   capitalize,
   firstSentence,
@@ -47,7 +48,7 @@ export function PlantFacetPage({ facet, species, commerceByHandle, siblings }: P
       <JsonLd
         data={breadcrumbSchema([
           { name: "AquaticMotiv", url: `${STORE_BASE}/` },
-          { name: "Planted Tank Care Guide", url: CARE_BASE },
+          { name: "Planted Tank Care Guide", url: HUB_CANONICAL_URL },
           { name: "Plants", url: PLANTS_BASE },
           { name: facet.title, url },
         ])}

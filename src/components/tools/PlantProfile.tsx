@@ -7,6 +7,7 @@ import {
   STORE_BASE,
   PLANTS_BASE,
   CARE_BASE,
+  HUB_CANONICAL_URL,
   plantUrl,
   capitalize,
   type PlantCommerceInfo,
@@ -75,7 +76,7 @@ export function PlantProfile({ plant, commerce, alternatives, facets, articles =
       <JsonLd
         data={breadcrumbSchema([
           { name: "AquaticMotiv", url: `${STORE_BASE}/` },
-          { name: "Planted Tank Care Guide", url: CARE_BASE },
+          { name: "Planted Tank Care Guide", url: HUB_CANONICAL_URL },
           { name: "Plants", url: PLANTS_BASE },
           { name: plant.commonName, url },
         ])}

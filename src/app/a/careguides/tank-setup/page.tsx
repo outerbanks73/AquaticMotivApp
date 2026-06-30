@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CARE_BASE, STORE_BASE } from "@/lib/data/plant-pages";
+import { CARE_BASE, HUB_CANONICAL_URL, STORE_BASE } from "@/lib/data/plant-pages";
 import { breadcrumbSchema, collectionPageSchema } from "@/lib/seo/schema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { GuideCardGrid, type HubGuide } from "@/components/tools/GuideCard";
@@ -38,7 +38,7 @@ export default function TankSetupPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Aquatic Motiv", url: `${STORE_BASE}/` },
-          { name: "Care Guides", url: CARE_BASE },
+          { name: "Care Guides", url: HUB_CANONICAL_URL },
           { name: "Tank Setup & Maintenance", url: SETUP_URL },
         ])}
       />
