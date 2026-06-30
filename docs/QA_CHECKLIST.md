@@ -1,23 +1,22 @@
 # Care Guides — QA checklist (for employees)
 
-The new care-guides system is built and running. It is **not yet visible to
-customers** on aquaticmotiv.com (no nav links, no homepage section). This is the
-QA window — please review thoroughly and log anything wrong or worth tweaking.
+The care-guides system is built and ready for Shopify app-proxy integration. Use this
+QA window to review thoroughly and log anything wrong or worth tweaking before adding
+store navigation and redirecting duplicate hub pages.
 
 ## Where to QA
 
 **Primary QA surface (use this):**
-`https://careguides.aquaticmotiv.com`
+`https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide`
 
-This serves the complete system (all ~159 pages), is search-engine-hidden, and is
-safe to click around freely. It is identical to what customers will eventually see
-on `aquaticmotiv.com//...` **except** the "Add to cart" button — the
-native store cart only works on the real store domain (see note at bottom).
+This is the canonical Shopify app-proxy URL. It serves the complete system
+(all ~159 pages) from the standalone origin while keeping public URLs on
+`aquaticmotiv.com`.
 
 Key entry points:
-- Plant database hub: `/plants`
-- Invertebrate hub: `/inverts`
-- Plant finder (the quiz): `/finder`
+- Plant database hub: `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/plants`
+- Invertebrate hub: `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/inverts`
+- Plant finder (the quiz): `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/finder`
 
 ## Priority 1 — species data accuracy (the most important QA)
 
@@ -72,9 +71,7 @@ Send the list back and changes get batched in.
 
 ## Known / not-yet-done (no need to report these)
 
-- "Add to cart" inert on the QA surface — works once live on the store domain.
-- No nav link / homepage entry yet — that's the deliberate final step (owner does
-  the theme edits after QA).
+- No nav link / homepage entry yet — that is the deliberate final step after app-proxy QA.
 - Product-page care badges not turned on yet (separate theme step).
 - A few published care-guide pages have factual errors already catalogued for
   correction (see docs/BLOG_CORRECTIONS_REVIEW.md) — pending owner approval.
@@ -83,4 +80,4 @@ Send the list back and changes get batched in.
 **Note on cart-flow QA:** the store's primary domain is currently set to
 `aquaticmotiv.myshopify.com` (see the open domain question with Vikram). Until that
 is resolved, full add-to-cart/checkout QA should be done on the live store domain,
-not the QA surface above. Content/data/finder QA does not depend on it.
+not the care-guide app surface above. Content/data/finder QA does not depend on it.

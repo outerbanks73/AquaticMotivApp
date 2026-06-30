@@ -1,12 +1,12 @@
 import Link from "next/link";
 
-// Minimal standalone header for the care-guides site.
-// In-system links are root-relative on careguides.aquaticmotiv.com; Shop is the store.
+// Minimal header for the care-guides app proxy surface.
+// In-system links point at the canonical Shopify app-proxy URL; Shop is the store.
 
 const NAV = [
-  { label: "Plants", href: "/plants" },
-  { label: "Invertebrates", href: "/inverts" },
-  { label: "Plant Finder", href: "/finder" },
+  { label: "Plants", href: "https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/plants" },
+  { label: "Invertebrates", href: "https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/inverts" },
+  { label: "Plant Finder", href: "https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/finder" },
 ];
 
 export function CareHeader() {
@@ -14,7 +14,7 @@ export function CareHeader() {
     <header className="border-b border-leaf-100 bg-white">
       <div className="mx-auto flex max-w-5xl items-center gap-6 px-4 py-3">
         <Link
-          href="/"
+          href="https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide"
           className="text-lg font-bold tracking-wide"
           aria-label="AquaticMotiv care guides"
         >

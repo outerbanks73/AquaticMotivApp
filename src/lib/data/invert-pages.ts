@@ -1,10 +1,11 @@
-// Shared helpers for the standalone /inverts SEO page layer.
-// Canonical care-guide URLs live on careguides.aquaticmotiv.com; commerce
-// links still point to aquaticmotiv.com.
+// Shared helpers for the /inverts SEO page layer.
+// Canonical care-guide URLs live on the Shopify app proxy; commerce links
+// still point to aquaticmotiv.com.
 
 import type { InvertSpecies, InvertDifficulty, InvertRole } from "@/types/inverts";
 import {
   CARE_BASE,
+  carePath,
   getPlantCommerceByHandle,
   type PlantCommerceInfo,
 } from "@/lib/data/plant-pages";
@@ -16,12 +17,16 @@ export {
   HUB_CANONICAL_URL,
   PLANTS_BASE,
   FINDER_URL,
+  carePath,
+  PLANTS_PATH,
+  FINDER_PATH,
   capitalize,
   firstSentence,
   leadSentences,
 } from "@/lib/data/plant-pages";
 
 export const INVERTS_BASE = `${CARE_BASE}/inverts`;
+export const INVERTS_PATH = carePath("inverts");
 
 export function invertUrl(slug: string): string {
   return `${INVERTS_BASE}/${slug}`;

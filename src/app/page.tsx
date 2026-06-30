@@ -34,10 +34,10 @@ const INVERT_COUNT = getAllInverts().length;
 // Plant/invert chips deep-link into the faceted database — these are the
 // "browse by what your tank needs" entry points and double as internal links.
 function plantChip(slug: string, label: string): BrowseChip {
-  return { label, href: `/plants/${slug}` };
+  return { label, href: `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/plants/${slug}` };
 }
 function invertChip(slug: string, label: string): BrowseChip {
-  return { label, href: `/inverts/${slug}` };
+  return { label, href: `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/inverts/${slug}` };
 }
 
 // Setup has no faceted DB, so its chips jump straight to the strongest guide
@@ -64,7 +64,7 @@ const METAS: MetaCategory[] = [
       category("beginner-plants")?.guides[0]?.image ??
       category("freshwater-plant-care")?.guides[0]?.image ??
       "",
-    seeAllHref: "/plants",
+    seeAllHref: "https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/plants",
     seeAllLabel: "Explore all plants & guides",
     countLabel: `${PLANT_COUNT} species · ${plantGuides.length} guides`,
     chips: [
@@ -84,7 +84,7 @@ const METAS: MetaCategory[] = [
     tagline:
       "Your cleanup crew — what each snail, shrimp, and critter does, how to keep it healthy, and which ones leave your plants alone.",
     image: category("snails-shrimp-inverts")?.guides[0]?.image ?? "",
-    seeAllHref: "/inverts",
+    seeAllHref: "https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/inverts",
     seeAllLabel: "Explore all critters & guides",
     countLabel: `${INVERT_COUNT} species · ${invertGuides.length} guides`,
     chips: [
@@ -104,7 +104,7 @@ const METAS: MetaCategory[] = [
     tagline:
       "From substrate and lighting to algae fixes and water changes — set the tank up right, then keep it thriving for the long haul.",
     image: category("planted-tank-setup")?.guides[0]?.image ?? "",
-    seeAllHref: "/tank-setup",
+    seeAllHref: "https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/tank-setup",
     seeAllLabel: `Browse all ${setupGuides.length} setup guides`,
     countLabel: `${setupGuides.length} guides`,
     chips: [
@@ -200,7 +200,7 @@ export default function CareGuidesHubPage() {
             </dl>
 
             <Link
-              href="/finder"
+              href="https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/finder"
               className="group mt-7 inline-flex min-h-11 items-center gap-3 rounded-full bg-gold-400 px-5 py-3 text-sm font-bold text-leaf-950 shadow-sm transition-colors hover:bg-gold-500"
             >
               <span

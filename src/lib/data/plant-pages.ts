@@ -1,16 +1,26 @@
-// Shared helpers for the standalone care-guides SEO page layer.
-// Public care-guide URLs live on careguides.aquaticmotiv.com. Shopify store
-// URLs stay on aquaticmotiv.com for products, collections, blogs, and pages.
+// Shared helpers for the care-guides SEO page layer.
+// Public care-guide URLs live on the Shopify app proxy; the standalone
+// careguides host remains the origin/build surface.
 
 import type { PlantSpecies, PlantDifficulty } from "@/types/plants";
 import type { ShopifyProduct } from "@/types/shopify";
 import { getAllShopifyProducts } from "@/lib/shopify/cache";
 
 export const STORE_BASE = "https://aquaticmotiv.com";
-export const CARE_BASE = "https://careguides.aquaticmotiv.com";
+export const CARE_PROXY_PATH = "/a/freshwater-aquatic-planted-tank-guide";
+export const ORIGIN_BASE = "https://careguides.aquaticmotiv.com";
+export const CARE_BASE = `${STORE_BASE}${CARE_PROXY_PATH}`;
 export const HUB_CANONICAL_URL = CARE_BASE;
 export const PLANTS_BASE = `${CARE_BASE}/plants`;
 export const FINDER_URL = `${CARE_BASE}/finder`;
+
+export function carePath(path = ""): string {
+  if (!path || path === "/") return CARE_PROXY_PATH;
+  return `${CARE_PROXY_PATH}/${path.replace(/^\/+/, "")}`;
+}
+
+export const PLANTS_PATH = carePath("plants");
+export const FINDER_PATH = carePath("finder");
 
 export function plantUrl(slug: string): string {
   return `${PLANTS_BASE}/${slug}`;

@@ -13,13 +13,13 @@ export default function NotFound() {
       </p>
       <div className="flex flex-wrap justify-center gap-3">
         <Link
-          href="/plants"
+          href="https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/plants"
           className="rounded-lg bg-aqua-600 px-4 py-2 text-sm font-medium text-white hover:bg-aqua-700"
         >
           Plant Guides
         </Link>
         <Link
-          href="/inverts"
+          href="https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/inverts"
           className="rounded-lg bg-ocean-800 px-4 py-2 text-sm font-medium text-white hover:bg-ocean-900"
         >
           Invertebrate Guides

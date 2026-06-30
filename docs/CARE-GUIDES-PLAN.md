@@ -12,12 +12,11 @@ Shopify store at the real URL.
 ## The two URLs (don't confuse them)
 
 - **Canonical public hub — the SEO target:**
-  `https://careguides.aquaticmotiv.com`
-  This is what Google/AI should index and what ranking snail/shrimp/plant content links into.
-  Currently 404 — it goes live via Shopify **after** content QA.
+  `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide`
+  This is what Google/AI should index and what ranking snail/shrimp/plant content links into. The `/a` segment is required by Shopify app proxy routing.
 - **Build origin — where we work, not the canonical:**
   `https://careguides.aquaticmotiv.com`
-  The live Next.js app on the VPS (`careguides` in PM2).
+  The live Next.js app on the VPS (`careguides` in PM2), used as the app-proxy render origin.
 
 ## In scope
 

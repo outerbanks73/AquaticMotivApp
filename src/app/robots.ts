@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { CARE_BASE } from "@/lib/data/plant-pages";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://careguides.aquaticmotiv.com/sitemap.xml",
+    sitemap: `${CARE_BASE}/sitemap.xml`,
   };
 }

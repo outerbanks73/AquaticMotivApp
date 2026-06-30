@@ -24,8 +24,8 @@ Online Store → Themes → ⋯ → Edit code → Add a new template → robots.
 (if `robots.txt.liquid` doesn't exist yet). Append at the end:
 
 ```liquid
-{%- comment -%} Care guides & finder sitemap (standalone) {%- endcomment -%}
-Sitemap: https://aquaticmotiv.com/sitemap.xml
+{%- comment -%} Care guides & finder sitemap (Shopify app proxy) {%- endcomment -%}
+Sitemap: https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/sitemap.xml
 ```
 
 ## 4. Product-page care badges (10 min)
@@ -40,4 +40,4 @@ so the hub becomes the bridge between the classic guides and the new system.
 ## What stays mine (no action needed from you)
 - Blog/pages corrections + reverse links: applied via Admin API **only after
   your approval** of docs/BLOG_CORRECTIONS_REVIEW.md
-- Server, standalone, sitemap, Search Console monitoring
+- Server origin, Shopify app proxy, sitemap, Search Console monitoring

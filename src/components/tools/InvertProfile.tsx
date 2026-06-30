@@ -137,7 +137,7 @@ export function InvertProfile({
           <nav aria-label="Breadcrumb" className="text-sm text-leaf-200">
             <ol className="flex flex-wrap items-center gap-1.5">
               <li>
-                <Link href="/inverts" className="hover:text-white hover:underline">
+                <Link href="https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/inverts" className="hover:text-white hover:underline">
                   Invertebrates
                 </Link>
               </li>
@@ -269,7 +269,7 @@ export function InvertProfile({
                 {alternatives.map(({ invert: alt, commerce: altInfo }) => (
                   <li key={alt.slug}>
                     <Link
-                      href={`/inverts/${alt.slug}`}
+                      href={`https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/inverts/${alt.slug}`}
                       className="block h-full rounded-xl border border-leaf-100 bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:border-leaf-400 hover:shadow-md"
                     >
                       <span className="block font-semibold text-leaf-950">
@@ -359,7 +359,7 @@ export function InvertProfile({
               {facets.map((facet) => (
                 <li key={facet.slug}>
                   <Link
-                    href={`/inverts/${facet.slug}`}
+                    href={`https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/inverts/${facet.slug}`}
                     className="inline-block rounded-full border-2 border-leaf-100 bg-white px-4 py-1.5 text-sm font-medium text-leaf-900 transition-colors hover:border-leaf-400 hover:text-leaf-800"
                   >
                     {facet.title}
@@ -380,7 +380,7 @@ export function InvertProfile({
               {relatedPlants.map((plant) => (
                 <li key={plant.slug}>
                   <Link
-                    href={`/plants/${plant.slug}`}
+                    href={`https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/plants/${plant.slug}`}
                     className="inline-block rounded-full border-2 border-leaf-100 bg-white px-4 py-1.5 text-sm font-medium text-leaf-900 transition-colors hover:border-leaf-400 hover:text-leaf-800"
                   >
                     {plant.commonName}
@@ -401,13 +401,13 @@ export function InvertProfile({
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <Link
-              href="/plants"
+              href="https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/plants"
               className="inline-block rounded-full bg-gold-400 px-6 py-2.5 text-sm font-semibold text-leaf-950 shadow-lg shadow-gold-400/30 transition-transform hover:scale-[1.02]"
             >
               Browse the plant database →
             </Link>
             <Link
-              href="/finder"
+              href="https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/finder"
               className="inline-block rounded-full border-2 border-leaf-400/60 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:border-leaf-400"
             >
               Open the plant finder →

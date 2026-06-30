@@ -6,21 +6,26 @@ Load SE Ranking, Shopify MCP connectors, and SEO skills only when a task needs t
 
 This repo is the focused Aquatic Motiv care-guides SEO/GEO app. It exists to publish and maintain a crawlable, mobile-friendly freshwater planted aquarium guide hub and supporting plant/invertebrate species pages.
 
-The active public surface is the standalone care-guides origin:
+The active public surface is the Shopify app-proxy URL:
+
+`https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide`
+
+The `/a` path segment is intentional. Shopify app proxies must live under a Shopify-reserved proxy prefix such as `/a`; do not remove or "clean up" this segment when working on canonical URLs, sitemaps, redirects, internal links, or docs.
+
+The app origin/build surface remains:
 
 `https://careguides.aquaticmotiv.com`
-
-There is intentionally no Shopify-prefixed care-guide namespace and no default Shopify storefront routing integration.
 
 Canonical plant care guides target:
 
 - Title: `Aquarium Plants: Care Guides, Setup & Troubleshooting`
-- URL: `https://careguides.aquaticmotiv.com`
+- URL: `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide`
 
 Shopify integration rule:
 
-- AquaticMotivApp is intentionally not plugged into Shopify storefront routing by default.
-- Do not load Shopify MCP connectors, inspect Shopify routing settings, create Shopify pages/redirects, or attempt Shop integration unless the user explicitly asks for Shopify integration help in that turn.
+- AquaticMotivApp is integrated into Shopify through the app proxy at `/a/freshwater-aquatic-planted-tank-guide`.
+- Do not replace the Shopify proxy path with the standalone origin in SEO metadata.
+- Load Shopify MCP connectors, inspect Shopify routing settings, create Shopify pages/redirects, or attempt Shop integration only when the user explicitly asks for Shopify integration help in that turn.
 
 ## Current Scope
 
@@ -52,7 +57,7 @@ Data access functions live in `src/lib/data/`. The Plant Finder uses `src/lib/re
 
 ## Component Organization
 
-- `src/app/` — all public standalone care-guide routes.
+- `src/app/` — app routes rendered by the standalone origin and surfaced publicly through the Shopify app proxy.
 - `src/components/tools/` — hub, card, species, facet, and finder UI.
 - `src/components/layout/CareHeader.tsx` and `CareFooter.tsx` — minimal standalone site chrome.
 - `src/lib/shopify/` — Storefront read-only product fetch/normalization.

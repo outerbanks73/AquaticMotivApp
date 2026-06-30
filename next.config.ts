@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
-// Production can pin Next.js assets and image optimizer requests to the
-// standalone care-guides origin. Unset in dev.
+// Production pins Next.js assets and image optimizer requests to the
+// standalone origin while public pages canonicalize to the Shopify app proxy.
 const assetOrigin = process.env.ASSET_ORIGIN;
 
 const nextConfig: NextConfig = {
@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
   ...(assetOrigin ? { assetPrefix: assetOrigin } : {}),
   turbopack: {
     root: __dirname,
+  },
+  async rewrites() {
+    return [
+      { source: "/a/freshwater-aquatic-planted-tank-guide", destination: "/" },
+      { source: "/a/freshwater-aquatic-planted-tank-guide/:path*", destination: "/:path*" },
+    ];
   },
   images: {
     ...(assetOrigin ? { path: `${assetOrigin}/_next/image` } : {}),

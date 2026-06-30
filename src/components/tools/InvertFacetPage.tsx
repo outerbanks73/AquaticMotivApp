@@ -80,7 +80,7 @@ export function InvertFacetPage({ facet, species, commerceByHandle, siblings }: 
           <nav aria-label="Breadcrumb" className="text-sm text-leaf-200">
             <ol className="flex flex-wrap items-center gap-1.5">
               <li>
-                <Link href="/inverts" className="hover:text-white hover:underline">
+                <Link href="https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/inverts" className="hover:text-white hover:underline">
                   Invertebrates
                 </Link>
               </li>
@@ -131,7 +131,7 @@ export function InvertFacetPage({ facet, species, commerceByHandle, siblings }: 
                       <div className="flex flex-wrap items-baseline gap-x-3">
                         <h3 className="text-lg font-bold text-leaf-950">
                           <Link
-                            href={`/inverts/${invert.slug}`}
+                            href={`https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/inverts/${invert.slug}`}
                             className="hover:text-leaf-800 hover:underline"
                           >
                             {invert.commonName}
@@ -170,7 +170,7 @@ export function InvertFacetPage({ facet, species, commerceByHandle, siblings }: 
                           </span>
                         )}
                         <Link
-                          href={`/inverts/${invert.slug}`}
+                          href={`https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/inverts/${invert.slug}`}
                           className="text-sm font-semibold text-leaf-700 underline-offset-2 hover:underline"
                         >
                           Care profile →
@@ -194,13 +194,13 @@ export function InvertFacetPage({ facet, species, commerceByHandle, siblings }: 
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
             <Link
-              href="/plants"
+              href="https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/plants"
               className="inline-block rounded-full bg-gold-400 px-6 py-2.5 text-sm font-semibold text-leaf-950 shadow-lg shadow-gold-400/30 transition-transform hover:scale-[1.02]"
             >
               Browse the plant database →
             </Link>
             <Link
-              href="/finder"
+              href="https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/finder"
               className="inline-block rounded-full border-2 border-leaf-400/60 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:border-leaf-400"
             >
               Open the plant finder →
@@ -251,7 +251,7 @@ export function InvertFacetPage({ facet, species, commerceByHandle, siblings }: 
               {siblings.map((sibling) => (
                 <li key={sibling.slug}>
                   <Link
-                    href={`/inverts/${sibling.slug}`}
+                    href={`https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/inverts/${sibling.slug}`}
                     className="inline-block rounded-full border-2 border-leaf-100 bg-white px-4 py-1.5 text-sm font-medium text-leaf-900 transition-colors hover:border-leaf-400 hover:text-leaf-800"
                   >
                     {sibling.title}

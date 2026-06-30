@@ -2,15 +2,15 @@
 
 SEO/GEO care-guide hub for [aquaticmotiv.com](https://aquaticmotiv.com). This is now a focused Next.js 16 static publishing surface for freshwater planted aquarium guides, plant species pages, invertebrate pages, and the Plant Finder quiz.
 
-The public care-guides site is standalone at `https://careguides.aquaticmotiv.com`. There is intentionally no Shopify-prefixed care-guide namespace and no default Shopify storefront routing integration.
+The public care-guides site is served through the Shopify app proxy at `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide`. The `/a` path segment is intentional and required by Shopify app proxy routing. The standalone origin remains `https://careguides.aquaticmotiv.com` for builds, assets, and proxy rendering.
 
 ## What This App Contains
 
-- `/` — care-guide hub linking to Shopify blogs/pages and native species pages.
-- `/plants` — plant database, species pages, and plant facets.
-- `/inverts` — invertebrate database, species pages, and invert facets.
-- `/finder` — stateless Plant Finder quiz.
-- `/sitemap.xml` and `/llms.txt` — crawl/AI discovery helpers.
+- `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide` — care-guide hub linking to Shopify blogs/pages and native species pages.
+- `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/plants` — plant database, species pages, and plant facets.
+- `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/inverts` — invertebrate database, species pages, and invert facets.
+- `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/finder` — stateless Plant Finder quiz.
+- `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/sitemap.xml` and `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide/llms.txt` — crawl/AI discovery helpers.
 - `src/data/plants`, `src/data/inverts`, `src/data/guides/hub.json` — versioned content/data sources.
 
 The old SaveAFish configurator, dashboard, auth, admin CMS, database, generic fish/product/glossary pages, and API routes have been removed.
@@ -50,4 +50,4 @@ SHOPIFY_STOREFRONT_TOKEN=your-storefront-token
 ASSET_ORIGIN=https://careguides.aquaticmotiv.com
 ```
 
-`ASSET_ORIGIN` is optional in production and keeps asset URLs pinned to the standalone care-guides origin.
+`ASSET_ORIGIN` is optional in production and keeps asset URLs pinned to the standalone origin while canonical URLs point at the Shopify app proxy.
