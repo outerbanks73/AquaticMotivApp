@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
   },
   async rewrites() {
     return [
+      { source: "/a/careguides", destination: "/" },
+      { source: "/a/careguides/:path*", destination: "/:path*" },
       { source: "/a/freshwater-aquatic-planted-tank-guide", destination: "/" },
       { source: "/a/freshwater-aquatic-planted-tank-guide/:path*", destination: "/:path*" },
     ];
