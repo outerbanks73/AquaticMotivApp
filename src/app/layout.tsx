@@ -5,11 +5,11 @@ import { CareHeader } from "@/components/layout/CareHeader";
 
 export const metadata: Metadata = {
   title: {
-    default: "Freshwater Aquarium Care Guides | Aquatic Motiv",
+    default: "Aquarium Plants: Care Guides, Setup & Troubleshooting",
     template: "%s | Aquatic Motiv",
   },
   description:
-    "Freshwater aquarium plant and invertebrate care guides from Aquatic Motiv.",
+    "Aquarium plant care guides, planted-tank setup help, and supporting invertebrate care guides from Aquatic Motiv.",
 };
 
 export default function RootLayout({

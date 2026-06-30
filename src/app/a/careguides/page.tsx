@@ -57,7 +57,7 @@ const FEATURED = 8;
 const METAS: MetaCategory[] = [
   {
     id: "plant-care",
-    title: "Plant Care",
+    title: "Aquarium Plant Care",
     tagline:
       "Pick plants that match your light, tank size, and experience — every species with verified care data you can check before you buy.",
     image:
@@ -80,7 +80,7 @@ const METAS: MetaCategory[] = [
   },
   {
     id: "critter-care",
-    title: "Snail, Shrimp & Critter Care",
+    title: "Snail, Shrimp & Invertebrate Care",
     tagline:
       "Your cleanup crew — what each snail, shrimp, and critter does, how to keep it healthy, and which ones leave your plants alone.",
     image: category("snails-shrimp-inverts")?.guides[0]?.image ?? "",
@@ -121,12 +121,14 @@ const METAS: MetaCategory[] = [
 ];
 
 const INTRO =
-  "Photo-illustrated freshwater aquarium guides — plants, snails, shrimp, bettas, lighting, CO₂, and algae control — written by the growers who keep these species. Pick a collection, then narrow down to exactly what your tank needs.";
+  "Photo-illustrated aquarium plant care guides, planted-tank setup help, and troubleshooting from the growers who keep these species — with supporting snail, shrimp, and invertebrate care organized as a separate freshwater cleanup-crew cluster.";
+
+const HUB_TITLE = "Aquarium Plants: Care Guides, Setup & Troubleshooting";
 
 export const metadata: Metadata = {
-  title: "Freshwater Aquarium Care Guides",
+  title: { absolute: HUB_TITLE },
   description:
-    "The Aquatic Motiv care guide library — photo-illustrated freshwater aquarium guides for plants, snails, shrimp, bettas, lighting, CO₂, and algae control, written by the growers who keep these species.",
+    "Aquarium plant care guides, planted-tank setup help, and troubleshooting from Aquatic Motiv, with supporting snail, shrimp, and invertebrate care sections.",
   alternates: { canonical: HUB_CANONICAL_URL },
 };
 
@@ -147,12 +149,12 @@ export default function CareGuidesHubPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Aquatic Motiv", url: `${STORE_BASE}/` },
-          { name: "Freshwater Aquarium Care Guides", url: HUB_CANONICAL_URL },
+          { name: HUB_TITLE, url: HUB_CANONICAL_URL },
         ])}
       />
       <JsonLd
         data={collectionPageSchema({
-          name: "Freshwater Aquarium Care Guides",
+          name: HUB_TITLE,
           description: INTRO,
           url: HUB_CANONICAL_URL,
           items: allGuides.map((g, i) => ({
@@ -175,7 +177,7 @@ export default function CareGuidesHubPage() {
               AquaticMotiv care guide library
             </p>
             <h1 className="mt-3 font-[family-name:var(--font-display)] text-4xl font-semibold leading-tight text-leaf-950 sm:text-5xl">
-              Freshwater Aquarium Care Guides
+              {HUB_TITLE}
             </h1>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-leaf-900/75">
               {INTRO}

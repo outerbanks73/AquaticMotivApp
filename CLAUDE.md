@@ -10,6 +10,11 @@ The active public namespace is `/a/careguides/*`, served through the Shopify app
 
 `https://aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`
 
+Canonical plant care guides target:
+
+- Title: `Aquarium Plants: Care Guides, Setup & Troubleshooting`
+- URL: `https://aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`
+
 The app origin/build surface is:
 
 `https://careguides.aquaticmotiv.com/a/careguides`
