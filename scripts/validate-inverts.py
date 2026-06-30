@@ -12,6 +12,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 species = json.load(open(os.path.join(ROOT, "src/data/inverts/species.json")))
 plants = {p["slug"] for p in json.load(open(os.path.join(ROOT, "src/data/plants/species.json")))}
+article_links = json.load(open(os.path.join(ROOT, "src/data/inverts/article-links.json")))
+care_page_links = json.load(open(os.path.join(ROOT, "src/data/inverts/care-page-links.json")))
 catalog = {}
 if os.path.exists("/tmp/aquaticmotiv-catalog.json"):
     catalog = {p["handle"]: p for p in json.load(open("/tmp/aquaticmotiv-catalog.json"))}
@@ -38,9 +40,37 @@ required = ["slug", "commonName", "scientificName", "synonyms", "type", "difficu
 
 errors = []
 slugs = [s["slug"] for s in species]
+slug_set = set(slugs)
 dupes = [s for s, c in Counter(slugs).items() if c > 1]
 if dupes:
     errors.append(f"duplicate slugs: {dupes}")
+
+article_link_slugs = set(article_links)
+missing_article_keys = sorted(slug_set - article_link_slugs)
+unknown_article_keys = sorted(article_link_slugs - slug_set)
+if missing_article_keys:
+    errors.append(f"article-links missing species keys: {missing_article_keys}")
+if unknown_article_keys:
+    errors.append(f"article-links unknown species keys: {unknown_article_keys}")
+
+care_page_slugs = {k for k in care_page_links if not k.startswith("_")}
+unknown_care_page_keys = sorted(care_page_slugs - slug_set)
+if unknown_care_page_keys:
+    errors.append(f"care-page-links unknown species keys: {unknown_care_page_keys}")
+
+for sl, links in article_links.items():
+    if not isinstance(links, list):
+        errors.append(f"{sl}: article-links value must be a list")
+        continue
+    for link in links:
+        if not (isinstance(link, dict) and link.get("title") and link.get("handle")):
+            errors.append(f"{sl}: malformed article link {link}")
+
+for sl, handle in care_page_links.items():
+    if sl.startswith("_"):
+        continue
+    if not isinstance(handle, str) or not handle:
+        errors.append(f"{sl}: malformed care-page handle {handle!r}")
 
 for s in species:
     sl = s.get("slug", "<missing slug>")

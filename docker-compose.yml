@@ -1,50 +1,13 @@
 services:
-  postgres:
-    image: postgres:16-alpine
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: saveafish
-      POSTGRES_PASSWORD: saveafish
-      POSTGRES_DB: saveafishworks
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U saveafish -d saveafishworks"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-
-  typesense:
-    image: typesense/typesense:27.1
-    restart: unless-stopped
-    environment:
-      TYPESENSE_API_KEY: ${TYPESENSE_API_KEY:-change-me-typesense-api-key}
-      TYPESENSE_DATA_DIR: /data
-    ports:
-      - "8108:8108"
-    volumes:
-      - tsdata:/data
-
   app:
     build:
       context: .
       dockerfile: Dockerfile
     restart: unless-stopped
-    depends_on:
-      postgres:
-        condition: service_healthy
-      typesense:
-        condition: service_started
     ports:
       - "3000:3000"
     env_file:
       - .env
-    environment:
-      DATABASE_URL: postgresql://saveafish:saveafish@postgres:5432/saveafishworks?schema=public
-      TYPESENSE_HOST: typesense
-      TYPESENSE_PORT: "8108"
 
   caddy:
     image: caddy:2-alpine
@@ -60,7 +23,5 @@ services:
       - caddy_config:/config
 
 volumes:
-  pgdata:
-  tsdata:
   caddy_data:
   caddy_config:

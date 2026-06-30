@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://learn.aquaticmotiv.com/sitemap.xml",
+    sitemap: "https://aquaticmotiv.com/a/careguides/sitemap.xml",
   };
 }

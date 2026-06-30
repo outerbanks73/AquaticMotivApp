@@ -1,6 +1,12 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getAllInverts, getInvertBySlug, getInvertSlugs } from "@/lib/data/inverts";
+import {
+  getAllInverts,
+  getArticlesForInvert,
+  getCarePageForInvert,
+  getInvertBySlug,
+  getInvertSlugs,
+} from "@/lib/data/inverts";
 import { getPlantBySlug } from "@/lib/data/plants";
 import {
   getActiveInvertFacets,
@@ -104,6 +110,8 @@ export default async function InvertSlugRoute({ params }: Props) {
       commerce={commerce}
       alternatives={alternatives}
       facets={getInvertFacetsForSpecies(invert)}
+      articles={getArticlesForInvert(invert.slug)}
+      carePageHandle={getCarePageForInvert(invert.slug)}
       relatedPlants={relatedPlants}
     />
   );

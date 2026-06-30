@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { InvertSpecies } from "@/types/inverts";
 import type { InvertFacet } from "@/lib/data/invert-facets";
+import type { InvertArticleLink } from "@/lib/data/inverts";
 import {
   STORE_BASE,
   INVERTS_BASE,
@@ -39,6 +40,9 @@ interface Props {
   commerce: InvertCommerceInfo | null;
   alternatives: Alternative[];
   facets: InvertFacet[];
+  articles?: InvertArticleLink[];
+  /** Handle of the live /pages/ care guide for this species, when one exists */
+  carePageHandle?: string;
   relatedPlants: RelatedPlantLink[];
 }
 
@@ -61,6 +65,8 @@ export function InvertProfile({
   commerce,
   alternatives,
   facets,
+  articles = [],
+  carePageHandle,
   relatedPlants,
 }: Props) {
   const url = invertUrl(invert.slug);
@@ -302,6 +308,43 @@ export function InvertProfile({
                 </div>
               ))}
             </div>
+          </section>
+        )}
+
+        {/* Deep-dive guides: the live /pages/ care guide + blog posts (same-domain) */}
+        {(articles.length > 0 || carePageHandle) && (
+          <section aria-labelledby="guides" className="mt-10">
+            <h2 id="guides" className="text-xl font-bold text-leaf-950">
+              Go deeper
+            </h2>
+            <ul className="mt-3 space-y-2">
+              {carePageHandle && (
+                <li>
+                  <a
+                    href={`${STORE_BASE}/pages/${carePageHandle}`}
+                    className="group flex items-center gap-3 rounded-xl border border-leaf-200 bg-leaf-50 px-4 py-3 transition-colors hover:border-leaf-400"
+                  >
+                    <span className="text-sm font-semibold text-leaf-900 group-hover:text-leaf-800">
+                      Full {invert.commonName} care guide
+                    </span>
+                    <span aria-hidden className="ml-auto text-leaf-600">→</span>
+                  </a>
+                </li>
+              )}
+              {articles.map((article) => (
+                <li key={article.handle}>
+                  <a
+                    href={`${STORE_BASE}/blogs/news/${article.handle}`}
+                    className="group flex items-center gap-3 rounded-xl border border-leaf-100 bg-white px-4 py-3 transition-colors hover:border-leaf-400"
+                  >
+                    <span className="text-sm font-semibold text-leaf-950 group-hover:text-leaf-800">
+                      {article.title}
+                    </span>
+                    <span aria-hidden className="ml-auto text-leaf-600">→</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </section>
         )}
 

@@ -1,4 +1,9 @@
-import type { TankSize } from "@/types/configurator";
+export interface TankSize {
+  id: string;
+  label: string;
+  gallons: number;
+  dimensions: string;
+}
 
 export const TANK_SIZES: TankSize[] = [
   { id: "5g", label: "5 Gallon Nano", gallons: 5, dimensions: '16" x 8" x 10"' },

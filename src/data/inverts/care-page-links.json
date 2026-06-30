@@ -1,0 +1,3 @@
+{
+  "_comment": "Invert slug -> live Shopify care-guide Page handle (aquaticmotiv.com/pages/{handle}). No invert-specific Shopify Pages are mapped yet; published invert coverage currently lives in blog articles listed in src/data/inverts/article-links.json."
+}

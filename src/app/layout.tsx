@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SiteChrome } from "@/components/layout/SiteChrome";
-import { SessionProvider } from "@/components/providers/SessionProvider";
+import { CareFooter } from "@/components/layout/CareFooter";
+import { CareHeader } from "@/components/layout/CareHeader";
 
 export const metadata: Metadata = {
-  title: "Aquatic Motiv - Your Complete Aquarium Resource",
+  title: {
+    default: "Freshwater Aquarium Care Guides | Aquatic Motiv",
+    template: "%s | Aquatic Motiv",
+  },
   description:
-    "Expert aquarium guides, fish profiles, product reviews, and care tips. Everything you need to build and maintain a thriving aquarium.",
+    "Freshwater aquarium plant and invertebrate care guides from Aquatic Motiv.",
 };
 
 export default function RootLayout({
@@ -16,10 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen flex-col antialiased">
-        <SessionProvider>
-          <SiteChrome>{children}</SiteChrome>
-        </SessionProvider>
+      <body className="flex min-h-screen flex-col bg-white antialiased">
+        <CareHeader />
+        {children}
+        <CareFooter />
       </body>
     </html>
   );

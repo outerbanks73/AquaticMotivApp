@@ -12,8 +12,8 @@ from collections import Counter
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 species = json.load(open(os.path.join(ROOT, "src/data/plants/species.json")))
-guides = {g["slug"] for g in json.load(open(os.path.join(ROOT, "src/data/guides/guides.json")))}
-fish = {f["slug"] for f in json.load(open(os.path.join(ROOT, "src/data/fish/species.json")))}
+GUIDE_WHITELIST = ['aquarium-maintenance-schedule', 'aquarium-water-chemistry', 'betta-fish-care', 'community-tank-guide', 'how-to-cycle-aquarium', 'planted-tank-setup']
+FISH_WHITELIST = ['amano-shrimp', 'angelfish', 'betta-splendens', 'cardinal-tetra', 'cherry-barb', 'corydoras-catfish', 'dwarf-gourami', 'german-blue-ram', 'guppy', 'mystery-snail', 'neon-tetra', 'oscar', 'plecostomus', 'zebra-danio']
 catalog = {}
 if os.path.exists("/tmp/aquaticmotiv-catalog.json"):
     catalog = {p["handle"]: p for p in json.load(open("/tmp/aquaticmotiv-catalog.json"))}
@@ -67,11 +67,11 @@ for s in species:
     if h and catalog and h not in catalog:
         errors.append(f"{sl}: handle NOT in catalog snapshot: {h}")
     for g in s.get("relatedGuides", []):
-        if g not in guides:
-            errors.append(f"{sl}: unknown guide {g}")
+        if g not in GUIDE_WHITELIST:
+            errors.append(f"{sl}: guide not in whitelist: {g}")
     for f_ in s.get("relatedFish", []):
-        if f_ not in fish:
-            errors.append(f"{sl}: unknown fish {f_}")
+        if f_ not in FISH_WHITELIST:
+            errors.append(f"{sl}: fish not in whitelist: {f_}")
 
 print(f"species: {len(species)}")
 print(f"with SKU: {sum(1 for s in species if s.get('shopifyHandle'))}")
