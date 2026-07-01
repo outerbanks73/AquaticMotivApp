@@ -28,4 +28,4 @@ Use a native Shopify page for the care-guide hub. The old standalone careguides 
 
 ## Next Roadmap Step
 
-Start with snail-based content because it already has ranking value. Add one or two body links back to the hub near the bottom of each relevant article, then add a consistent "If you like this article, try one of these" block with three or four related suggestions.
+Start with snail-based content because it already has ranking value. Use `docs/internal-linking/snail-invert-link-map.csv` and `docs/internal-linking/snail-pilot-snippets.md` for the first manual edits, then process approved five-page batches with temporary Shopify review copies.

@@ -23,6 +23,7 @@ The old `careguides.aquaticmotiv.com` app is removed from this repo. Future work
 - Add one or two contextual links from each relevant article/page back to the hub.
 - Add a consistent related-article block with three or four suggestions.
 - Keep anchor text natural and varied.
+- Use `docs/internal-linking/` as the source of truth for link targets, pilot snippets, and batch status.
 
 ## Phase 3: Content Expansion
 

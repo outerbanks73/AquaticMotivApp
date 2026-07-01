@@ -7,6 +7,7 @@ This repo now tracks the Shopify-hosted care guide landing page and supporting S
 - Live Shopify page: `https://aquaticmotiv.com/pages/freshwater-aquatic-planted-tank-guide`
 - SEO redirect target: `https://aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`
 - Editable page body source: `shopify/pages/freshwater-aquatic-planted-tank-guide.html`
+- Internal-linking workflow: `docs/internal-linking/`
 
 The Shopify page, not a standalone app or app proxy route, is the current production surface. Keep `freshwater-aquatic-planted-tank-guide` in the public URL and page copy.
 
