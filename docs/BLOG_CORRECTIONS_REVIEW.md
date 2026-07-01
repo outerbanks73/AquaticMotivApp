@@ -23,15 +23,14 @@ these). If pages are kept, these need fixing:
    selling point is staying red in modest setups.
 8. hornwort/anacharis/duckweed pages: understate cold tolerance (all are pond-hardy).
 
-Graph-side fix applied from this audit: fissidens-nobilis temperatureF.max 80 → 78
-(warm water browns the fronds — the page was right).
+Former graph-side fix from this audit: fissidens-nobilis temperatureF.max 80 -> 78
+(warm water browns the fronds; the page was right).
 
 ---
 
 # Blog corrections for owner review
 
-Source: consistency audit (2026-06-12) of 12 published "Plant Profile" posts vs. the
-plant knowledge graph (`src/data/plants/species.json`). The published profiles appear
+Source: consistency audit (2026-06-12) of 12 published "Plant Profile" posts. The published profiles appear
 to have been built from a loose template — several share identical "Temperature:
 74–82°F", understated "Low" light, and inflated "Very Fast" growth values. In 5 of 6
 material conflicts the structured graph is correct; the graph was wrong once
@@ -59,7 +58,6 @@ matching `/plants/...` page).
 - Limnophila Hippuridoides: remove "also known as L. aromatica" (different species)
 - Several posts share the templated 74–82°F line — worth normalizing per species during retrofit
 
-## Graph-side fix already applied
+## Historical graph-side fix
 
-- `dwarf-baby-tears.temperatureF.max`: 82 → 78 (the carpet-guide article was right:
-  HC 'Cuba' melts in warm tanks). Validated and re-synced to Shopify metafields.
+- `dwarf-baby-tears.temperatureF.max`: 82 -> 78. The carpet-guide article was right: HC 'Cuba' melts in warm tanks.
