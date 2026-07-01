@@ -6,11 +6,19 @@ Load SE Ranking, Shopify MCP connectors, and SEO skills only when a task needs t
 
 This repo is the focused Aquatic Motiv care-guides SEO/GEO app. It exists to publish and maintain a crawlable, mobile-friendly freshwater planted aquarium guide hub and supporting plant/invertebrate species pages.
 
-The active public surface is the Shopify app-proxy URL:
+The active public Shopify surface is the native page URL:
 
-`https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide`
+`https://aquaticmotiv.com/pages/freshwater-aquatic-planted-tank-guide`
 
-The `/a` path segment is intentional. Shopify app proxies must live under a Shopify-reserved proxy prefix such as `/a`; do not remove or "clean up" this segment when working on canonical URLs, sitemaps, redirects, internal links, or docs.
+The keyword root URL redirects to the native Shopify page:
+
+`https://aquaticmotiv.com/freshwater-aquatic-planted-tank-guide`
+
+The former page URL also redirects to the native Shopify page:
+
+`https://aquaticmotiv.com/pages/care-guides`
+
+Do not revert the landing page canonical target back to the app proxy. The app proxy may remain available for legacy app-origin routes, but the Shopify-embedded landing page is the SEO target.
 
 The app origin/build surface remains:
 
@@ -18,13 +26,13 @@ The app origin/build surface remains:
 
 Canonical plant care guides target:
 
-- Title: `Aquarium Plants: Care Guides, Setup & Troubleshooting`
-- URL: `https://aquaticmotiv.com/a/freshwater-aquatic-planted-tank-guide`
+- Title: `Freshwater Aquatic Planted Tank Guide`
+- URL: `https://aquaticmotiv.com/pages/freshwater-aquatic-planted-tank-guide`
 
 Shopify integration rule:
 
-- AquaticMotivApp is integrated into Shopify through the app proxy at `/a/freshwater-aquatic-planted-tank-guide`.
-- Do not replace the Shopify proxy path with the standalone origin in SEO metadata.
+- The public care-guide landing page is embedded as a native Shopify page using the `care-guides` page template.
+- Do not replace the native Shopify page URL with the standalone origin or app-proxy URL in SEO metadata.
 - Load Shopify MCP connectors, inspect Shopify routing settings, create Shopify pages/redirects, or attempt Shop integration only when the user explicitly asks for Shopify integration help in that turn.
 
 ## Current Scope
